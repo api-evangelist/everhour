@@ -1,0 +1,57 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Everhour
+providerId: everhour
+created: '2026-07-11'
+modified: '2026-07-11'
+reconciled: false
+tags:
+- Time Tracking
+- Timesheets
+- Productivity
+- Rate Limiting
+- Quotas
+description: >-
+  Everhour documents a single API-wide rate limit of around 20 requests per 10
+  seconds per API key, and explicitly notes the number is not guaranteed - it
+  may vary with server load and may change. Exceeding the limit returns an HTTP
+  429 response with a Retry-After header specifying the number of seconds to
+  wait before the next request. The limit is per API key (each user has their
+  own key) and does not vary by pricing tier. List endpoints support
+  pagination (time record endpoints up to 50,000 results per page, task lists
+  up to 250 per page) to keep request counts down.
+notes: >-
+  Everhour asks integrators who need to perform batches of API requests to
+  contact them first (chat in-app or ask@everhour.com) - they may provide a
+  more convenient way to retrieve the data.
+sources:
+- https://everhour.docs.apiary.io/
+responseCodes:
+  throttled: 429
+limits:
+- name: API Requests
+  scope: api key
+  metric: requests
+  limit: ~20 requests per 10 seconds
+  notes: Documented as approximate and not guaranteed; may vary with server load.
+- name: Time Records Page Size
+  scope: request
+  metric: results
+  limit: 50000 per page
+  notes: Max value of the limit parameter on team/user/task/project time endpoints.
+- name: Tasks Page Size
+  scope: request
+  metric: results
+  limit: 250 per page
+  notes: Max tasks per page on GET /projects/{id}/tasks.
+policies:
+- name: Retry-After
+  description: 429 responses include a Retry-After header with the number of seconds to wait before making another request.
+- name: Batch Requests
+  description: Contact Everhour before running large batches of API requests; they may offer a more convenient bulk retrieval path.
+- name: Backoff Strategy
+  description: Clients should implement exponential backoff with jitter and honor Retry-After on 429 responses.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

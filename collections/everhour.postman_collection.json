@@ -1,0 +1,3988 @@
+{
+  "info": {
+    "_postman_id": "cdce9a26-be2a-41b0-9718-8bf07ec7ebf0",
+    "name": "Everhour API",
+    "description": {
+      "content": "The Everhour API is a RESTful JSON interface for time tracking, timesheets, timers, projects, tasks, clients, invoices, expenses, scheduling, time off, and reporting. Authenticate every request with an X-Api-Key header carrying the API key from the bottom of your Everhour profile page.",
+      "type": "text/plain"
+    },
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "id": "b7ca6477-8e57-4337-8687-38448e7005cd",
+      "name": "Time Records",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "483e0d30-1fd8-4e67-a84e-cf6bdabc2f8f",
+          "name": "Get all time records",
+          "request": {
+            "name": "Get all time records",
+            "description": {
+              "content": "Returns time records across the whole team, optionally filtered by date range and paginated. Pass opts_include_billing=1 to include billing data (admins with billing permissions only).",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/team/time",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "team",
+                "time"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "6f89ab60-e1f7-4121-8235-085da146f3e5",
+          "name": "Get user time records",
+          "request": {
+            "name": "Get user time records",
+            "description": {
+              "content": "Returns time records reported by a specific user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/users/:userId/time",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users",
+                ":userId",
+                "time"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "userId",
+                  "value": ""
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "9f2b4b8f-a5eb-4614-9f0b-ea646568e449",
+          "name": "Get task time records",
+          "request": {
+            "name": "Get task time records",
+            "description": {
+              "content": "Returns time records reported against a specific task.",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/tasks/:taskId/time",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "tasks",
+                ":taskId",
+                "time"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "taskId",
+                  "value": ""
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "42ec1532-85b1-4485-8349-a73d31a88802",
+          "name": "Get project time records",
+          "request": {
+            "name": "Get project time records",
+            "description": {
+              "content": "Returns time records reported against a specific project.",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/projects/:projectId/time",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "projects",
+                ":projectId",
+                "time"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "projectId",
+                  "value": ""
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "1273b954-1482-4fc5-b504-a6a747337061",
+          "name": "Add time",
+          "request": {
+            "name": "Add time",
+            "description": {
+              "content": "Adds a time record to a task for a user on a given date.",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/time",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "time"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "344eadc7-d5ca-409e-8232-9ed8e62ad022",
+          "name": "Update time record",
+          "request": {
+            "name": "Update time record",
+            "description": {
+              "content": "Updates an existing time record.",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/time/:timeId",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "time",
+                ":timeId"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "timeId",
+                  "value": ""
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "7aff0d59-8b58-48a3-ad5d-85285ec14742",
+          "name": "Delete time record",
+          "request": {
+            "name": "Delete time record",
+            "description": {
+              "content": "Deletes a time record.",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/time/:timeId",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "time",
+                ":timeId"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "timeId",
+                  "value": ""
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          },
+          "response": [],
+          "event": []
+        }
+      ]
+    },
+    {
+      "id": "66a1c01c-85ba-48cd-b68f-2d3691ccb882",
+      "name": "Timers",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9263bb69-0dfc-4a54-b031-0ccd550708f8",
+          "name": "Start timer",
+          "request": {
+            "name": "Start timer",
+            "description": {
+              "content": "Starts a timer on a task for the current user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/timers",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "timers"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "2f106cb8-9588-4de3-be00-4b9ac04a9038",
+          "name": "Get running timer",
+          "request": {
+            "name": "Get running timer",
+            "description": {
+              "content": "Returns the currently running timer for the current user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/timers/current",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "timers",
+                "current"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "b991cacb-85b0-4555-8238-ac4e2b8f1a35",
+          "name": "Stop timer",
+          "request": {
+            "name": "Stop timer",
+            "description": {
+              "content": "Stops the currently running timer and records the tracked time.",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/timers/current",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "timers",
+                "current"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "7cbdc305-888c-4a17-b8a4-c2f117f772a5",
+          "name": "Get all team timers",
+          "request": {
+            "name": "Get all team timers",
+            "description": {
+              "content": "Returns all currently running timers across the team.",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/team/timers",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "team",
+                "timers"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          },
+          "response": [],
+          "event": []
+        }
+      ]
+    },
+    {
+      "id": "f283b8f8-8d15-4a3d-981f-a64c37c5f9d3",
+      "name": "Timecards",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "06f0b9ac-8bff-424a-99f8-7f4c78d38aa5",
+          "name": "Get all timecards",
+          "request": {
+            "name": "Get all timecards",
+            "description": {
+              "content": "Returns timecards for the whole team within a date range (last two weeks by default).",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/timecards",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "timecards"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "3af468eb-bab5-419d-b489-fbba313bb0ca",
+          "name": "Get user timecards",
+          "request": {
+            "name": "Get user timecards",
+            "description": {
+              "content": "Returns timecards for a user within a date range (last two weeks by default).",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/users/:userId/timecards",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users",
+                ":userId",
+                "timecards"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "userId",
+                  "value": ""
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "c337fee4-1e7b-465f-8e02-c205c437af09",
+          "name": "Get timecard",
+          "request": {
+            "name": "Get timecard",
+            "description": {
+              "content": "Returns the timecard for a user on a specific date.",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/users/:userId/timecards/:date",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users",
+                ":userId",
+                "timecards",
+                ":date"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "userId",
+                  "value": ""
+                },
+                {
+                  "key": "date",
+                  "value": ""
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "e1116a1f-0a1b-4270-9850-f19505e4e7dc",
+          "name": "Update timecard",
+          "request": {
+            "name": "Update timecard",
+            "description": {
+              "content": "Updates clock-in, clock-out, or break time on a timecard.",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/users/:userId/timecards/:date",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users",
+                ":userId",
+                "timecards",
+                ":date"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "userId",
+                  "value": ""
+                },
+                {
+                  "key": "date",
+                  "value": ""
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "27330dcd-e1b8-4721-8071-3f75381c9325",
+          "name": "Delete timecard",
+          "request": {
+            "name": "Delete timecard",
+            "description": {
+              "content": "Deletes a user's timecard for a specific date.",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/users/:userId/timecards/:date",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users",
+                ":userId",
+                "timecards",
+                ":date"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "userId",
+                  "value": ""
+                },
+                {
+                  "key": "date",
+                  "value": ""
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "faba328b-d03b-4cee-a39e-14ae1c8604f8",
+          "name": "Clock in",
+          "request": {
+            "name": "Clock in",
+            "description": {
+              "content": "Clocks a user in, creating or updating today's timecard.",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/users/:userId/timecards/clock-in",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users",
+                ":userId",
+                "timecards",
+                "clock-in"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "userId",
+                  "value": ""
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "c3184aff-36cd-4561-a87d-923d108591b3",
+          "name": "Clock out",
+          "request": {
+            "name": "Clock out",
+            "description": {
+              "content": "Clocks a user out on today's timecard.",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/users/:userId/timecards/clock-out",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users",
+                ":userId",
+                "timecards",
+                "clock-out"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "userId",
+                  "value": ""
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": []
+        }
+      ]
+    },
+    {
+      "id": "6abb2fb6-d7b0-4092-afcd-800ca88534ac",
+      "name": "Timesheets",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5d88f3c5-23b5-49cf-a32e-2cc92fa9558a",
+          "name": "Get user timesheets",
+          "request": {
+            "name": "Get user timesheets",
+            "description": {
+              "content": "Returns weekly timesheets for a user (most recent weeks first).",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/users/:userId/timesheets",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users",
+                ":userId",
+                "timesheets"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "userId",
+                  "value": ""
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "f4d07bbd-0b80-4671-9226-d79f0b9eb6a8",
+          "name": "Get team timesheets",
+          "request": {
+            "name": "Get team timesheets",
+            "description": {
+              "content": "Returns timesheets for the whole team for a given week. The week ID is the two-digit year plus the week number (for example 2535 for week 35 of 2025).",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/timesheets",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "timesheets"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "d12599e8-3fea-40e8-b47a-d6cdb18888c6",
+          "name": "Approve week / request approval",
+          "request": {
+            "name": "Approve week / request approval",
+            "description": {
+              "content": "Submits a weekly timesheet for approval (or approves it directly when called by an admin). The timesheet ID is the user ID concatenated with the week ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/timesheets/:timesheetId/approval",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "timesheets",
+                ":timesheetId",
+                "approval"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "timesheetId",
+                  "value": ""
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "0f20876b-0dfd-4d8b-a7c2-5e31381c9d8b",
+          "name": "Approve or reject approval request",
+          "request": {
+            "name": "Approve or reject approval request",
+            "description": {
+              "content": "Approves or rejects a pending timesheet approval request, optionally per day of the week.",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/timesheets/:timesheetId/approval",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "timesheets",
+                ":timesheetId",
+                "approval"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "timesheetId",
+                  "value": ""
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "6aeb9a5a-e562-4844-84ad-0f3c5751a9a0",
+          "name": "Discard your approval request",
+          "request": {
+            "name": "Discard your approval request",
+            "description": {
+              "content": "Discards a previously submitted timesheet approval request.",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/timesheets/:timesheetId/discard-approval",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "timesheets",
+                ":timesheetId",
+                "discard-approval"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "timesheetId",
+                  "value": ""
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": []
+        }
+      ]
+    },
+    {
+      "id": "8884b978-e72f-49b7-8d22-42b81850bb76",
+      "name": "Projects",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e4666bd4-0b27-43e8-bb2b-866192f06b96",
+          "name": "Get all projects",
+          "request": {
+            "name": "Get all projects",
+            "description": {
+              "content": "Returns projects, optionally filtered by name query or source integration platform.",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/projects",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "projects"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "e39efc84-1cb5-408d-8035-f4ab34e6eec6",
+          "name": "Create project",
+          "request": {
+            "name": "Create project",
+            "description": {
+              "content": "Creates a native Everhour project.",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/projects",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "projects"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "8d89a00a-ac97-44d8-9cea-62bc8beb29e2",
+          "name": "Get project",
+          "request": {
+            "name": "Get project",
+            "description": {
+              "content": "Returns a single project by ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/projects/:projectId",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "projects",
+                ":projectId"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "projectId",
+                  "value": ""
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "38356388-b16b-4172-92d9-53b72f77e59d",
+          "name": "Update project",
+          "request": {
+            "name": "Update project",
+            "description": {
+              "content": "Updates a project.",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/projects/:projectId",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "projects",
+                ":projectId"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "projectId",
+                  "value": ""
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "5cd17451-51db-4db6-b2ba-ec7bb2e2646e",
+          "name": "Delete project",
+          "request": {
+            "name": "Delete project",
+            "description": {
+              "content": "Deletes a project.",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/projects/:projectId",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "projects",
+                ":projectId"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "projectId",
+                  "value": ""
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "53ede3ae-3f88-465a-96d0-7057b1a7ed54",
+          "name": "Archive or unarchive project",
+          "request": {
+            "name": "Archive or unarchive project",
+            "description": {
+              "content": "Archives or unarchives a project.",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/projects/:projectId/archive",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "projects",
+                ":projectId",
+                "archive"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "projectId",
+                  "value": ""
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "f363ce08-2d39-4ff2-a78e-b12bd7d0d03a",
+          "name": "Update project billing and budget",
+          "request": {
+            "name": "Update project billing and budget",
+            "description": {
+              "content": "Updates a project's billing type (non_billable, hourly, fixed_fee), rate configuration (project_rate or user_rate with per-user overrides), and budget (money, time, or costs; general, monthly, weekly, or daily periods).",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/projects/:projectId/billing",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "projects",
+                ":projectId",
+                "billing"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "projectId",
+                  "value": ""
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "9922eeec-a50a-4020-8a68-4996d6344247",
+          "name": "Sync integration project",
+          "request": {
+            "name": "Sync integration project",
+            "description": {
+              "content": "Instantly synchronizes a project from a connected integration (Asana, Trello, ClickUp, GitHub, and more) into Everhour instead of waiting for background sync. Safe to call multiple times; returns the existing project if already synced.",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/projects/:projectId/sync",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "projects",
+                ":projectId",
+                "sync"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "projectId",
+                  "value": ""
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "e2393fb8-10d9-4d8f-8c80-34866161175b",
+          "name": "Get project sections",
+          "request": {
+            "name": "Get project sections",
+            "description": {
+              "content": "Returns the sections of a project.",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/projects/:projectId/sections",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "projects",
+                ":projectId",
+                "sections"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "projectId",
+                  "value": ""
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "27a51d48-257b-429d-8365-ad09d19659c6",
+          "name": "Create section",
+          "request": {
+            "name": "Create section",
+            "description": {
+              "content": "Creates a section in a project.",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/projects/:projectId/sections",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "projects",
+                ":projectId",
+                "sections"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "projectId",
+                  "value": ""
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "050eb148-0f48-4256-8f1a-e2fd729f1dc2",
+          "name": "Get section",
+          "request": {
+            "name": "Get section",
+            "description": {
+              "content": "Returns a single section by ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/sections/:sectionId",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "sections",
+                ":sectionId"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "sectionId",
+                  "value": ""
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "ebbebf9d-3130-4632-b37b-8a0aaf0d9a7f",
+          "name": "Update section",
+          "request": {
+            "name": "Update section",
+            "description": {
+              "content": "Updates a section.",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/sections/:sectionId",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "sections",
+                ":sectionId"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "sectionId",
+                  "value": ""
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "91afe46e-0fa4-47f7-a6fe-5aedfdd224fd",
+          "name": "Delete section",
+          "request": {
+            "name": "Delete section",
+            "description": {
+              "content": "Deletes a section.",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/sections/:sectionId",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "sections",
+                ":sectionId"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "sectionId",
+                  "value": ""
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          },
+          "response": [],
+          "event": []
+        }
+      ]
+    },
+    {
+      "id": "36322900-b3b4-45ee-a39d-10dfb1c20051",
+      "name": "Tasks",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "02cc13c1-b1aa-496a-9ad8-9a06972ead81",
+          "name": "Get project tasks",
+          "request": {
+            "name": "Get project tasks",
+            "description": {
+              "content": "Returns the tasks of a project, paginated up to 250 per page.",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/projects/:projectId/tasks",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "projects",
+                ":projectId",
+                "tasks"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "projectId",
+                  "value": ""
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "e23ccb42-80cb-49cd-a581-ba153a64d096",
+          "name": "Create task",
+          "request": {
+            "name": "Create task",
+            "description": {
+              "content": "Creates a task in a project section.",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/projects/:projectId/tasks",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "projects",
+                ":projectId",
+                "tasks"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "projectId",
+                  "value": ""
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "efb4c702-8081-4cbf-8971-45582ae1876d",
+          "name": "Search tasks",
+          "request": {
+            "name": "Search tasks",
+            "description": {
+              "content": "Searches tasks across all projects by name.",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/tasks/search",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "tasks",
+                "search"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "a7893baf-9e54-4c81-b5fc-9985eda7b590",
+          "name": "Search project tasks",
+          "request": {
+            "name": "Search project tasks",
+            "description": {
+              "content": "Searches tasks within a single project by name.",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/projects/:projectId/tasks/search",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "projects",
+                ":projectId",
+                "tasks",
+                "search"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "projectId",
+                  "value": ""
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "49afc4f4-a38d-415d-9249-bb96a2eea463",
+          "name": "Get task",
+          "request": {
+            "name": "Get task",
+            "description": {
+              "content": "Returns a single task by ID. Pass opts_include_billing=1 to include billing data (admins with billing permissions only).",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/tasks/:taskId",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "tasks",
+                ":taskId"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "taskId",
+                  "value": ""
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "9e734017-7eaf-4743-9d6e-c41a213807b4",
+          "name": "Update task",
+          "request": {
+            "name": "Update task",
+            "description": {
+              "content": "Updates a task, including custom field values.",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/tasks/:taskId",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "tasks",
+                ":taskId"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "taskId",
+                  "value": ""
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "d48ff5e2-c20e-427d-af29-e60ebe242daf",
+          "name": "Delete task",
+          "request": {
+            "name": "Delete task",
+            "description": {
+              "content": "Deletes a task.",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/tasks/:taskId",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "tasks",
+                ":taskId"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "taskId",
+                  "value": ""
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "0eba4d32-5164-41a1-9976-a23ae876c370",
+          "name": "Update task estimate",
+          "request": {
+            "name": "Update task estimate",
+            "description": {
+              "content": "Sets or updates the time estimate on a task (overall or per user).",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/tasks/:taskId/estimate",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "tasks",
+                ":taskId",
+                "estimate"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "taskId",
+                  "value": ""
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "22f06ca6-6315-406f-80c6-5c45da13c924",
+          "name": "Delete task estimate",
+          "request": {
+            "name": "Delete task estimate",
+            "description": {
+              "content": "Removes the time estimate from a task.",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/tasks/:taskId/estimate",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "tasks",
+                ":taskId",
+                "estimate"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "taskId",
+                  "value": ""
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          },
+          "response": [],
+          "event": []
+        }
+      ]
+    },
+    {
+      "id": "ad0e6a7c-83e3-4b00-b814-39c9736a78a7",
+      "name": "Schedule",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9ad02286-e50c-4990-88a1-3921178ea9d4",
+          "name": "Get all assignments",
+          "request": {
+            "name": "Get all assignments",
+            "description": {
+              "content": "Returns resource planner assignments, filterable by type, project, task, client, and date range.",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/resource-planner/assignments",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "resource-planner",
+                "assignments"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "be577af6-3926-4819-93e5-c1111e98c107",
+          "name": "Create assignment or time off",
+          "request": {
+            "name": "Create assignment or time off",
+            "description": {
+              "content": "Creates a resource planner assignment. With type time-off (plus timeOffType, timeOffPeriod, and approval fields) this same endpoint creates time off for a user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/resource-planner/assignments",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "resource-planner",
+                "assignments"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "468bd086-97e8-45b0-9175-9cd6dc42814e",
+          "name": "Update assignment",
+          "request": {
+            "name": "Update assignment",
+            "description": {
+              "content": "Updates a resource planner assignment.",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/resource-planner/assignments/:assignmentId",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "resource-planner",
+                "assignments",
+                ":assignmentId"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "assignmentId",
+                  "value": ""
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "d4ade7c3-2a0a-4d90-aa84-c1c730f50e0c",
+          "name": "Delete assignment",
+          "request": {
+            "name": "Delete assignment",
+            "description": {
+              "content": "Deletes a resource planner assignment.",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/resource-planner/assignments/:assignmentId",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "resource-planner",
+                "assignments",
+                ":assignmentId"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "assignmentId",
+                  "value": ""
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          },
+          "response": [],
+          "event": []
+        }
+      ]
+    },
+    {
+      "id": "46eadbe6-bf4c-4e28-a292-14c27c38a033",
+      "name": "Time Off",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3cc6a331-70ae-4fa4-bcb7-61a170d243e9",
+          "name": "Get time off types",
+          "request": {
+            "name": "Get time off types",
+            "description": {
+              "content": "Returns the team's time off types (vacation, sick leave, and so on).",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/resource-planner/time-off-types",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "resource-planner",
+                "time-off-types"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "70ff9783-58d7-4c0e-aecf-8278af3ef943",
+          "name": "Create time off type",
+          "request": {
+            "name": "Create time off type",
+            "description": {
+              "content": "Creates a time off type.",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/resource-planner/time-off-types",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "resource-planner",
+                "time-off-types"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "00b35012-d21f-4867-820f-3f398a8cba41",
+          "name": "Update time off type",
+          "request": {
+            "name": "Update time off type",
+            "description": {
+              "content": "Updates a time off type.",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/resource-planner/time-off-types/:typeId",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "resource-planner",
+                "time-off-types",
+                ":typeId"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "typeId",
+                  "value": ""
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "c19187b6-bb58-48d5-acb1-46afd8b62b87",
+          "name": "Delete time off type",
+          "request": {
+            "name": "Delete time off type",
+            "description": {
+              "content": "Deletes a time off type.",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/resource-planner/time-off-types/:typeId",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "resource-planner",
+                "time-off-types",
+                ":typeId"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "typeId",
+                  "value": ""
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "13b0b1a8-dfc8-4e5f-95de-bdadb4442d2f",
+          "name": "Get all allocations",
+          "request": {
+            "name": "Get all allocations",
+            "description": {
+              "content": "Returns time off allocations (accrual balances) for team members.",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/allocations",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "allocations"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "b0e88d9a-137b-463b-95d5-a5683d9f45cf",
+          "name": "Create allocation",
+          "request": {
+            "name": "Create allocation",
+            "description": {
+              "content": "Creates a time off allocation for one or more users.",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/allocations",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "allocations"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "cfa38677-8bb2-4487-8acd-0660eebd6b61",
+          "name": "Update allocation",
+          "request": {
+            "name": "Update allocation",
+            "description": {
+              "content": "Updates a time off allocation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/allocations/:allocationId",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "allocations",
+                ":allocationId"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "allocationId",
+                  "value": ""
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "d4131073-3264-479e-9da9-0e97620ec2c6",
+          "name": "Delete allocation",
+          "request": {
+            "name": "Delete allocation",
+            "description": {
+              "content": "Deletes a time off allocation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/allocations/:allocationId",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "allocations",
+                ":allocationId"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "allocationId",
+                  "value": ""
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          },
+          "response": [],
+          "event": []
+        }
+      ]
+    },
+    {
+      "id": "5bb0cdcd-8189-4427-8b60-b5dbdb64e31f",
+      "name": "Clients",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8a2f6b08-9323-4f0b-8554-9b8ab6978a5c",
+          "name": "Get all clients",
+          "request": {
+            "name": "Get all clients",
+            "description": {
+              "content": "Returns clients, optionally filtered by name query.",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/clients",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "clients"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "1502b8aa-293c-4985-8238-7b0e6b8fd266",
+          "name": "Create client",
+          "request": {
+            "name": "Create client",
+            "description": {
+              "content": "Creates a client and optionally links projects to it.",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/clients",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "clients"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "3a19f097-d59d-4bca-9ca1-d903b2bd1d2e",
+          "name": "Get client",
+          "request": {
+            "name": "Get client",
+            "description": {
+              "content": "Returns a single client by ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/clients/:clientId",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "clients",
+                ":clientId"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "clientId",
+                  "value": ""
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "e5b33a2b-fbf6-4e01-b141-159c9bb9788c",
+          "name": "Update client",
+          "request": {
+            "name": "Update client",
+            "description": {
+              "content": "Updates a client.",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/clients/:clientId",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "clients",
+                ":clientId"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "clientId",
+                  "value": ""
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "b64a9b88-a99d-49bb-8f2c-03d3c29e1607",
+          "name": "Update client budget",
+          "request": {
+            "name": "Update client budget",
+            "description": {
+              "content": "Sets or updates a client budget - money, time, or costs based, with general, monthly, weekly, or daily periods, thresholds, and overbudget protection.",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/clients/:clientId/budget",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "clients",
+                ":clientId",
+                "budget"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "clientId",
+                  "value": ""
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "687d5512-7928-4d84-8a19-109c131bd261",
+          "name": "Delete client budget",
+          "request": {
+            "name": "Delete client budget",
+            "description": {
+              "content": "Removes the budget from a client.",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/clients/:clientId/budget",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "clients",
+                ":clientId",
+                "budget"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "clientId",
+                  "value": ""
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          },
+          "response": [],
+          "event": []
+        }
+      ]
+    },
+    {
+      "id": "56516ad4-5a4a-4191-9d85-489572a4a2d5",
+      "name": "Invoices",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4bc142ba-e4f9-4d16-ba63-83bce20e693e",
+          "name": "Get all invoices",
+          "request": {
+            "name": "Get all invoices",
+            "description": {
+              "content": "Returns all invoices.",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/invoices",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "invoices"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "4fcd1d24-4735-492d-861c-cebd3f36867b",
+          "name": "Get invoice",
+          "request": {
+            "name": "Get invoice",
+            "description": {
+              "content": "Returns a single invoice by ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/invoices/:invoiceId",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "invoices",
+                ":invoiceId"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "invoiceId",
+                  "value": ""
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "3e85df73-d6ba-45c2-b131-1e245a1d20ff",
+          "name": "Update invoice",
+          "request": {
+            "name": "Update invoice",
+            "description": {
+              "content": "Updates invoice details, tax, discount, and line items.",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/invoices/:invoiceId",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "invoices",
+                ":invoiceId"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "invoiceId",
+                  "value": ""
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "b2846a2d-5df7-4777-a018-cf7289feb55a",
+          "name": "Delete invoice",
+          "request": {
+            "name": "Delete invoice",
+            "description": {
+              "content": "Deletes an invoice.",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/invoices/:invoiceId",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "invoices",
+                ":invoiceId"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "invoiceId",
+                  "value": ""
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "21fd9c8d-4011-42de-a726-cb7f6d12d0ee",
+          "name": "Create invoice",
+          "request": {
+            "name": "Create invoice",
+            "description": {
+              "content": "Creates an invoice for a client from uninvoiced time and expenses within a date range.",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/clients/:clientId/invoices",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "clients",
+                ":clientId",
+                "invoices"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "clientId",
+                  "value": ""
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "ec4b82fb-c5bb-4798-a5e3-8f2c02791552",
+          "name": "Refresh invoice line items",
+          "request": {
+            "name": "Refresh invoice line items",
+            "description": {
+              "content": "Rebuilds the invoice line items from current time and expense data.",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/invoices/:invoiceId/reset-time",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "invoices",
+                ":invoiceId",
+                "reset-time"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "invoiceId",
+                  "value": ""
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "8b8f1831-6435-49f3-a2db-5ba01a1ba540",
+          "name": "Mark invoice as draft, sent, or paid",
+          "request": {
+            "name": "Mark invoice as draft, sent, or paid",
+            "description": {
+              "content": "Transitions an invoice between draft, sent, and paid statuses.",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/invoices/:invoiceId/:status",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "invoices",
+                ":invoiceId",
+                ":status"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "invoiceId",
+                  "value": ""
+                },
+                {
+                  "key": "status",
+                  "value": ""
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "2e197a79-4a58-4c0c-84f4-9f8085c3e36b",
+          "name": "Export invoice to Xero, QuickBooks, or FreshBooks",
+          "request": {
+            "name": "Export invoice to Xero, QuickBooks, or FreshBooks",
+            "description": {
+              "content": "Exports the invoice to a connected accounting integration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/invoices/:invoiceId/export",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "invoices",
+                ":invoiceId",
+                "export"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "invoiceId",
+                  "value": ""
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          },
+          "response": [],
+          "event": []
+        }
+      ]
+    },
+    {
+      "id": "2a48c5d4-7383-41ef-833d-bafee982abc3",
+      "name": "Expenses",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5ee5641b-4509-443a-9669-a2e02cdb2bed",
+          "name": "Get all expenses",
+          "request": {
+            "name": "Get all expenses",
+            "description": {
+              "content": "Returns all expenses.",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/expenses",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "expenses"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "e7650797-f142-4317-8314-10c2240b04bf",
+          "name": "Create expense",
+          "request": {
+            "name": "Create expense",
+            "description": {
+              "content": "Creates an expense in a category, optionally linked to a project and user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/expenses",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "expenses"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "f199541c-a101-47d0-98d2-1c6bfd468603",
+          "name": "Update expense",
+          "request": {
+            "name": "Update expense",
+            "description": {
+              "content": "Updates an expense.",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/expenses/:expenseId",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "expenses",
+                ":expenseId"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "expenseId",
+                  "value": ""
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "bb65b721-8d97-4d4e-be86-4f3119740d5e",
+          "name": "Delete expense",
+          "request": {
+            "name": "Delete expense",
+            "description": {
+              "content": "Deletes an expense.",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/expenses/:expenseId",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "expenses",
+                ":expenseId"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "expenseId",
+                  "value": ""
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "291fb439-e32d-4e54-942c-9d93d8463fe3",
+          "name": "Get all expense categories",
+          "request": {
+            "name": "Get all expense categories",
+            "description": {
+              "content": "Returns all expense categories.",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/expenses/categories",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "expenses",
+                "categories"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "c9686b16-6900-48df-8151-3cd90c83a5de",
+          "name": "Create expense category",
+          "request": {
+            "name": "Create expense category",
+            "description": {
+              "content": "Creates an expense category, optionally unit-based (for example mileage).",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/expenses/categories",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "expenses",
+                "categories"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "0a5e80ed-53e3-4a79-9bd3-736cb15b7b95",
+          "name": "Update expense category",
+          "request": {
+            "name": "Update expense category",
+            "description": {
+              "content": "Updates an expense category.",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/expenses/categories/:categoryId",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "expenses",
+                "categories",
+                ":categoryId"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "categoryId",
+                  "value": ""
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "f086a79f-2ea5-4e58-bff8-8111a6c7c5a7",
+          "name": "Delete expense category",
+          "request": {
+            "name": "Delete expense category",
+            "description": {
+              "content": "Deletes an expense category, optionally moving or removing its expenses.",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/expenses/categories/:categoryId",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "expenses",
+                "categories",
+                ":categoryId"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "categoryId",
+                  "value": ""
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          },
+          "response": [],
+          "event": []
+        }
+      ]
+    },
+    {
+      "id": "716c6496-fedd-4c0d-85ab-d6588a95fe3b",
+      "name": "Reports",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "35cfec6b-ad69-4d47-a113-105897f2ad09",
+          "name": "Projects report",
+          "request": {
+            "name": "Projects report",
+            "description": {
+              "content": "Returns aggregated time, billable amounts, costs, profit, and expense metrics per project. Time columns are in seconds and amounts in cents.",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/dashboards/projects",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "dashboards",
+                "projects"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "9be63938-6704-4b3f-a74a-d36f48dc5633",
+          "name": "Clients report",
+          "request": {
+            "name": "Clients report",
+            "description": {
+              "content": "Returns aggregated time, billable amounts, costs, profit, and expense metrics per client.",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/dashboards/clients",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "dashboards",
+                "clients"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "ee467716-b4b1-4912-b24b-8611b404b879",
+          "name": "Users report",
+          "request": {
+            "name": "Users report",
+            "description": {
+              "content": "Returns aggregated time, time off, billable amounts, costs, and profit metrics per team member.",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/dashboards/users",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "dashboards",
+                "users"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          },
+          "response": [],
+          "event": []
+        }
+      ]
+    },
+    {
+      "id": "950a0736-6b22-4115-86e8-54ee18c9e6a5",
+      "name": "Users",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "eee66884-d6d8-4c75-b82c-6b129a4646a6",
+          "name": "Get current user",
+          "request": {
+            "name": "Get current user",
+            "description": {
+              "content": "Returns the user profile that owns the API key.",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/users/me",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users",
+                "me"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "dc0a83d6-56e0-4448-a9e2-d6408afb0904",
+          "name": "Get all users",
+          "request": {
+            "name": "Get all users",
+            "description": {
+              "content": "Returns all team members with roles and statuses.",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/team/users",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "team",
+                "users"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          },
+          "response": [],
+          "event": []
+        }
+      ]
+    },
+    {
+      "id": "19da6eff-ecb7-4563-b948-546829f92e30",
+      "name": "Webhooks",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6e1f3b7f-cd8c-44d5-8aea-c2791a1e5d19",
+          "name": "Create webhook",
+          "request": {
+            "name": "Create webhook",
+            "description": {
+              "content": "Creates a webhook subscription. Everhour sends a verification POST with an X-Hook-Secret header to the target URL; the target must echo the header back to complete verification. Supported events cover project, task, timer, time, section, client, and estimate changes.",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/hooks",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "hooks"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "888f4e8f-1c97-4160-b350-9b073a68892b",
+          "name": "Get webhook",
+          "request": {
+            "name": "Get webhook",
+            "description": {
+              "content": "Returns a webhook subscription by ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/hooks/:hookId",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "hooks",
+                ":hookId"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "hookId",
+                  "value": ""
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "5b74de15-e26f-4195-802f-fc7dd3d2bd09",
+          "name": "Update webhook",
+          "request": {
+            "name": "Update webhook",
+            "description": {
+              "content": "Updates a webhook subscription (re-triggers target URL verification).",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/hooks/:hookId",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "hooks",
+                ":hookId"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "hookId",
+                  "value": ""
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "7802a221-9dfc-4eaf-91b5-d9d8350732e6",
+          "name": "Delete webhook",
+          "request": {
+            "name": "Delete webhook",
+            "description": {
+              "content": "Deletes a webhook subscription.",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/hooks/:hookId",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "hooks",
+                ":hookId"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "hookId",
+                  "value": ""
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          },
+          "response": [],
+          "event": []
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.everhour.com"
+    },
+    {
+      "key": "apiKey",
+      "value": ""
+    }
+  ]
+}

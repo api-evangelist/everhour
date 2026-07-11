@@ -1,0 +1,83 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Everhour
+providerId: everhour
+created: '2026-07-11'
+modified: '2026-07-11'
+reconciled: false
+tags:
+- Time Tracking
+- Timesheets
+- Productivity
+- Project Management
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of Everhour spend. Everhour is a seat-based SaaS subscription -
+  the API itself carries no usage charge, so the cost driver is the number of
+  active seats on the Team plan ($8.50 per user per month billed annually,
+  roughly $10 billed monthly, 5-seat minimum) or a negotiated Custom agreement
+  at 50+ seats. A Free plan covers up to 5 seats with limited features.
+  Because Everhour is itself a time, budget, and expense tracking system, the
+  API doubles as a FinOps data source - project budgets, billable amounts,
+  labor costs, expenses, and profit can be pulled from the reports dashboards
+  for cost allocation in your own tooling.
+notes: >-
+  Seat counts are the only Everhour meter to manage; API call volume affects
+  rate limits, not billing. Verify current per-seat rates on the Everhour
+  pricing page during reconciliation.
+sources:
+- https://everhour.com/pricing
+- https://everhour.docs.apiary.io/
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Everhour
+serviceCategory: Business Applications
+billingModel:
+  pricingCategory: Subscription
+  billingFrequency: Monthly or Annual
+  billingCurrency: USD
+  chargeCategories:
+  - Purchase
+  - Adjustment
+focusColumns:
+  ServiceName: Everhour
+  ServiceCategory: Business Applications
+  ProviderName: Everhour
+  PublisherName: Everhour
+  InvoiceIssuerName: Everhour
+  BillingCurrency: USD
+  ChargeCategory: Purchase
+  PricingCategory: Subscription
+meters:
+- name: seats
+  description: Active team seats on the subscription; the sole billing meter ($8.50/user/month annual, ~$10 monthly, 5-seat minimum on Team).
+  unit: seats
+  aggregation: max
+  dimensions:
+  - account
+- name: api_requests
+  description: API requests per key; rate-limited (~20 per 10 seconds) but not billed.
+  unit: requests
+  aggregation: sum
+  dimensions:
+  - api key
+principles:
+- name: Visibility
+  description: Track active vs licensed seats monthly; use the Everhour reports API (dashboards for projects, clients, users) to surface labor costs, billable amounts, and profit for downstream FinOps reporting.
+- name: Allocation
+  description: Map Everhour projects and clients to internal cost centers so tracked time and expenses allocate cleanly; seat costs allocate per team member.
+- name: Optimization
+  description: Remove inactive seats before renewal, choose annual billing for the 15% discount, and stay on Free while at 5 or fewer seats with basic needs.
+- name: Accountability
+  description: Assign an owner for the Everhour subscription who reviews seat counts and plan fit each billing cycle.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

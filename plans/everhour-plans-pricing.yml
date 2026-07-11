@@ -1,0 +1,116 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Everhour
+providerId: everhour
+created: '2026-07-11'
+modified: '2026-07-11'
+reconciled: false
+tags:
+- Time Tracking
+- Timesheets
+- Productivity
+- Project Management
+- Plans
+description: >-
+  Everhour is priced per seat, not per API call. There is no separate charge
+  for the API - API access comes with the product subscription, and every user
+  gets a personal API key from their profile page. Everhour publishes three
+  plans - a Free plan for up to 5 seats with limited features, a Team plan at
+  $8.50 per user per month billed annually (roughly $10 per user per month
+  billed monthly; annual billing saves 15%) with a 5-seat minimum and all
+  features, and a Custom plan for teams of 50+ seats with volume discounts and
+  priority support. A 14-day full-feature trial requires no credit card.
+notes: >-
+  Prices are in US dollars, payable by credit or debit card. Rate limiting
+  (around 20 requests per 10 seconds per API key) applies uniformly and is not
+  tier-based. Verify current rates on the Everhour pricing page during
+  reconciliation.
+sources:
+- https://everhour.com/pricing
+- https://everhour.docs.apiary.io/
+plans:
+- id: everhour-free
+  name: Free
+  type: free
+  description: >-
+    Free plan for up to 5 seats with limited features - basic time tracking,
+    projects and tasks, reports, and data export. Includes API access via
+    per-user API keys.
+  entries:
+  - label: Seats
+    name: free_seats
+    type: usage
+    metric: seats
+    limit: 5
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $0 per user per month (up to 5 seats)
+    userMultiplied: true
+  elements:
+  - name: Time Tracking
+  - name: Projects and Tasks
+  - name: Reports and Data Export
+  - name: API Access
+- id: everhour-team
+  name: Team
+  type: paid
+  description: >-
+    Full-featured plan with unlimited seats (5-seat minimum) - all native
+    integrations, billing and budgeting, invoicing, timesheet approvals,
+    scheduling and time off, expenses, SSO, and advanced permissions.
+  entries:
+  - label: Seats (Annual Billing)
+    name: team_seats_annual
+    type: usage
+    metric: seats
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $8.50 per user per month billed annually (5-seat minimum)
+    userMultiplied: true
+  - label: Seats (Monthly Billing)
+    name: team_seats_monthly
+    type: usage
+    metric: seats
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: ~$10 per user per month billed monthly (annual billing saves 15%)
+    userMultiplied: true
+  elements:
+  - name: All Integrations (Asana, Trello, ClickUp, Jira, GitHub, and more)
+  - name: Billing, Budgeting and Invoicing
+  - name: Timesheet Approvals
+  - name: Scheduling and Time Off
+  - name: Expenses
+  - name: SSO and Advanced Permissions
+  - name: API and Webhooks
+- id: everhour-custom
+  name: Custom
+  type: enterprise
+  description: >-
+    Custom plan for organizations with 50+ seats - volume discounts,
+    personalized demos, priority support, and a dedicated manager. Contact
+    Everhour for a quote.
+  entries:
+  - label: Enterprise Agreement
+    name: custom
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: contact sales (50-seat minimum)
+    userMultiplied: false
+  elements:
+  - name: Volume Discounts
+  - name: Priority Support
+  - name: Dedicated Manager
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

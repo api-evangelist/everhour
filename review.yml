@@ -1,0 +1,163 @@
+aid: everhour
+name: Everhour
+review:
+  question: Does Everhour expose a documented public WebSocket API?
+  answer: false
+  date: '2026-07-11'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    No AsyncAPI document was authored. Everhour's public API
+    (https://api.everhour.com, documented on Apiary) is request/response REST
+    over HTTPS - there is no server-push transport (WebSocket or SSE) on
+    Everhour's own API to model. Everhour does support webhooks (POST /hooks)
+    that deliver project, task, timer, time, section, client, and estimate
+    events to a customer-supplied HTTPS endpoint, but those are
+    server-to-endpoint HTTP callbacks, not a WebSocket or SSE surface.
+findings:
+  summary: |
+    Everhour does not publish a documented public WebSocket API. The Everhour
+    API is a RESTful JSON interface at https://api.everhour.com (labeled BETA
+    by Everhour, versioned via the optional X-Accept-Version header, current
+    version 1.2), authenticated with a per-user API key in the X-Api-Key
+    header. Every documented surface - time records, timers, timecards,
+    timesheets and approvals, projects, sections, tasks, estimates, custom
+    fields, schedule assignments, time off types and allocations, clients,
+    invoices, expenses, dashboards/reports, users, and webhooks - is plain
+    request/response REST over HTTPS. Even live timers are polled via
+    GET /timers/current and GET /team/timers rather than streamed. The only
+    push mechanism is webhooks: subscriptions created via POST /hooks with
+    X-Hook-Secret target URL verification, delivering events such as
+    api:timer:started, api:timer:stopped, and api:time:updated as HTTP POSTs
+    to the customer's endpoint. No realtime, bidirectional, or streaming
+    WebSocket (ws:// or wss://) endpoint is documented anywhere in the API
+    reference as of the review date.
+  accessModel: |
+    API access is included with any Everhour account, including the Free plan
+    (up to 5 seats). Every user finds a personal API key at the bottom of
+    their profile page in the Everhour app; there is no separate developer
+    signup, OAuth flow, or API-specific fee. Rate limiting is roughly 20
+    requests per 10 seconds per API key (429 plus Retry-After when exceeded)
+    and Everhour asks integrators to get in touch before running large
+    batches of requests.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://api.everhour.com
+      documented: true
+      note: Full JSON REST API documented on Apiary (API Blueprint). X-Api-Key header auth; optional X-Accept-Version header (current 1.2).
+    - protocol: Webhook
+      scheme: https
+      documented: true
+      note: POST /hooks subscriptions deliver 15 event types (project, task, timer, time, section, client, estimate changes) to a customer HTTPS endpoint with X-Hook-Secret verification. Server-to-endpoint HTTP, not WebSocket.
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented anywhere in the Everhour API reference as of the review date.
+    - protocol: SSE
+      scheme: https
+      documented: false
+      note: No Server-Sent Events streaming surface is documented; running timers are polled via GET /timers/current.
+  endpointsConfirmedRest:
+    - GET    https://api.everhour.com/team/time
+    - GET    https://api.everhour.com/users/{user_id}/time
+    - GET    https://api.everhour.com/tasks/{task_id}/time
+    - GET    https://api.everhour.com/projects/{project_id}/time
+    - POST   https://api.everhour.com/time
+    - PUT    https://api.everhour.com/time/{time_id}
+    - DELETE https://api.everhour.com/time/{time_id}
+    - POST   https://api.everhour.com/timers
+    - GET    https://api.everhour.com/timers/current
+    - DELETE https://api.everhour.com/timers/current
+    - GET    https://api.everhour.com/team/timers
+    - GET    https://api.everhour.com/timecards
+    - GET    https://api.everhour.com/users/{user_id}/timecards
+    - GET    https://api.everhour.com/users/{user_id}/timecards/{date}
+    - PUT    https://api.everhour.com/users/{user_id}/timecards/{date}
+    - DELETE https://api.everhour.com/users/{user_id}/timecards/{date}
+    - POST   https://api.everhour.com/users/{user_id}/timecards/clock-in
+    - POST   https://api.everhour.com/users/{user_id}/timecards/clock-out
+    - GET    https://api.everhour.com/users/{user_id}/timesheets
+    - GET    https://api.everhour.com/timesheets
+    - POST   https://api.everhour.com/timesheets/{timesheet_id}/approval
+    - PUT    https://api.everhour.com/timesheets/{timesheet_id}/approval
+    - PUT    https://api.everhour.com/timesheets/{timesheet_id}/discard-approval
+    - GET    https://api.everhour.com/projects
+    - POST   https://api.everhour.com/projects
+    - GET    https://api.everhour.com/projects/{project_id}
+    - PUT    https://api.everhour.com/projects/{project_id}
+    - DELETE https://api.everhour.com/projects/{project_id}
+    - PATCH  https://api.everhour.com/projects/{project_id}/archive
+    - PUT    https://api.everhour.com/projects/{project_id}/billing
+    - POST   https://api.everhour.com/projects/{project_id}/sync
+    - GET    https://api.everhour.com/projects/{project_id}/sections
+    - POST   https://api.everhour.com/projects/{project_id}/sections
+    - GET    https://api.everhour.com/sections/{section_id}
+    - PUT    https://api.everhour.com/sections/{section_id}
+    - DELETE https://api.everhour.com/sections/{section_id}
+    - GET    https://api.everhour.com/projects/{project_id}/tasks
+    - GET    https://api.everhour.com/tasks/search
+    - GET    https://api.everhour.com/projects/{project_id}/tasks/search
+    - POST   https://api.everhour.com/projects/{project_id}/tasks
+    - GET    https://api.everhour.com/tasks/{task_id}
+    - PUT    https://api.everhour.com/tasks/{task_id}
+    - DELETE https://api.everhour.com/tasks/{task_id}
+    - PUT    https://api.everhour.com/tasks/{task_id}/estimate
+    - DELETE https://api.everhour.com/tasks/{task_id}/estimate
+    - GET    https://api.everhour.com/resource-planner/assignments
+    - POST   https://api.everhour.com/resource-planner/assignments
+    - PUT    https://api.everhour.com/resource-planner/assignments/{assignment_id}
+    - DELETE https://api.everhour.com/resource-planner/assignments/{assignment_id}
+    - GET    https://api.everhour.com/resource-planner/time-off-types
+    - POST   https://api.everhour.com/resource-planner/time-off-types
+    - GET    https://api.everhour.com/allocations
+    - POST   https://api.everhour.com/allocations
+    - GET    https://api.everhour.com/clients
+    - POST   https://api.everhour.com/clients
+    - GET    https://api.everhour.com/clients/{client_id}
+    - PUT    https://api.everhour.com/clients/{client_id}
+    - PUT    https://api.everhour.com/clients/{client_id}/budget
+    - DELETE https://api.everhour.com/clients/{client_id}/budget
+    - GET    https://api.everhour.com/invoices
+    - GET    https://api.everhour.com/invoices/{invoice_id}
+    - POST   https://api.everhour.com/clients/{client_id}/invoices
+    - PUT    https://api.everhour.com/invoices/{invoice_id}
+    - POST   https://api.everhour.com/invoices/{invoice_id}/reset-time
+    - POST   https://api.everhour.com/invoices/{invoice_id}/export
+    - DELETE https://api.everhour.com/invoices/{invoice_id}
+    - GET    https://api.everhour.com/expenses
+    - POST   https://api.everhour.com/expenses
+    - PUT    https://api.everhour.com/expenses/{expense_id}
+    - DELETE https://api.everhour.com/expenses/{expense_id}
+    - GET    https://api.everhour.com/expenses/categories
+    - GET    https://api.everhour.com/dashboards/projects
+    - GET    https://api.everhour.com/dashboards/clients
+    - GET    https://api.everhour.com/dashboards/users
+    - GET    https://api.everhour.com/users/me
+    - GET    https://api.everhour.com/team/users
+    - POST   https://api.everhour.com/hooks
+    - GET    https://api.everhour.com/hooks/{hook_id}
+    - PUT    https://api.everhour.com/hooks/{hook_id}
+    - DELETE https://api.everhour.com/hooks/{hook_id}
+sources:
+  - url: https://everhour.docs.apiary.io/
+    type: Documentation
+    note: Official Everhour API documentation on Apiary. REST-only, X-Api-Key auth, ~20 req/10s rate limit, webhooks section lists 15 HTTP callback events. No WebSocket or SSE mentioned.
+  - url: https://jsapi.apiary.io/apis/everhour.apib
+    type: APIBlueprint
+    note: Raw API Blueprint source behind the Apiary docs; grounds every endpoint, parameter, and data structure in this entry.
+  - url: https://everhour.com
+    type: Website
+    note: Product website; API access is part of the product with no separate developer program.
+  - url: https://everhour.com/pricing
+    type: Pricing
+    note: Free (up to 5 seats), Team ($8.50/user/month annual, 5-seat minimum, 15% annual savings), Custom (50+ seats).
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No WebSocket or SSE protocol surface exists on Everhour's public API - it
+    is request/response REST over HTTPS plus outbound webhooks. No AsyncAPI
+    document was created because there is no server-push transport on
+    Everhour's own API to model; webhook deliveries are HTTP callbacks to
+    customer infrastructure.

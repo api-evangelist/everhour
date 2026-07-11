@@ -1,0 +1,251 @@
+aid: everhour
+url: https://raw.githubusercontent.com/api-evangelist/everhour/refs/heads/main/apis.yml
+name: Everhour
+kind: company
+description: Everhour is a time tracking and budgeting platform for teams that
+  embeds timers and timesheets directly inside the project management tools teams
+  already use - Asana, Trello, ClickUp, Jira, GitHub, Basecamp, Notion, Monday,
+  Linear, and more. The Everhour REST API (api.everhour.com, X-Api-Key auth)
+  gives programmatic access to time records, running timers, weekly timesheets
+  and approvals, clock-in/clock-out timecards, projects and tasks, clients,
+  invoices, expenses, resource scheduling, time off, and reporting dashboards,
+  plus webhooks for time, timer, task, and project change events.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- Time Tracking
+- Timesheets
+- Productivity
+- Project Management
+- Budgeting
+- Invoicing
+created: '2026-07-11'
+modified: '2026-07-11'
+specificationVersion: '0.19'
+apis:
+- aid: everhour:everhour-time-records-api
+  name: Everhour Time Records API
+  tags:
+  - Time Tracking
+  - Time Records
+  - Timesheets
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://everhour.docs.apiary.io/#reference/time-records
+  baseURL: https://api.everhour.com
+  properties:
+  - url: https://everhour.docs.apiary.io/
+    type: Documentation
+  - url: https://everhour.docs.apiary.io/#reference/time-records
+    type: APIReference
+  - url: openapi/everhour-openapi.yml
+    type: OpenAPI
+  description: Read and write reported time - list time records across the whole
+    team, per user, per task, or per project with date-range filters and
+    pagination, add time to a task, and update or delete existing time records.
+    Time is expressed in seconds; billing data can be included with the
+    opts_include_billing flag.
+- aid: everhour:everhour-timers-api
+  name: Everhour Timers API
+  tags:
+  - Timers
+  - Time Tracking
+  - Real Time
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://everhour.docs.apiary.io/#reference/timers
+  baseURL: https://api.everhour.com
+  properties:
+  - url: https://everhour.docs.apiary.io/#reference/timers
+    type: APIReference
+  - url: openapi/everhour-openapi.yml
+    type: OpenAPI
+  description: Control live time tracking - start a timer on a task with an
+    optional comment, fetch the current user's running timer, list every running
+    timer across the team, and stop the current timer to record the tracked time.
+- aid: everhour:everhour-timesheets-timecards-api
+  name: Everhour Timesheets and Timecards API
+  tags:
+  - Timesheets
+  - Timecards
+  - Approvals
+  - Attendance
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://everhour.docs.apiary.io/#reference/timesheets
+  baseURL: https://api.everhour.com
+  properties:
+  - url: https://everhour.docs.apiary.io/#reference/timesheets
+    type: APIReference
+  - url: https://everhour.docs.apiary.io/#reference/timecards
+    type: Documentation
+  - url: openapi/everhour-openapi.yml
+    type: OpenAPI
+  description: Weekly timesheets and attendance timecards - fetch user or team
+    timesheets by week ID, submit a week for approval, approve or reject approval
+    requests (optionally per day), discard requests, and manage clock-in/clock-out
+    timecards with breaks and full change history.
+- aid: everhour:everhour-projects-api
+  name: Everhour Projects API
+  tags:
+  - Projects
+  - Sections
+  - Budgets
+  - Billing
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://everhour.docs.apiary.io/#reference/projects
+  baseURL: https://api.everhour.com
+  properties:
+  - url: https://everhour.docs.apiary.io/#reference/projects
+    type: APIReference
+  - url: openapi/everhour-openapi.yml
+    type: OpenAPI
+  description: Manage projects and their sections - create, list, search, update,
+    archive, and delete projects, configure billing (hourly, fixed fee,
+    non-billable) with project or per-user rates, set money/time/cost budgets
+    with periods and thresholds, and instantly sync projects from connected
+    integrations like Asana, Trello, ClickUp, and GitHub.
+- aid: everhour:everhour-tasks-api
+  name: Everhour Tasks API
+  tags:
+  - Tasks
+  - Estimates
+  - Custom Fields
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://everhour.docs.apiary.io/#reference/tasks
+  baseURL: https://api.everhour.com
+  properties:
+  - url: https://everhour.docs.apiary.io/#reference/tasks
+    type: APIReference
+  - url: openapi/everhour-openapi.yml
+    type: OpenAPI
+  description: Work with tasks - list and search tasks globally or within a
+    project, create tasks in sections with assignees and due dates, update task
+    details and custom field values, and set or remove time estimates (overall
+    or per user).
+- aid: everhour:everhour-schedule-time-off-api
+  name: Everhour Schedule and Time Off API
+  tags:
+  - Resource Planning
+  - Scheduling
+  - Time Off
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://everhour.docs.apiary.io/#reference/schedule
+  baseURL: https://api.everhour.com
+  properties:
+  - url: https://everhour.docs.apiary.io/#reference/schedule
+    type: APIReference
+  - url: https://everhour.docs.apiary.io/#reference/time-off
+    type: Documentation
+  - url: openapi/everhour-openapi.yml
+    type: OpenAPI
+  description: Resource planner and time off management - list, create, update,
+    and delete schedule assignments, create time off requests with approval
+    workflow, and manage time off types and accrual allocations with carried
+    days and over-allocation restrictions.
+- aid: everhour:everhour-clients-invoices-api
+  name: Everhour Clients and Invoices API
+  tags:
+  - Clients
+  - Invoices
+  - Budgets
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://everhour.docs.apiary.io/#reference/clients
+  baseURL: https://api.everhour.com
+  properties:
+  - url: https://everhour.docs.apiary.io/#reference/clients
+    type: APIReference
+  - url: https://everhour.docs.apiary.io/#reference/invoices
+    type: Documentation
+  - url: openapi/everhour-openapi.yml
+    type: OpenAPI
+  description: Manage clients with money, time, or cost budgets, then bill them -
+    create invoices from uninvoiced time and expenses in a date range, refresh
+    line items, apply tax and discounts, move invoices through draft/sent/paid
+    statuses, and export them to Xero, QuickBooks, or FreshBooks.
+- aid: everhour:everhour-expenses-api
+  name: Everhour Expenses API
+  tags:
+  - Expenses
+  - Attachments
+  - Budgeting
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://everhour.docs.apiary.io/#reference/expenses
+  baseURL: https://api.everhour.com
+  properties:
+  - url: https://everhour.docs.apiary.io/#reference/expenses
+    type: APIReference
+  - url: openapi/everhour-openapi.yml
+    type: OpenAPI
+  description: Track billable and non-billable expenses against projects and
+    users - create, update, and delete expenses, manage expense categories
+    (including unit-based categories like mileage), and attach jpg, png, or pdf
+    receipts.
+- aid: everhour:everhour-reports-api
+  name: Everhour Reports API
+  tags:
+  - Reports
+  - Dashboards
+  - Analytics
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://everhour.docs.apiary.io/#reference/reports
+  baseURL: https://api.everhour.com
+  properties:
+  - url: https://everhour.docs.apiary.io/#reference/reports
+    type: APIReference
+  - url: openapi/everhour-openapi.yml
+    type: OpenAPI
+  description: Dashboard reports aggregated by project, client, or team member -
+    time, billable and non-billable time, time off, billable amounts, labor and
+    expense costs, profit, and uninvoiced amounts, filterable by date range,
+    project, client, and user. Time is in seconds and amounts in cents.
+- aid: everhour:everhour-users-api
+  name: Everhour Users API
+  tags:
+  - Users
+  - Team
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://everhour.docs.apiary.io/#reference/users
+  baseURL: https://api.everhour.com
+  properties:
+  - url: https://everhour.docs.apiary.io/#reference/users
+    type: APIReference
+  - url: openapi/everhour-openapi.yml
+    type: OpenAPI
+  description: Identity and team roster - fetch the profile that owns the API key
+    (GET /users/me) and list all team members with their roles (admin,
+    supervisor, member) and statuses.
+- aid: everhour:everhour-webhooks-api
+  name: Everhour Webhooks API
+  tags:
+  - Webhooks
+  - Events
+  - Automation
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://everhour.docs.apiary.io/#reference/webhooks
+  baseURL: https://api.everhour.com
+  properties:
+  - url: https://everhour.docs.apiary.io/#reference/webhooks
+    type: APIReference
+  - url: openapi/everhour-openapi.yml
+    type: OpenAPI
+  description: Subscribe to change notifications - create, get, update, and
+    delete webhook subscriptions for project, task, section, client, estimate,
+    timer started/stopped, and time updated events, optionally scoped to a
+    single project, with X-Hook-Secret target URL verification.
+common:
+- type: Website
+  url: https://everhour.com
+- type: Documentation
+  url: https://everhour.docs.apiary.io/
+- type: LinkedIn
+  url: https://www.linkedin.com/company/everhour
+- type: Pricing
+  url: https://everhour.com/pricing
+- type: Blog
+  url: https://everhour.com/blog/
+- type: Plans
+  url: plans/everhour-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/everhour-rate-limits.yml
+- type: FinOps
+  url: finops/everhour-finops.yml
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

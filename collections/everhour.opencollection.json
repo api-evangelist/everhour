@@ -1,0 +1,1243 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Everhour API",
+    "version": "1.2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "apikey": {
+        "key": "X-Api-Key",
+        "value": "{{apiKey}}",
+        "placement": "header"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Time Records",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all time records",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.everhour.com/team/time"
+          },
+          "docs": "Returns time records across the whole team, optionally filtered by date range and paginated. Pass opts_include_billing=1 to include billing data (admins with billing permissions only)."
+        },
+        {
+          "info": {
+            "name": "Get user time records",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.everhour.com/users/{userId}/time"
+          },
+          "docs": "Returns time records reported by a specific user."
+        },
+        {
+          "info": {
+            "name": "Get task time records",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.everhour.com/tasks/{taskId}/time"
+          },
+          "docs": "Returns time records reported against a specific task."
+        },
+        {
+          "info": {
+            "name": "Get project time records",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.everhour.com/projects/{projectId}/time"
+          },
+          "docs": "Returns time records reported against a specific project."
+        },
+        {
+          "info": {
+            "name": "Add time",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.everhour.com/time",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds a time record to a task for a user on a given date."
+        },
+        {
+          "info": {
+            "name": "Update time record",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.everhour.com/time/{timeId}",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing time record."
+        },
+        {
+          "info": {
+            "name": "Delete time record",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.everhour.com/time/{timeId}"
+          },
+          "docs": "Deletes a time record."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Timers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Start timer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.everhour.com/timers",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Starts a timer on a task for the current user."
+        },
+        {
+          "info": {
+            "name": "Get running timer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.everhour.com/timers/current"
+          },
+          "docs": "Returns the currently running timer for the current user."
+        },
+        {
+          "info": {
+            "name": "Stop timer",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.everhour.com/timers/current"
+          },
+          "docs": "Stops the currently running timer and records the tracked time."
+        },
+        {
+          "info": {
+            "name": "Get all team timers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.everhour.com/team/timers"
+          },
+          "docs": "Returns all currently running timers across the team."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Timecards",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all timecards",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.everhour.com/timecards"
+          },
+          "docs": "Returns timecards for the whole team within a date range (last two weeks by default)."
+        },
+        {
+          "info": {
+            "name": "Get user timecards",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.everhour.com/users/{userId}/timecards"
+          },
+          "docs": "Returns timecards for a user within a date range (last two weeks by default)."
+        },
+        {
+          "info": {
+            "name": "Get timecard",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.everhour.com/users/{userId}/timecards/{date}"
+          },
+          "docs": "Returns the timecard for a user on a specific date."
+        },
+        {
+          "info": {
+            "name": "Update timecard",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.everhour.com/users/{userId}/timecards/{date}",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates clock-in, clock-out, or break time on a timecard."
+        },
+        {
+          "info": {
+            "name": "Delete timecard",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.everhour.com/users/{userId}/timecards/{date}"
+          },
+          "docs": "Deletes a user's timecard for a specific date."
+        },
+        {
+          "info": {
+            "name": "Clock in",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.everhour.com/users/{userId}/timecards/clock-in",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Clocks a user in, creating or updating today's timecard."
+        },
+        {
+          "info": {
+            "name": "Clock out",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.everhour.com/users/{userId}/timecards/clock-out",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Clocks a user out on today's timecard."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Timesheets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get user timesheets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.everhour.com/users/{userId}/timesheets"
+          },
+          "docs": "Returns weekly timesheets for a user (most recent weeks first)."
+        },
+        {
+          "info": {
+            "name": "Get team timesheets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.everhour.com/timesheets"
+          },
+          "docs": "Returns timesheets for the whole team for a given week. The week ID is the two-digit year plus the week number (for example 2535 for week 35 of 2025)."
+        },
+        {
+          "info": {
+            "name": "Approve week / request approval",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.everhour.com/timesheets/{timesheetId}/approval",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submits a weekly timesheet for approval (or approves it directly when called by an admin). The timesheet ID is the user ID concatenated with the week ID."
+        },
+        {
+          "info": {
+            "name": "Approve or reject approval request",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.everhour.com/timesheets/{timesheetId}/approval",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Approves or rejects a pending timesheet approval request, optionally per day of the week."
+        },
+        {
+          "info": {
+            "name": "Discard your approval request",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.everhour.com/timesheets/{timesheetId}/discard-approval",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Discards a previously submitted timesheet approval request."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Projects",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all projects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.everhour.com/projects"
+          },
+          "docs": "Returns projects, optionally filtered by name query or source integration platform."
+        },
+        {
+          "info": {
+            "name": "Create project",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.everhour.com/projects",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a native Everhour project."
+        },
+        {
+          "info": {
+            "name": "Get project",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.everhour.com/projects/{projectId}"
+          },
+          "docs": "Returns a single project by ID."
+        },
+        {
+          "info": {
+            "name": "Update project",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.everhour.com/projects/{projectId}",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a project."
+        },
+        {
+          "info": {
+            "name": "Delete project",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.everhour.com/projects/{projectId}"
+          },
+          "docs": "Deletes a project."
+        },
+        {
+          "info": {
+            "name": "Archive or unarchive project",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.everhour.com/projects/{projectId}/archive",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Archives or unarchives a project."
+        },
+        {
+          "info": {
+            "name": "Update project billing and budget",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.everhour.com/projects/{projectId}/billing",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a project's billing type (non_billable, hourly, fixed_fee), rate configuration (project_rate or user_rate with per-user overrides), and budget (money, time, or costs; general, monthly, weekly, or daily periods)."
+        },
+        {
+          "info": {
+            "name": "Sync integration project",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.everhour.com/projects/{projectId}/sync"
+          },
+          "docs": "Instantly synchronizes a project from a connected integration (Asana, Trello, ClickUp, GitHub, and more) into Everhour instead of waiting for background sync. Safe to call multiple times; returns the existing project if already synced."
+        },
+        {
+          "info": {
+            "name": "Get project sections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.everhour.com/projects/{projectId}/sections"
+          },
+          "docs": "Returns the sections of a project."
+        },
+        {
+          "info": {
+            "name": "Create section",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.everhour.com/projects/{projectId}/sections",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a section in a project."
+        },
+        {
+          "info": {
+            "name": "Get section",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.everhour.com/sections/{sectionId}"
+          },
+          "docs": "Returns a single section by ID."
+        },
+        {
+          "info": {
+            "name": "Update section",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.everhour.com/sections/{sectionId}",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a section."
+        },
+        {
+          "info": {
+            "name": "Delete section",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.everhour.com/sections/{sectionId}"
+          },
+          "docs": "Deletes a section."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Tasks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get project tasks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.everhour.com/projects/{projectId}/tasks"
+          },
+          "docs": "Returns the tasks of a project, paginated up to 250 per page."
+        },
+        {
+          "info": {
+            "name": "Create task",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.everhour.com/projects/{projectId}/tasks",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a task in a project section."
+        },
+        {
+          "info": {
+            "name": "Search tasks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.everhour.com/tasks/search"
+          },
+          "docs": "Searches tasks across all projects by name."
+        },
+        {
+          "info": {
+            "name": "Search project tasks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.everhour.com/projects/{projectId}/tasks/search"
+          },
+          "docs": "Searches tasks within a single project by name."
+        },
+        {
+          "info": {
+            "name": "Get task",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.everhour.com/tasks/{taskId}"
+          },
+          "docs": "Returns a single task by ID. Pass opts_include_billing=1 to include billing data (admins with billing permissions only)."
+        },
+        {
+          "info": {
+            "name": "Update task",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.everhour.com/tasks/{taskId}",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a task, including custom field values."
+        },
+        {
+          "info": {
+            "name": "Delete task",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.everhour.com/tasks/{taskId}"
+          },
+          "docs": "Deletes a task."
+        },
+        {
+          "info": {
+            "name": "Update task estimate",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.everhour.com/tasks/{taskId}/estimate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sets or updates the time estimate on a task (overall or per user)."
+        },
+        {
+          "info": {
+            "name": "Delete task estimate",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.everhour.com/tasks/{taskId}/estimate"
+          },
+          "docs": "Removes the time estimate from a task."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Schedule",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all assignments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.everhour.com/resource-planner/assignments"
+          },
+          "docs": "Returns resource planner assignments, filterable by type, project, task, client, and date range."
+        },
+        {
+          "info": {
+            "name": "Create assignment or time off",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.everhour.com/resource-planner/assignments",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a resource planner assignment. With type time-off (plus timeOffType, timeOffPeriod, and approval fields) this same endpoint creates time off for a user."
+        },
+        {
+          "info": {
+            "name": "Update assignment",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.everhour.com/resource-planner/assignments/{assignmentId}",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a resource planner assignment."
+        },
+        {
+          "info": {
+            "name": "Delete assignment",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.everhour.com/resource-planner/assignments/{assignmentId}"
+          },
+          "docs": "Deletes a resource planner assignment."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Time Off",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get time off types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.everhour.com/resource-planner/time-off-types"
+          },
+          "docs": "Returns the team's time off types (vacation, sick leave, and so on)."
+        },
+        {
+          "info": {
+            "name": "Create time off type",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.everhour.com/resource-planner/time-off-types",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a time off type."
+        },
+        {
+          "info": {
+            "name": "Update time off type",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.everhour.com/resource-planner/time-off-types/{typeId}",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a time off type."
+        },
+        {
+          "info": {
+            "name": "Delete time off type",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.everhour.com/resource-planner/time-off-types/{typeId}"
+          },
+          "docs": "Deletes a time off type."
+        },
+        {
+          "info": {
+            "name": "Get all allocations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.everhour.com/allocations"
+          },
+          "docs": "Returns time off allocations (accrual balances) for team members."
+        },
+        {
+          "info": {
+            "name": "Create allocation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.everhour.com/allocations",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a time off allocation for one or more users."
+        },
+        {
+          "info": {
+            "name": "Update allocation",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.everhour.com/allocations/{allocationId}",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a time off allocation."
+        },
+        {
+          "info": {
+            "name": "Delete allocation",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.everhour.com/allocations/{allocationId}"
+          },
+          "docs": "Deletes a time off allocation."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Clients",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all clients",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.everhour.com/clients"
+          },
+          "docs": "Returns clients, optionally filtered by name query."
+        },
+        {
+          "info": {
+            "name": "Create client",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.everhour.com/clients",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a client and optionally links projects to it."
+        },
+        {
+          "info": {
+            "name": "Get client",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.everhour.com/clients/{clientId}"
+          },
+          "docs": "Returns a single client by ID."
+        },
+        {
+          "info": {
+            "name": "Update client",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.everhour.com/clients/{clientId}",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a client."
+        },
+        {
+          "info": {
+            "name": "Update client budget",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.everhour.com/clients/{clientId}/budget",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sets or updates a client budget - money, time, or costs based, with general, monthly, weekly, or daily periods, thresholds, and overbudget protection."
+        },
+        {
+          "info": {
+            "name": "Delete client budget",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.everhour.com/clients/{clientId}/budget"
+          },
+          "docs": "Removes the budget from a client."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Invoices",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all invoices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.everhour.com/invoices"
+          },
+          "docs": "Returns all invoices."
+        },
+        {
+          "info": {
+            "name": "Get invoice",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.everhour.com/invoices/{invoiceId}"
+          },
+          "docs": "Returns a single invoice by ID."
+        },
+        {
+          "info": {
+            "name": "Update invoice",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.everhour.com/invoices/{invoiceId}",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates invoice details, tax, discount, and line items."
+        },
+        {
+          "info": {
+            "name": "Delete invoice",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.everhour.com/invoices/{invoiceId}"
+          },
+          "docs": "Deletes an invoice."
+        },
+        {
+          "info": {
+            "name": "Create invoice",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.everhour.com/clients/{clientId}/invoices",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates an invoice for a client from uninvoiced time and expenses within a date range."
+        },
+        {
+          "info": {
+            "name": "Refresh invoice line items",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.everhour.com/invoices/{invoiceId}/reset-time",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Rebuilds the invoice line items from current time and expense data."
+        },
+        {
+          "info": {
+            "name": "Mark invoice as draft, sent, or paid",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.everhour.com/invoices/{invoiceId}/{status}"
+          },
+          "docs": "Transitions an invoice between draft, sent, and paid statuses."
+        },
+        {
+          "info": {
+            "name": "Export invoice to Xero, QuickBooks, or FreshBooks",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.everhour.com/invoices/{invoiceId}/export"
+          },
+          "docs": "Exports the invoice to a connected accounting integration."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Expenses",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all expenses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.everhour.com/expenses"
+          },
+          "docs": "Returns all expenses."
+        },
+        {
+          "info": {
+            "name": "Create expense",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.everhour.com/expenses",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates an expense in a category, optionally linked to a project and user."
+        },
+        {
+          "info": {
+            "name": "Update expense",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.everhour.com/expenses/{expenseId}",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an expense."
+        },
+        {
+          "info": {
+            "name": "Delete expense",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.everhour.com/expenses/{expenseId}"
+          },
+          "docs": "Deletes an expense."
+        },
+        {
+          "info": {
+            "name": "Get all expense categories",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.everhour.com/expenses/categories"
+          },
+          "docs": "Returns all expense categories."
+        },
+        {
+          "info": {
+            "name": "Create expense category",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.everhour.com/expenses/categories",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates an expense category, optionally unit-based (for example mileage)."
+        },
+        {
+          "info": {
+            "name": "Update expense category",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.everhour.com/expenses/categories/{categoryId}",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an expense category."
+        },
+        {
+          "info": {
+            "name": "Delete expense category",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.everhour.com/expenses/categories/{categoryId}"
+          },
+          "docs": "Deletes an expense category, optionally moving or removing its expenses."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Reports",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Projects report",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.everhour.com/dashboards/projects"
+          },
+          "docs": "Returns aggregated time, billable amounts, costs, profit, and expense metrics per project. Time columns are in seconds and amounts in cents."
+        },
+        {
+          "info": {
+            "name": "Clients report",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.everhour.com/dashboards/clients"
+          },
+          "docs": "Returns aggregated time, billable amounts, costs, profit, and expense metrics per client."
+        },
+        {
+          "info": {
+            "name": "Users report",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.everhour.com/dashboards/users"
+          },
+          "docs": "Returns aggregated time, time off, billable amounts, costs, and profit metrics per team member."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get current user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.everhour.com/users/me"
+          },
+          "docs": "Returns the user profile that owns the API key."
+        },
+        {
+          "info": {
+            "name": "Get all users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.everhour.com/team/users"
+          },
+          "docs": "Returns all team members with roles and statuses."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Webhooks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.everhour.com/hooks",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a webhook subscription. Everhour sends a verification POST with an X-Hook-Secret header to the target URL; the target must echo the header back to complete verification. Supported events cover project, task, timer, time, section, client, and estimate changes."
+        },
+        {
+          "info": {
+            "name": "Get webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.everhour.com/hooks/{hookId}"
+          },
+          "docs": "Returns a webhook subscription by ID."
+        },
+        {
+          "info": {
+            "name": "Update webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.everhour.com/hooks/{hookId}",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a webhook subscription (re-triggers target URL verification)."
+        },
+        {
+          "info": {
+            "name": "Delete webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.everhour.com/hooks/{hookId}"
+          },
+          "docs": "Deletes a webhook subscription."
+        }
+      ]
+    }
+  ]
+}
