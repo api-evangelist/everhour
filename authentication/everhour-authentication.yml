@@ -1,0 +1,16 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/everhour-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: apiKey
+  type: apiKey
+  in: header
+  parameter: X-Api-Key
+  description: API key from the bottom of your Everhour profile page.
+  sources:
+  - openapi/everhour-openapi.yml

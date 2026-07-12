@@ -230,6 +230,12 @@ apis:
     timer started/stopped, and time updated events, optionally scoped to a
     single project, with X-Hook-Secret target URL verification.
 common:
+- type: TrustCenter
+  url: security/everhour-trust-center.yml
+- type: DomainSecurity
+  url: security/everhour-domain-security.yml
+- type: Authentication
+  url: authentication/everhour-authentication.yml
 - type: Website
   url: https://everhour.com
 - type: Documentation

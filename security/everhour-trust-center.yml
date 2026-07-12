@@ -1,0 +1,15 @@
+generated: '2026-07-11'
+method: searched
+probe: true
+source: https://everhour.com/security
+url: https://everhour.com/security
+certifications:
+- SOC 2
+- PCI DSS
+- GDPR
+evidence:
+- source: https://everhour.com/security
+  keywords:
+  - soc 2
+  - pci-dss
+  - gdpr
