@@ -230,6 +230,8 @@ apis:
     timer started/stopped, and time updated events, optionally scoped to a
     single project, with X-Hook-Secret target URL verification.
 common:
+- type: AgenticAccess
+  url: agentic-access/everhour-agentic-access.yml
 - type: TrustCenter
   url: security/everhour-trust-center.yml
 - type: DomainSecurity
