@@ -1,0 +1,430 @@
+openapi: 3.0.3
+info:
+  title: Everhour Clients Timesheets API
+  description: The Everhour API is a RESTful interface providing programmatic access to time tracking, timesheets, timers, projects, tasks, clients, invoices, expenses, resource scheduling, time off, and reporting data in Everhour. The API accepts and returns JSON (UTF-8 only). All requests are authenticated with an X-Api-Key header carrying an API key found at the bottom of your Everhour profile page. An optional X-Accept-Version header pins a specific API version (the most recent, 1.2, is used by default). The API is labeled BETA by Everhour, meaning some calls can be slightly adjusted; breaking changes are pushed in separate API versions. Time values are in seconds and money amounts are in cents throughout.
+  version: '1.2'
+  contact:
+    name: Everhour
+    url: https://everhour.com
+    email: ask@everhour.com
+servers:
+- url: https://api.everhour.com
+  description: Everhour production API
+security:
+- apiKey: []
+tags:
+- name: Timesheets
+  description: Weekly timesheets and the timesheet approval workflow.
+paths:
+  /users/{userId}/timesheets:
+    get:
+      operationId: getUserTimesheets
+      tags:
+      - Timesheets
+      summary: Get user timesheets
+      description: Returns weekly timesheets for a user (most recent weeks first).
+      parameters:
+      - $ref: '#/components/parameters/UserId'
+      - name: limit
+        in: query
+        description: Max number of weeks to return.
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: A list of the user's timesheets.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Timesheet'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /timesheets:
+    get:
+      operationId: getTeamTimesheets
+      tags:
+      - Timesheets
+      summary: Get team timesheets
+      description: Returns timesheets for the whole team for a given week. The week ID is the two-digit year plus the week number (for example 2535 for week 35 of 2025).
+      parameters:
+      - name: weekId
+        in: query
+        required: true
+        description: Week ID (two-digit year + week number).
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: A list of team timesheets for the week.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Timesheet'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /timesheets/{timesheetId}/approval:
+    parameters:
+    - $ref: '#/components/parameters/TimesheetId'
+    post:
+      operationId: submitTimesheetApproval
+      tags:
+      - Timesheets
+      summary: Approve week / request approval
+      description: Submits a weekly timesheet for approval (or approves it directly when called by an admin). The timesheet ID is the user ID concatenated with the week ID.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TimesheetApprovalRequest'
+      responses:
+        '200':
+          description: The timesheet approval.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TimesheetApproval'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+    put:
+      operationId: reviewTimesheetApproval
+      tags:
+      - Timesheets
+      summary: Approve or reject approval request
+      description: Approves or rejects a pending timesheet approval request, optionally per day of the week.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TimesheetApprovalReviewRequest'
+      responses:
+        '200':
+          description: The reviewed timesheet approval.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TimesheetApproval'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /timesheets/{timesheetId}/discard-approval:
+    put:
+      operationId: discardTimesheetApproval
+      tags:
+      - Timesheets
+      summary: Discard your approval request
+      description: Discards a previously submitted timesheet approval request.
+      parameters:
+      - $ref: '#/components/parameters/TimesheetId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TimesheetApprovalRequest'
+      responses:
+        '200':
+          description: The timesheet approval after discarding.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TimesheetApproval'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+components:
+  schemas:
+    TimesheetApprovalReviewRequest:
+      type: object
+      required:
+      - status
+      properties:
+        status:
+          type: string
+          enum:
+          - approved
+          - rejected
+        days:
+          $ref: '#/components/schemas/ApprovalHistoryDays'
+        comment:
+          type: string
+        sendNotification:
+          type: boolean
+    DailyTime:
+      type: object
+      properties:
+        date:
+          type: string
+        time:
+          type: integer
+          description: Total daily time in seconds.
+        timeWithoutTask:
+          type: integer
+          description: Time tracked without a task, in seconds.
+        user:
+          type: integer
+    TaskTime:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: Total task time in seconds.
+        users:
+          type: object
+          description: Task time in seconds keyed by user ID.
+          additionalProperties:
+            type: integer
+    TimesheetApprovalRequest:
+      type: object
+      properties:
+        comment:
+          type: string
+        reviewer:
+          type: integer
+          description: User ID of the reviewer (must be a team admin).
+        sendNotification:
+          type: boolean
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+    Task:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Task ID (for example ev:9876543210).
+        name:
+          type: string
+        projects:
+          type: array
+          description: Project IDs.
+          items:
+            type: string
+        section:
+          type: integer
+          description: Section ID.
+        labels:
+          type: array
+          items:
+            type: string
+        position:
+          type: integer
+        description:
+          type: string
+        dueAt:
+          type: string
+        status:
+          type: string
+          enum:
+          - open
+          - closed
+        time:
+          $ref: '#/components/schemas/TaskTime'
+        estimate:
+          $ref: '#/components/schemas/TaskEstimate'
+        unbillable:
+          type: boolean
+    Week:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Week ID (two-digit year + week number).
+        from:
+          type: string
+        to:
+          type: string
+        beginningOfWeek:
+          type: integer
+          description: 0 if the week starts on Sunday, 1 if Monday.
+    Timecard:
+      type: object
+      properties:
+        user:
+          type: integer
+          description: User ID.
+        clockIn:
+          type: string
+          description: Clock-in time in the user timezone (HH:MM).
+        clockOut:
+          type: string
+          description: Clock-out time in the user timezone (HH:MM).
+        breakTime:
+          type: integer
+          description: Breaks duration in seconds.
+        workTime:
+          type: integer
+          description: Working time in seconds (clock-out minus clock-in minus breaks).
+        history:
+          type: array
+          items:
+            $ref: '#/components/schemas/TimecardHistory'
+    Timesheet:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Timesheet ID (user ID concatenated with week ID).
+        week:
+          $ref: '#/components/schemas/Week'
+        user:
+          type: integer
+          description: User ID.
+        tasks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Task'
+        dailyTime:
+          type: array
+          items:
+            $ref: '#/components/schemas/DailyTime'
+        approval:
+          $ref: '#/components/schemas/TimesheetApproval'
+        timecards:
+          type: array
+          items:
+            $ref: '#/components/schemas/Timecard'
+    TimesheetApproval:
+      type: object
+      properties:
+        id:
+          type: integer
+        user:
+          type: integer
+        weekId:
+          type: integer
+        timesheetId:
+          type: integer
+        reviewer:
+          type: integer
+          description: Reviewer user ID.
+        history:
+          type: array
+          items:
+            $ref: '#/components/schemas/TimesheetApprovalHistory'
+    TaskEstimate:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: Total task estimate in seconds.
+        type:
+          type: string
+          enum:
+          - overall
+          - users
+        users:
+          type: object
+          description: Task estimate in seconds keyed by user ID.
+          additionalProperties:
+            type: integer
+    TimecardHistory:
+      type: object
+      properties:
+        action:
+          type: string
+          enum:
+          - clock-in
+          - clock-out
+          - break
+        previousTime:
+          type: string
+        time:
+          type: string
+        trigger:
+          type: string
+          enum:
+          - manually
+          - timer
+          - button
+          - day-end
+          - idle-state
+    ApprovalHistoryDays:
+      type: object
+      properties:
+        monday:
+          type: boolean
+        tuesday:
+          type: boolean
+        wednesday:
+          type: boolean
+        thursday:
+          type: boolean
+        friday:
+          type: boolean
+        saturday:
+          type: boolean
+        sunday:
+          type: boolean
+    TimesheetApprovalHistory:
+      type: object
+      properties:
+        action:
+          type: string
+          enum:
+          - submitted
+          - rejected
+          - approved
+          - discarded
+        days:
+          $ref: '#/components/schemas/ApprovalHistoryDays'
+        user:
+          type: integer
+        comment:
+          type: string
+        createdAt:
+          type: string
+  parameters:
+    UserId:
+      name: userId
+      in: path
+      required: true
+      description: User ID.
+      schema:
+        type: integer
+    TimesheetId:
+      name: timesheetId
+      in: path
+      required: true
+      description: Timesheet ID (user ID concatenated with week ID).
+      schema:
+        type: integer
+  responses:
+    Unauthorized:
+      description: Missing or invalid X-Api-Key header.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    TooManyRequests:
+      description: Rate limit exceeded (around 20 requests per 10 seconds per API key). The Retry-After response header specifies the number of seconds to wait before making another request.
+      headers:
+        Retry-After:
+          description: Seconds to wait before retrying.
+          schema:
+            type: integer
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: header
+      name: X-Api-Key
+      description: API key from the bottom of your Everhour profile page.

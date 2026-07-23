@@ -1,0 +1,297 @@
+openapi: 3.0.3
+info:
+  title: Everhour Clients Timecards API
+  description: The Everhour API is a RESTful interface providing programmatic access to time tracking, timesheets, timers, projects, tasks, clients, invoices, expenses, resource scheduling, time off, and reporting data in Everhour. The API accepts and returns JSON (UTF-8 only). All requests are authenticated with an X-Api-Key header carrying an API key found at the bottom of your Everhour profile page. An optional X-Accept-Version header pins a specific API version (the most recent, 1.2, is used by default). The API is labeled BETA by Everhour, meaning some calls can be slightly adjusted; breaking changes are pushed in separate API versions. Time values are in seconds and money amounts are in cents throughout.
+  version: '1.2'
+  contact:
+    name: Everhour
+    url: https://everhour.com
+    email: ask@everhour.com
+servers:
+- url: https://api.everhour.com
+  description: Everhour production API
+security:
+- apiKey: []
+tags:
+- name: Timecards
+  description: Clock-in/clock-out attendance timecards.
+paths:
+  /timecards:
+    get:
+      operationId: getAllTimecards
+      tags:
+      - Timecards
+      summary: Get all timecards
+      description: Returns timecards for the whole team within a date range (last two weeks by default).
+      parameters:
+      - $ref: '#/components/parameters/From'
+      - $ref: '#/components/parameters/To'
+      responses:
+        '200':
+          description: A list of timecards.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Timecard'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /users/{userId}/timecards:
+    get:
+      operationId: getUserTimecards
+      tags:
+      - Timecards
+      summary: Get user timecards
+      description: Returns timecards for a user within a date range (last two weeks by default).
+      parameters:
+      - $ref: '#/components/parameters/UserId'
+      - $ref: '#/components/parameters/From'
+      - $ref: '#/components/parameters/To'
+      responses:
+        '200':
+          description: A list of the user's timecards.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Timecard'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /users/{userId}/timecards/{date}:
+    parameters:
+    - $ref: '#/components/parameters/UserId'
+    - $ref: '#/components/parameters/Date'
+    get:
+      operationId: getTimecard
+      tags:
+      - Timecards
+      summary: Get timecard
+      description: Returns the timecard for a user on a specific date.
+      responses:
+        '200':
+          description: The timecard.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Timecard'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+    put:
+      operationId: updateTimecard
+      tags:
+      - Timecards
+      summary: Update timecard
+      description: Updates clock-in, clock-out, or break time on a timecard.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TimecardUpdateRequest'
+      responses:
+        '200':
+          description: The updated timecard.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Timecard'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+    delete:
+      operationId: deleteTimecard
+      tags:
+      - Timecards
+      summary: Delete timecard
+      description: Deletes a user's timecard for a specific date.
+      responses:
+        '204':
+          description: Timecard deleted.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /users/{userId}/timecards/clock-in:
+    post:
+      operationId: clockIn
+      tags:
+      - Timecards
+      summary: Clock in
+      description: Clocks a user in, creating or updating today's timecard.
+      parameters:
+      - $ref: '#/components/parameters/UserId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ClockRequest'
+      responses:
+        '200':
+          description: The timecard after clocking in.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Timecard'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /users/{userId}/timecards/clock-out:
+    post:
+      operationId: clockOut
+      tags:
+      - Timecards
+      summary: Clock out
+      description: Clocks a user out on today's timecard.
+      parameters:
+      - $ref: '#/components/parameters/UserId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ClockRequest'
+      responses:
+        '200':
+          description: The timecard after clocking out.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Timecard'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+components:
+  schemas:
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+    Timecard:
+      type: object
+      properties:
+        user:
+          type: integer
+          description: User ID.
+        clockIn:
+          type: string
+          description: Clock-in time in the user timezone (HH:MM).
+        clockOut:
+          type: string
+          description: Clock-out time in the user timezone (HH:MM).
+        breakTime:
+          type: integer
+          description: Breaks duration in seconds.
+        workTime:
+          type: integer
+          description: Working time in seconds (clock-out minus clock-in minus breaks).
+        history:
+          type: array
+          items:
+            $ref: '#/components/schemas/TimecardHistory'
+    ClockRequest:
+      type: object
+      properties:
+        userDate:
+          type: string
+          format: date
+          description: Current user date; defaults to the user profile timezone.
+    TimecardUpdateRequest:
+      type: object
+      properties:
+        clockIn:
+          type: string
+          description: Clock-in time in the user timezone (HH:MM).
+        clockOut:
+          type: string
+          description: Clock-out time in the user timezone (HH:MM).
+        breakTime:
+          type: integer
+          description: Breaks duration in seconds.
+    TimecardHistory:
+      type: object
+      properties:
+        action:
+          type: string
+          enum:
+          - clock-in
+          - clock-out
+          - break
+        previousTime:
+          type: string
+        time:
+          type: string
+        trigger:
+          type: string
+          enum:
+          - manually
+          - timer
+          - button
+          - day-end
+          - idle-state
+  parameters:
+    UserId:
+      name: userId
+      in: path
+      required: true
+      description: User ID.
+      schema:
+        type: integer
+    From:
+      name: from
+      in: query
+      description: Date from (YYYY-MM-DD).
+      schema:
+        type: string
+        format: date
+    To:
+      name: to
+      in: query
+      description: Date to (YYYY-MM-DD).
+      schema:
+        type: string
+        format: date
+    Date:
+      name: date
+      in: path
+      required: true
+      description: Date in YYYY-MM-DD format.
+      schema:
+        type: string
+        format: date
+  responses:
+    Unauthorized:
+      description: Missing or invalid X-Api-Key header.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    TooManyRequests:
+      description: Rate limit exceeded (around 20 requests per 10 seconds per API key). The Retry-After response header specifies the number of seconds to wait before making another request.
+      headers:
+        Retry-After:
+          description: Seconds to wait before retrying.
+          schema:
+            type: integer
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: header
+      name: X-Api-Key
+      description: API key from the bottom of your Everhour profile page.

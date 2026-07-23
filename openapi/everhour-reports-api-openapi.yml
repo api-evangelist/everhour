@@ -1,0 +1,260 @@
+openapi: 3.0.3
+info:
+  title: Everhour Clients Reports API
+  description: The Everhour API is a RESTful interface providing programmatic access to time tracking, timesheets, timers, projects, tasks, clients, invoices, expenses, resource scheduling, time off, and reporting data in Everhour. The API accepts and returns JSON (UTF-8 only). All requests are authenticated with an X-Api-Key header carrying an API key found at the bottom of your Everhour profile page. An optional X-Accept-Version header pins a specific API version (the most recent, 1.2, is used by default). The API is labeled BETA by Everhour, meaning some calls can be slightly adjusted; breaking changes are pushed in separate API versions. Time values are in seconds and money amounts are in cents throughout.
+  version: '1.2'
+  contact:
+    name: Everhour
+    url: https://everhour.com
+    email: ask@everhour.com
+servers:
+- url: https://api.everhour.com
+  description: Everhour production API
+security:
+- apiKey: []
+tags:
+- name: Reports
+  description: Dashboard reports for projects, clients, and users.
+paths:
+  /dashboards/projects:
+    get:
+      operationId: getProjectsReport
+      tags:
+      - Reports
+      summary: Projects report
+      description: Returns aggregated time, billable amounts, costs, profit, and expense metrics per project. Time columns are in seconds and amounts in cents.
+      parameters:
+      - $ref: '#/components/parameters/DateGte'
+      - $ref: '#/components/parameters/DateLte'
+      - $ref: '#/components/parameters/FilterProjectId'
+      - $ref: '#/components/parameters/FilterClientId'
+      - $ref: '#/components/parameters/FilterMemberId'
+      responses:
+        '200':
+          description: Per-project report rows.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProjectsDashboardItem'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /dashboards/clients:
+    get:
+      operationId: getClientsReport
+      tags:
+      - Reports
+      summary: Clients report
+      description: Returns aggregated time, billable amounts, costs, profit, and expense metrics per client.
+      parameters:
+      - $ref: '#/components/parameters/DateGte'
+      - $ref: '#/components/parameters/DateLte'
+      - $ref: '#/components/parameters/FilterProjectId'
+      - $ref: '#/components/parameters/FilterClientId'
+      - $ref: '#/components/parameters/FilterMemberId'
+      responses:
+        '200':
+          description: Per-client report rows.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ClientsDashboardItem'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /dashboards/users:
+    get:
+      operationId: getUsersReport
+      tags:
+      - Reports
+      summary: Users report
+      description: Returns aggregated time, time off, billable amounts, costs, and profit metrics per team member.
+      parameters:
+      - $ref: '#/components/parameters/DateGte'
+      - $ref: '#/components/parameters/DateLte'
+      - $ref: '#/components/parameters/FilterProjectId'
+      - $ref: '#/components/parameters/FilterClientId'
+      - $ref: '#/components/parameters/FilterMemberId'
+      responses:
+        '200':
+          description: Per-user report rows.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UsersDashboardItem'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+components:
+  parameters:
+    DateGte:
+      name: date.gte
+      in: query
+      description: Report start date (YYYY-MM-DD).
+      schema:
+        type: string
+        format: date
+    FilterProjectId:
+      name: projectId
+      in: query
+      description: Filter by project ID.
+      schema:
+        type: string
+    FilterMemberId:
+      name: memberId
+      in: query
+      description: Filter by user ID.
+      schema:
+        type: integer
+    FilterClientId:
+      name: clientId
+      in: query
+      description: Filter by client ID.
+      schema:
+        type: integer
+    DateLte:
+      name: date.lte
+      in: query
+      description: Report end date (YYYY-MM-DD).
+      schema:
+        type: string
+        format: date
+  schemas:
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+    UsersDashboardItem:
+      type: object
+      description: Per-user report row. Time is in seconds and amounts in cents.
+      properties:
+        memberId:
+          type: integer
+        memberName:
+          type: string
+        memberHeadline:
+          type: string
+        memberStatus:
+          type: string
+          enum:
+          - active
+          - invited
+          - pending
+          - removed
+        time:
+          type: integer
+        billableTime:
+          type: integer
+        nonBillableTime:
+          type: integer
+        timeOffTime:
+          type: integer
+        timeOffDays:
+          type: number
+        billableAmount:
+          type: integer
+        costs:
+          type: integer
+        profit:
+          type: integer
+        expenses:
+          type: integer
+    ProjectsDashboardItem:
+      type: object
+      description: Per-project report row. Time is in seconds and amounts in cents.
+      properties:
+        projectId:
+          type: string
+        projectName:
+          type: string
+        projectStatus:
+          type: string
+          enum:
+          - open
+          - archived
+        clientId:
+          type: integer
+        clientName:
+          type: string
+        billingType:
+          type: string
+          enum:
+          - non_billable
+          - hourly
+          - fixed_fee
+        time:
+          type: integer
+        billableTime:
+          type: integer
+        nonBillableTime:
+          type: integer
+        billableAmount:
+          type: integer
+        costs:
+          type: integer
+        profit:
+          type: integer
+        uninvoicedAmount:
+          type: integer
+        expenses:
+          type: integer
+    ClientsDashboardItem:
+      type: object
+      description: Per-client report row. Time is in seconds and amounts in cents.
+      properties:
+        clientId:
+          type: integer
+        clientName:
+          type: string
+        time:
+          type: integer
+        billableTime:
+          type: integer
+        nonBillableTime:
+          type: integer
+        billableAmount:
+          type: integer
+        costs:
+          type: integer
+        profit:
+          type: integer
+        uninvoicedAmount:
+          type: integer
+        expenses:
+          type: integer
+  responses:
+    Unauthorized:
+      description: Missing or invalid X-Api-Key header.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    TooManyRequests:
+      description: Rate limit exceeded (around 20 requests per 10 seconds per API key). The Retry-After response header specifies the number of seconds to wait before making another request.
+      headers:
+        Retry-After:
+          description: Seconds to wait before retrying.
+          schema:
+            type: integer
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: header
+      name: X-Api-Key
+      description: API key from the bottom of your Everhour profile page.

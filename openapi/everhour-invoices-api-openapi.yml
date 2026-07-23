@@ -1,0 +1,503 @@
+openapi: 3.0.3
+info:
+  title: Everhour Clients Invoices API
+  description: The Everhour API is a RESTful interface providing programmatic access to time tracking, timesheets, timers, projects, tasks, clients, invoices, expenses, resource scheduling, time off, and reporting data in Everhour. The API accepts and returns JSON (UTF-8 only). All requests are authenticated with an X-Api-Key header carrying an API key found at the bottom of your Everhour profile page. An optional X-Accept-Version header pins a specific API version (the most recent, 1.2, is used by default). The API is labeled BETA by Everhour, meaning some calls can be slightly adjusted; breaking changes are pushed in separate API versions. Time values are in seconds and money amounts are in cents throughout.
+  version: '1.2'
+  contact:
+    name: Everhour
+    url: https://everhour.com
+    email: ask@everhour.com
+servers:
+- url: https://api.everhour.com
+  description: Everhour production API
+security:
+- apiKey: []
+tags:
+- name: Invoices
+  description: Invoices generated from tracked time and expenses.
+paths:
+  /invoices:
+    get:
+      operationId: getAllInvoices
+      tags:
+      - Invoices
+      summary: Get all invoices
+      description: Returns all invoices.
+      responses:
+        '200':
+          description: A list of invoices.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Invoice'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /invoices/{invoiceId}:
+    parameters:
+    - $ref: '#/components/parameters/InvoiceId'
+    get:
+      operationId: getInvoice
+      tags:
+      - Invoices
+      summary: Get invoice
+      description: Returns a single invoice by ID.
+      responses:
+        '200':
+          description: The invoice.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Invoice'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+    put:
+      operationId: updateInvoice
+      tags:
+      - Invoices
+      summary: Update invoice
+      description: Updates invoice details, tax, discount, and line items.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InvoiceUpdateRequest'
+      responses:
+        '200':
+          description: The updated invoice.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Invoice'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+    delete:
+      operationId: deleteInvoice
+      tags:
+      - Invoices
+      summary: Delete invoice
+      description: Deletes an invoice.
+      responses:
+        '204':
+          description: Invoice deleted.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /clients/{clientId}/invoices:
+    post:
+      operationId: createInvoice
+      tags:
+      - Invoices
+      summary: Create invoice
+      description: Creates an invoice for a client from uninvoiced time and expenses within a date range.
+      parameters:
+      - $ref: '#/components/parameters/ClientId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InvoiceCreateRequest'
+      responses:
+        '201':
+          description: The created invoice.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Invoice'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /invoices/{invoiceId}/reset-time:
+    post:
+      operationId: refreshInvoiceLineItems
+      tags:
+      - Invoices
+      summary: Refresh invoice line items
+      description: Rebuilds the invoice line items from current time and expense data.
+      parameters:
+      - $ref: '#/components/parameters/InvoiceId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InvoiceRefreshRequest'
+      responses:
+        '200':
+          description: The refreshed invoice.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Invoice'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /invoices/{invoiceId}/{status}:
+    post:
+      operationId: setInvoiceStatus
+      tags:
+      - Invoices
+      summary: Mark invoice as draft, sent, or paid
+      description: Transitions an invoice between draft, sent, and paid statuses.
+      parameters:
+      - $ref: '#/components/parameters/InvoiceId'
+      - name: status
+        in: path
+        required: true
+        description: Target invoice status.
+        schema:
+          type: string
+          enum:
+          - draft
+          - sent
+          - paid
+      responses:
+        '200':
+          description: The invoice with the new status.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Invoice'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /invoices/{invoiceId}/export:
+    post:
+      operationId: exportInvoice
+      tags:
+      - Invoices
+      summary: Export invoice to Xero, QuickBooks, or FreshBooks
+      description: Exports the invoice to a connected accounting integration.
+      parameters:
+      - $ref: '#/components/parameters/InvoiceId'
+      responses:
+        '200':
+          description: The exported invoice.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Invoice'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+components:
+  parameters:
+    ClientId:
+      name: clientId
+      in: path
+      required: true
+      description: Client ID.
+      schema:
+        type: integer
+    InvoiceId:
+      name: invoiceId
+      in: path
+      required: true
+      description: Invoice ID.
+      schema:
+        type: integer
+  schemas:
+    InvoiceCreateRequest:
+      type: object
+      properties:
+        limitDateFrom:
+          type: string
+          format: date
+        limitDateTill:
+          type: string
+          format: date
+        includeExpenses:
+          type: boolean
+        includeTime:
+          type: boolean
+        projects:
+          type: array
+          items:
+            type: string
+        tax:
+          type: object
+          properties:
+            rate:
+              type: number
+            amount:
+              type: integer
+        discount:
+          type: object
+          properties:
+            rate:
+              type: number
+            amount:
+              type: integer
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+    InvoiceItem:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        billedTime:
+          type: integer
+          description: Time in seconds.
+        listAmount:
+          type: integer
+          description: Amount in cents.
+        netAmount:
+          type: integer
+        totalAmount:
+          type: integer
+        custom:
+          type: boolean
+        taxable:
+          type: integer
+        position:
+          type: integer
+        createdAt:
+          type: string
+    Invoice:
+      type: object
+      properties:
+        id:
+          type: integer
+        client:
+          $ref: '#/components/schemas/Client'
+        createdAt:
+          type: string
+        createdBy:
+          $ref: '#/components/schemas/User'
+        dueDate:
+          type: string
+          format: date
+        issueDate:
+          type: string
+          format: date
+        limitDateFrom:
+          type: string
+          format: date
+        limitDateTill:
+          type: string
+          format: date
+        discount:
+          type: object
+          properties:
+            amount:
+              type: integer
+            rate:
+              type: number
+        tax:
+          type: object
+          properties:
+            amount:
+              type: integer
+            rate:
+              type: number
+        includeExpenses:
+          type: boolean
+        includeTime:
+          type: boolean
+        invoiceItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/InvoiceItem'
+        listAmount:
+          type: integer
+          description: List amount in cents (without discount and taxes).
+        netAmount:
+          type: integer
+          description: Net amount in cents (with discount, without taxes).
+        totalAmount:
+          type: integer
+          description: Total amount in cents (with discount and taxes).
+        totalTime:
+          type: integer
+          description: Total invoice time in seconds.
+        projects:
+          type: array
+          items:
+            type: string
+        publicId:
+          type: string
+        status:
+          type: string
+          enum:
+          - draft
+          - sent
+          - paid
+    Client:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        projects:
+          type: array
+          description: Project IDs linked to the client.
+          items:
+            type: string
+        businessDetails:
+          type: string
+        budget:
+          $ref: '#/components/schemas/ClientBudget'
+    InvoiceUpdateRequest:
+      type: object
+      properties:
+        publicId:
+          type: string
+        issueDate:
+          type: string
+          format: date
+        dueDate:
+          type: string
+          format: date
+        reference:
+          type: string
+        publicNotes:
+          type: string
+        tax:
+          type: object
+          properties:
+            rate:
+              type: number
+            amount:
+              type: integer
+        discount:
+          type: object
+          properties:
+            rate:
+              type: number
+            amount:
+              type: integer
+        invoiceItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/InvoiceItem'
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        headline:
+          type: string
+        avatarUrl:
+          type: string
+        role:
+          type: string
+          enum:
+          - admin
+          - supervisor
+          - member
+        status:
+          type: string
+          enum:
+          - active
+          - invited
+          - pending
+          - removed
+    ClientBudget:
+      type: object
+      required:
+      - type
+      - budget
+      - period
+      properties:
+        type:
+          type: string
+          description: Budget type - money, time, or costs.
+          enum:
+          - money
+          - time
+          - costs
+        budget:
+          type: integer
+          description: Budget value in cents (money) or seconds (time).
+        period:
+          type: string
+          enum:
+          - general
+          - monthly
+          - weekly
+          - daily
+        appliedFrom:
+          type: string
+          format: date
+        disallowOverbudget:
+          type: boolean
+        excludeUnbillableTime:
+          type: boolean
+        excludeExpenses:
+          type: boolean
+        threshold:
+          type: integer
+          description: Email admins when this percentage (1-100) of the budget is reached.
+        progress:
+          type: integer
+          readOnly: true
+          description: Current budget usage in cents or seconds.
+    InvoiceRefreshRequest:
+      type: object
+      properties:
+        limitDateFrom:
+          type: string
+          format: date
+        limitDateTill:
+          type: string
+          format: date
+        includeExpenses:
+          type: boolean
+        includeTime:
+          type: boolean
+        projects:
+          type: array
+          items:
+            type: string
+        expenseMask:
+          type: string
+        timeMask:
+          type: string
+  responses:
+    Unauthorized:
+      description: Missing or invalid X-Api-Key header.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    TooManyRequests:
+      description: Rate limit exceeded (around 20 requests per 10 seconds per API key). The Retry-After response header specifies the number of seconds to wait before making another request.
+      headers:
+        Retry-After:
+          description: Seconds to wait before retrying.
+          schema:
+            type: integer
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: header
+      name: X-Api-Key
+      description: API key from the bottom of your Everhour profile page.

@@ -1,0 +1,251 @@
+openapi: 3.0.3
+info:
+  title: Everhour Clients Schedule API
+  description: The Everhour API is a RESTful interface providing programmatic access to time tracking, timesheets, timers, projects, tasks, clients, invoices, expenses, resource scheduling, time off, and reporting data in Everhour. The API accepts and returns JSON (UTF-8 only). All requests are authenticated with an X-Api-Key header carrying an API key found at the bottom of your Everhour profile page. An optional X-Accept-Version header pins a specific API version (the most recent, 1.2, is used by default). The API is labeled BETA by Everhour, meaning some calls can be slightly adjusted; breaking changes are pushed in separate API versions. Time values are in seconds and money amounts are in cents throughout.
+  version: '1.2'
+  contact:
+    name: Everhour
+    url: https://everhour.com
+    email: ask@everhour.com
+servers:
+- url: https://api.everhour.com
+  description: Everhour production API
+security:
+- apiKey: []
+tags:
+- name: Schedule
+  description: Resource planner assignments.
+paths:
+  /resource-planner/assignments:
+    get:
+      operationId: getAllAssignments
+      tags:
+      - Schedule
+      summary: Get all assignments
+      description: Returns resource planner assignments, filterable by type, project, task, client, and date range.
+      parameters:
+      - name: type
+        in: query
+        description: Filter by assignment type (assignment or time-off).
+        schema:
+          type: string
+          enum:
+          - assignment
+          - time-off
+      - name: project
+        in: query
+        description: Filter by project ID.
+        schema:
+          type: string
+      - name: task
+        in: query
+        description: Filter by task ID.
+        schema:
+          type: string
+      - name: client
+        in: query
+        description: Filter by client ID.
+        schema:
+          type: integer
+      - name: from
+        in: query
+        description: Assignments starting from this date.
+        schema:
+          type: string
+          format: date
+      - name: to
+        in: query
+        description: Assignments ending at this date.
+        schema:
+          type: string
+          format: date
+      responses:
+        '200':
+          description: A list of assignments.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Assignment'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+    post:
+      operationId: createAssignment
+      tags:
+      - Schedule
+      summary: Create assignment or time off
+      description: Creates a resource planner assignment. With type time-off (plus timeOffType, timeOffPeriod, and approval fields) this same endpoint creates time off for a user.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AssignmentRequest'
+      responses:
+        '201':
+          description: The created assignment.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Assignment'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /resource-planner/assignments/{assignmentId}:
+    parameters:
+    - name: assignmentId
+      in: path
+      required: true
+      description: Assignment ID.
+      schema:
+        type: integer
+    put:
+      operationId: updateAssignment
+      tags:
+      - Schedule
+      summary: Update assignment
+      description: Updates a resource planner assignment.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AssignmentRequest'
+      responses:
+        '200':
+          description: The updated assignment.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Assignment'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+    delete:
+      operationId: deleteAssignment
+      tags:
+      - Schedule
+      summary: Delete assignment
+      description: Deletes a resource planner assignment.
+      responses:
+        '204':
+          description: Assignment deleted.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+components:
+  schemas:
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+    Assignment:
+      type: object
+      properties:
+        id:
+          type: integer
+        days:
+          type: integer
+          description: Number of workdays.
+        startDate:
+          type: string
+          format: date
+        endDate:
+          type: string
+          format: date
+        project:
+          type: string
+        time:
+          type: integer
+          description: Scheduled time in seconds.
+        type:
+          type: string
+          enum:
+          - project
+          - time-off
+        user:
+          type: integer
+    AssignmentRequest:
+      type: object
+      properties:
+        startDate:
+          type: string
+          format: date
+        endDate:
+          type: string
+          format: date
+        project:
+          type: string
+        time:
+          type: integer
+          description: Scheduled time in seconds.
+        type:
+          type: string
+          enum:
+          - project
+          - time-off
+        user:
+          type: integer
+        users:
+          type: array
+          description: Create the same schedule for multiple team users.
+          items:
+            type: integer
+        timeOffType:
+          type: integer
+          description: Time off type ID (time-off type only).
+        timeOffPeriod:
+          type: string
+          enum:
+          - full-day
+          - half-of-day
+          - quarter-of-day
+          - half-and-quarter-of-day
+        status:
+          type: string
+          description: Admins can set approved on create; regular users create pending time off.
+          enum:
+          - pending
+          - approved
+        reviewer:
+          type: integer
+          description: Admin who receives the approval notification.
+        sendNotification:
+          type: boolean
+        considerAllocations:
+          type: boolean
+        forceOverride:
+          type: boolean
+  responses:
+    Unauthorized:
+      description: Missing or invalid X-Api-Key header.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    TooManyRequests:
+      description: Rate limit exceeded (around 20 requests per 10 seconds per API key). The Retry-After response header specifies the number of seconds to wait before making another request.
+      headers:
+        Retry-After:
+          description: Seconds to wait before retrying.
+          schema:
+            type: integer
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: header
+      name: X-Api-Key
+      description: API key from the bottom of your Everhour profile page.

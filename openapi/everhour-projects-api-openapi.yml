@@ -1,0 +1,517 @@
+openapi: 3.0.3
+info:
+  title: Everhour Clients Projects API
+  description: The Everhour API is a RESTful interface providing programmatic access to time tracking, timesheets, timers, projects, tasks, clients, invoices, expenses, resource scheduling, time off, and reporting data in Everhour. The API accepts and returns JSON (UTF-8 only). All requests are authenticated with an X-Api-Key header carrying an API key found at the bottom of your Everhour profile page. An optional X-Accept-Version header pins a specific API version (the most recent, 1.2, is used by default). The API is labeled BETA by Everhour, meaning some calls can be slightly adjusted; breaking changes are pushed in separate API versions. Time values are in seconds and money amounts are in cents throughout.
+  version: '1.2'
+  contact:
+    name: Everhour
+    url: https://everhour.com
+    email: ask@everhour.com
+servers:
+- url: https://api.everhour.com
+  description: Everhour production API
+security:
+- apiKey: []
+tags:
+- name: Projects
+  description: Projects, sections, billing, budgets, and integration sync.
+paths:
+  /projects:
+    get:
+      operationId: getAllProjects
+      tags:
+      - Projects
+      summary: Get all projects
+      description: Returns projects, optionally filtered by name query or source integration platform.
+      parameters:
+      - name: limit
+        in: query
+        description: Max results.
+        schema:
+          type: integer
+      - name: query
+        in: query
+        description: Search projects by name.
+        schema:
+          type: string
+      - name: platform
+        in: query
+        description: Filter by integration platform code (for example as, ev, b3, b2, pv, gh, in, tr, jr).
+        schema:
+          type: string
+      responses:
+        '200':
+          description: A list of projects.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Project'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+    post:
+      operationId: createProject
+      tags:
+      - Projects
+      summary: Create project
+      description: Creates a native Everhour project.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProjectRequest'
+      responses:
+        '201':
+          description: The created project.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /projects/{projectId}:
+    parameters:
+    - $ref: '#/components/parameters/ProjectId'
+    get:
+      operationId: getProject
+      tags:
+      - Projects
+      summary: Get project
+      description: Returns a single project by ID.
+      responses:
+        '200':
+          description: The project.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+    put:
+      operationId: updateProject
+      tags:
+      - Projects
+      summary: Update project
+      description: Updates a project.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProjectRequest'
+      responses:
+        '200':
+          description: The updated project.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+    delete:
+      operationId: deleteProject
+      tags:
+      - Projects
+      summary: Delete project
+      description: Deletes a project.
+      responses:
+        '204':
+          description: Project deleted.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /projects/{projectId}/archive:
+    patch:
+      operationId: archiveProject
+      tags:
+      - Projects
+      summary: Archive or unarchive project
+      description: Archives or unarchives a project.
+      parameters:
+      - $ref: '#/components/parameters/ProjectId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                archived:
+                  type: boolean
+      responses:
+        '201':
+          description: The project after archiving/unarchiving.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /projects/{projectId}/billing:
+    put:
+      operationId: updateProjectBilling
+      tags:
+      - Projects
+      summary: Update project billing and budget
+      description: Updates a project's billing type (non_billable, hourly, fixed_fee), rate configuration (project_rate or user_rate with per-user overrides), and budget (money, time, or costs; general, monthly, weekly, or daily periods).
+      parameters:
+      - $ref: '#/components/parameters/ProjectId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProjectBilling'
+      responses:
+        '200':
+          description: The updated project.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /projects/{projectId}/sync:
+    post:
+      operationId: syncIntegrationProject
+      tags:
+      - Projects
+      summary: Sync integration project
+      description: Instantly synchronizes a project from a connected integration (Asana, Trello, ClickUp, GitHub, and more) into Everhour instead of waiting for background sync. Safe to call multiple times; returns the existing project if already synced.
+      parameters:
+      - $ref: '#/components/parameters/ProjectId'
+      responses:
+        '200':
+          description: The synced project.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /projects/{projectId}/sections:
+    parameters:
+    - $ref: '#/components/parameters/ProjectId'
+    get:
+      operationId: getProjectSections
+      tags:
+      - Projects
+      summary: Get project sections
+      description: Returns the sections of a project.
+      responses:
+        '200':
+          description: A list of sections.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Section'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+    post:
+      operationId: createSection
+      tags:
+      - Projects
+      summary: Create section
+      description: Creates a section in a project.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SectionRequest'
+      responses:
+        '201':
+          description: The created section.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Section'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /sections/{sectionId}:
+    parameters:
+    - name: sectionId
+      in: path
+      required: true
+      description: Section ID.
+      schema:
+        type: integer
+    get:
+      operationId: getSection
+      tags:
+      - Projects
+      summary: Get section
+      description: Returns a single section by ID.
+      responses:
+        '200':
+          description: The section.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Section'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+    put:
+      operationId: updateSection
+      tags:
+      - Projects
+      summary: Update section
+      description: Updates a section.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SectionRequest'
+      responses:
+        '200':
+          description: The updated section.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Section'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+    delete:
+      operationId: deleteSection
+      tags:
+      - Projects
+      summary: Delete section
+      description: Deletes a section.
+      responses:
+        '204':
+          description: Section deleted.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+components:
+  schemas:
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+    ProjectBillingRate:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - project_rate
+          - user_rate
+        rate:
+          type: integer
+          description: Flat rate in cents per hour (project_rate type only).
+        userRateOverrides:
+          type: object
+          description: Per-user rate overrides in cents per hour, keyed by user ID.
+          additionalProperties:
+            type: integer
+    SectionRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        position:
+          type: integer
+        status:
+          type: string
+          enum:
+          - open
+          - archived
+    ProjectBilling:
+      type: object
+      properties:
+        billing:
+          $ref: '#/components/schemas/ProjectBillingBilling'
+        rate:
+          $ref: '#/components/schemas/ProjectBillingRate'
+        budget:
+          $ref: '#/components/schemas/ProjectBillingBudget'
+    ProjectBillingBilling:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - non_billable
+          - hourly
+          - fixed_fee
+        fee:
+          type: integer
+          description: Fixed fee in cents (fixed_fee type only).
+    ProjectRequest:
+      type: object
+      required:
+      - name
+      - type
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+          enum:
+          - board
+          - list
+        users:
+          type: array
+          description: Assigned user IDs.
+          items:
+            type: integer
+    Project:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Project ID in {platform code}:{platform ID} format.
+        name:
+          type: string
+        workspaceId:
+          type: string
+        workspaceName:
+          type: string
+        client:
+          type: integer
+          description: Client ID.
+        type:
+          type: string
+          enum:
+          - board
+          - list
+        favorite:
+          type: boolean
+        users:
+          type: array
+          description: Assigned user IDs.
+          items:
+            type: integer
+        billing:
+          $ref: '#/components/schemas/ProjectBillingBilling'
+        rate:
+          $ref: '#/components/schemas/ProjectBillingRate'
+        budget:
+          $ref: '#/components/schemas/ProjectBillingBudget'
+    ProjectBillingBudget:
+      type: object
+      properties:
+        type:
+          type: string
+          description: Budget type - money, time, or costs.
+          enum:
+          - money
+          - time
+          - costs
+        budget:
+          type: integer
+          description: Budget value in cents (money) or seconds (time).
+        progress:
+          type: integer
+          readOnly: true
+          description: Current budget usage in cents or seconds.
+        timeProgress:
+          type: integer
+          readOnly: true
+        expenseProgress:
+          type: integer
+          readOnly: true
+        period:
+          type: string
+          enum:
+          - general
+          - monthly
+          - weekly
+          - daily
+        appliedFrom:
+          type: string
+          format: date
+        disallowOverbudget:
+          type: boolean
+        excludeUnbillableTime:
+          type: boolean
+        excludeExpenses:
+          type: boolean
+        showToUsers:
+          type: boolean
+        threshold:
+          type: integer
+          description: Email admins when this percentage (1-100) of the budget is reached.
+    Section:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        project:
+          type: string
+        position:
+          type: integer
+        status:
+          type: string
+          enum:
+          - open
+          - archived
+  responses:
+    Unauthorized:
+      description: Missing or invalid X-Api-Key header.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    TooManyRequests:
+      description: Rate limit exceeded (around 20 requests per 10 seconds per API key). The Retry-After response header specifies the number of seconds to wait before making another request.
+      headers:
+        Retry-After:
+          description: Seconds to wait before retrying.
+          schema:
+            type: integer
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    ProjectId:
+      name: projectId
+      in: path
+      required: true
+      description: Project ID in {platform code}:{platform ID} format (for example ev:1234567789001 or as:1234567789001).
+      schema:
+        type: string
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: header
+      name: X-Api-Key
+      description: API key from the bottom of your Everhour profile page.

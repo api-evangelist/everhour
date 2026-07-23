@@ -1,0 +1,174 @@
+openapi: 3.0.3
+info:
+  title: Everhour Clients Webhooks API
+  description: The Everhour API is a RESTful interface providing programmatic access to time tracking, timesheets, timers, projects, tasks, clients, invoices, expenses, resource scheduling, time off, and reporting data in Everhour. The API accepts and returns JSON (UTF-8 only). All requests are authenticated with an X-Api-Key header carrying an API key found at the bottom of your Everhour profile page. An optional X-Accept-Version header pins a specific API version (the most recent, 1.2, is used by default). The API is labeled BETA by Everhour, meaning some calls can be slightly adjusted; breaking changes are pushed in separate API versions. Time values are in seconds and money amounts are in cents throughout.
+  version: '1.2'
+  contact:
+    name: Everhour
+    url: https://everhour.com
+    email: ask@everhour.com
+servers:
+- url: https://api.everhour.com
+  description: Everhour production API
+security:
+- apiKey: []
+tags:
+- name: Webhooks
+  description: Webhook subscriptions for resource change events.
+paths:
+  /hooks:
+    post:
+      operationId: createWebhook
+      tags:
+      - Webhooks
+      summary: Create webhook
+      description: Creates a webhook subscription. Everhour sends a verification POST with an X-Hook-Secret header to the target URL; the target must echo the header back to complete verification. Supported events cover project, task, timer, time, section, client, and estimate changes.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebhookRequest'
+      responses:
+        '201':
+          description: The created webhook.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Webhook'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /hooks/{hookId}:
+    parameters:
+    - name: hookId
+      in: path
+      required: true
+      description: Webhook ID.
+      schema:
+        type: integer
+    get:
+      operationId: getWebhook
+      tags:
+      - Webhooks
+      summary: Get webhook
+      description: Returns a webhook subscription by ID.
+      responses:
+        '200':
+          description: The webhook.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Webhook'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+    put:
+      operationId: updateWebhook
+      tags:
+      - Webhooks
+      summary: Update webhook
+      description: Updates a webhook subscription (re-triggers target URL verification).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebhookRequest'
+      responses:
+        '200':
+          description: The updated webhook.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Webhook'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+    delete:
+      operationId: deleteWebhook
+      tags:
+      - Webhooks
+      summary: Delete webhook
+      description: Deletes a webhook subscription.
+      responses:
+        '204':
+          description: Webhook deleted.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+components:
+  schemas:
+    Webhook:
+      type: object
+      properties:
+        id:
+          type: integer
+        targetUrl:
+          type: string
+        events:
+          type: array
+          description: Subscribed events, for example api:time:updated or api:timer:started.
+          items:
+            type: string
+        project:
+          type: string
+          description: Optional project scope for events.
+        isActive:
+          type: boolean
+        createdAt:
+          type: string
+        lastUsedAt:
+          type: string
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+    WebhookRequest:
+      type: object
+      required:
+      - targetUrl
+      - events
+      properties:
+        targetUrl:
+          type: string
+          description: HTTPS endpoint that will receive event payloads.
+        events:
+          type: array
+          description: Events to receive. Supported values include api:project:created, api:project:updated, api:project:removed, api:task:created, api:task:updated, api:task:removed, api:timer:started, api:timer:stopped, api:time:updated, api:section:created, api:section:updated, api:section:removed, api:client:created, api:client:updated, and api:estimate:updated.
+          items:
+            type: string
+        project:
+          type: string
+          description: Receive events only for a specific project.
+  responses:
+    Unauthorized:
+      description: Missing or invalid X-Api-Key header.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    TooManyRequests:
+      description: Rate limit exceeded (around 20 requests per 10 seconds per API key). The Retry-After response header specifies the number of seconds to wait before making another request.
+      headers:
+        Retry-After:
+          description: Seconds to wait before retrying.
+          schema:
+            type: integer
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: header
+      name: X-Api-Key
+      description: API key from the bottom of your Everhour profile page.

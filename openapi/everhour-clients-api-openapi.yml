@@ -1,0 +1,259 @@
+openapi: 3.0.3
+info:
+  title: Everhour Clients API
+  description: The Everhour API is a RESTful interface providing programmatic access to time tracking, timesheets, timers, projects, tasks, clients, invoices, expenses, resource scheduling, time off, and reporting data in Everhour. The API accepts and returns JSON (UTF-8 only). All requests are authenticated with an X-Api-Key header carrying an API key found at the bottom of your Everhour profile page. An optional X-Accept-Version header pins a specific API version (the most recent, 1.2, is used by default). The API is labeled BETA by Everhour, meaning some calls can be slightly adjusted; breaking changes are pushed in separate API versions. Time values are in seconds and money amounts are in cents throughout.
+  version: '1.2'
+  contact:
+    name: Everhour
+    url: https://everhour.com
+    email: ask@everhour.com
+servers:
+- url: https://api.everhour.com
+  description: Everhour production API
+security:
+- apiKey: []
+tags:
+- name: Clients
+  description: Clients and client budgets.
+paths:
+  /clients:
+    get:
+      operationId: getAllClients
+      tags:
+      - Clients
+      summary: Get all clients
+      description: Returns clients, optionally filtered by name query.
+      parameters:
+      - name: query
+        in: query
+        description: Search clients by name.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: A list of clients.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Client'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+    post:
+      operationId: createClient
+      tags:
+      - Clients
+      summary: Create client
+      description: Creates a client and optionally links projects to it.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ClientRequest'
+      responses:
+        '201':
+          description: The created client.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Client'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /clients/{clientId}:
+    parameters:
+    - $ref: '#/components/parameters/ClientId'
+    get:
+      operationId: getClient
+      tags:
+      - Clients
+      summary: Get client
+      description: Returns a single client by ID.
+      responses:
+        '200':
+          description: The client.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Client'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+    put:
+      operationId: updateClient
+      tags:
+      - Clients
+      summary: Update client
+      description: Updates a client.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ClientRequest'
+      responses:
+        '200':
+          description: The updated client.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Client'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /clients/{clientId}/budget:
+    parameters:
+    - $ref: '#/components/parameters/ClientId'
+    put:
+      operationId: updateClientBudget
+      tags:
+      - Clients
+      summary: Update client budget
+      description: Sets or updates a client budget - money, time, or costs based, with general, monthly, weekly, or daily periods, thresholds, and overbudget protection.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ClientBudget'
+      responses:
+        '200':
+          description: The client with the updated budget.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Client'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+    delete:
+      operationId: deleteClientBudget
+      tags:
+      - Clients
+      summary: Delete client budget
+      description: Removes the budget from a client.
+      responses:
+        '204':
+          description: Client budget deleted.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+components:
+  parameters:
+    ClientId:
+      name: clientId
+      in: path
+      required: true
+      description: Client ID.
+      schema:
+        type: integer
+  schemas:
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+    Client:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        projects:
+          type: array
+          description: Project IDs linked to the client.
+          items:
+            type: string
+        businessDetails:
+          type: string
+        budget:
+          $ref: '#/components/schemas/ClientBudget'
+    ClientBudget:
+      type: object
+      required:
+      - type
+      - budget
+      - period
+      properties:
+        type:
+          type: string
+          description: Budget type - money, time, or costs.
+          enum:
+          - money
+          - time
+          - costs
+        budget:
+          type: integer
+          description: Budget value in cents (money) or seconds (time).
+        period:
+          type: string
+          enum:
+          - general
+          - monthly
+          - weekly
+          - daily
+        appliedFrom:
+          type: string
+          format: date
+        disallowOverbudget:
+          type: boolean
+        excludeUnbillableTime:
+          type: boolean
+        excludeExpenses:
+          type: boolean
+        threshold:
+          type: integer
+          description: Email admins when this percentage (1-100) of the budget is reached.
+        progress:
+          type: integer
+          readOnly: true
+          description: Current budget usage in cents or seconds.
+    ClientRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        projects:
+          type: array
+          items:
+            type: string
+        businessDetails:
+          type: string
+  responses:
+    Unauthorized:
+      description: Missing or invalid X-Api-Key header.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    TooManyRequests:
+      description: Rate limit exceeded (around 20 requests per 10 seconds per API key). The Retry-After response header specifies the number of seconds to wait before making another request.
+      headers:
+        Retry-After:
+          description: Seconds to wait before retrying.
+          schema:
+            type: integer
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: header
+      name: X-Api-Key
+      description: API key from the bottom of your Everhour profile page.

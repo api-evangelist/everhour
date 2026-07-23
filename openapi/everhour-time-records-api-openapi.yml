@@ -1,0 +1,427 @@
+openapi: 3.0.3
+info:
+  title: Everhour Clients Time Records API
+  description: The Everhour API is a RESTful interface providing programmatic access to time tracking, timesheets, timers, projects, tasks, clients, invoices, expenses, resource scheduling, time off, and reporting data in Everhour. The API accepts and returns JSON (UTF-8 only). All requests are authenticated with an X-Api-Key header carrying an API key found at the bottom of your Everhour profile page. An optional X-Accept-Version header pins a specific API version (the most recent, 1.2, is used by default). The API is labeled BETA by Everhour, meaning some calls can be slightly adjusted; breaking changes are pushed in separate API versions. Time values are in seconds and money amounts are in cents throughout.
+  version: '1.2'
+  contact:
+    name: Everhour
+    url: https://everhour.com
+    email: ask@everhour.com
+servers:
+- url: https://api.everhour.com
+  description: Everhour production API
+security:
+- apiKey: []
+tags:
+- name: Time Records
+  description: Reported time records for the team, users, tasks, and projects.
+paths:
+  /team/time:
+    get:
+      operationId: getAllTimeRecords
+      tags:
+      - Time Records
+      summary: Get all time records
+      description: Returns time records across the whole team, optionally filtered by date range and paginated. Pass opts_include_billing=1 to include billing data (admins with billing permissions only).
+      parameters:
+      - $ref: '#/components/parameters/From'
+      - $ref: '#/components/parameters/To'
+      - $ref: '#/components/parameters/TimeLimit'
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/IncludeBilling'
+      responses:
+        '200':
+          description: A list of time records.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TimeRecordExtended'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /users/{userId}/time:
+    get:
+      operationId: getUserTimeRecords
+      tags:
+      - Time Records
+      summary: Get user time records
+      description: Returns time records reported by a specific user.
+      parameters:
+      - $ref: '#/components/parameters/UserId'
+      - $ref: '#/components/parameters/From'
+      - $ref: '#/components/parameters/To'
+      - $ref: '#/components/parameters/TimeLimit'
+      - $ref: '#/components/parameters/Page'
+      responses:
+        '200':
+          description: A list of the user's time records.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TimeRecord'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /tasks/{taskId}/time:
+    get:
+      operationId: getTaskTimeRecords
+      tags:
+      - Time Records
+      summary: Get task time records
+      description: Returns time records reported against a specific task.
+      parameters:
+      - $ref: '#/components/parameters/TaskId'
+      - $ref: '#/components/parameters/From'
+      - $ref: '#/components/parameters/To'
+      - $ref: '#/components/parameters/TimeLimit'
+      - $ref: '#/components/parameters/Page'
+      responses:
+        '200':
+          description: A list of the task's time records.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TimeRecordExtended'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /projects/{projectId}/time:
+    get:
+      operationId: getProjectTimeRecords
+      tags:
+      - Time Records
+      summary: Get project time records
+      description: Returns time records reported against a specific project.
+      parameters:
+      - $ref: '#/components/parameters/ProjectId'
+      - $ref: '#/components/parameters/From'
+      - $ref: '#/components/parameters/To'
+      - $ref: '#/components/parameters/TimeLimit'
+      - $ref: '#/components/parameters/Page'
+      responses:
+        '200':
+          description: A list of the project's time records.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TimeRecordExtended'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /time:
+    post:
+      operationId: addTime
+      tags:
+      - Time Records
+      summary: Add time
+      description: Adds a time record to a task for a user on a given date.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TimeRecordRequest'
+      responses:
+        '201':
+          description: The created time record.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TimeRecordExtended'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /time/{timeId}:
+    parameters:
+    - $ref: '#/components/parameters/TimeId'
+    put:
+      operationId: updateTimeRecord
+      tags:
+      - Time Records
+      summary: Update time record
+      description: Updates an existing time record.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TimeRecordRequest'
+      responses:
+        '200':
+          description: The updated time record.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TimeRecordExtended'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+    delete:
+      operationId: deleteTimeRecord
+      tags:
+      - Time Records
+      summary: Delete time record
+      description: Deletes a time record.
+      responses:
+        '200':
+          description: The deleted time record.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TimeRecordExtended'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+components:
+  schemas:
+    TaskTime:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: Total task time in seconds.
+        users:
+          type: object
+          description: Task time in seconds keyed by user ID.
+          additionalProperties:
+            type: integer
+    Task:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Task ID (for example ev:9876543210).
+        name:
+          type: string
+        projects:
+          type: array
+          description: Project IDs.
+          items:
+            type: string
+        section:
+          type: integer
+          description: Section ID.
+        labels:
+          type: array
+          items:
+            type: string
+        position:
+          type: integer
+        description:
+          type: string
+        dueAt:
+          type: string
+        status:
+          type: string
+          enum:
+          - open
+          - closed
+        time:
+          $ref: '#/components/schemas/TaskTime'
+        estimate:
+          $ref: '#/components/schemas/TaskEstimate'
+        unbillable:
+          type: boolean
+    TimeRecord:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Time record ID.
+        time:
+          type: integer
+          description: Time recorded in seconds.
+        user:
+          type: integer
+          description: User ID.
+        date:
+          type: string
+          format: date
+        task:
+          $ref: '#/components/schemas/Task'
+        isLocked:
+          type: boolean
+        isInvoiced:
+          type: boolean
+        comment:
+          type: string
+    TimeRecordExtended:
+      allOf:
+      - $ref: '#/components/schemas/TimeRecord'
+      - type: object
+        properties:
+          history:
+            type: array
+            items:
+              $ref: '#/components/schemas/TimeHistory'
+    TimeHistory:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Time record history ID.
+        createdBy:
+          type: integer
+          description: User ID.
+        time:
+          type: integer
+          description: Time difference in seconds.
+        previousTime:
+          type: integer
+          description: Previous time in seconds.
+        action:
+          type: string
+          enum:
+          - TIMER
+          - ADD
+          - EDIT
+          - REMOVE
+          - COMMENT
+          - MOVE
+        createdAt:
+          type: string
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+    TimeRecordRequest:
+      type: object
+      required:
+      - time
+      - date
+      properties:
+        time:
+          type: integer
+          description: Time in seconds.
+        date:
+          type: string
+          format: date
+        task:
+          type: string
+          description: Task ID.
+        user:
+          type: integer
+          description: User ID (defaults to the API key owner).
+        comment:
+          type: string
+    TaskEstimate:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: Total task estimate in seconds.
+        type:
+          type: string
+          enum:
+          - overall
+          - users
+        users:
+          type: object
+          description: Task estimate in seconds keyed by user ID.
+          additionalProperties:
+            type: integer
+  parameters:
+    From:
+      name: from
+      in: query
+      description: Date from (YYYY-MM-DD).
+      schema:
+        type: string
+        format: date
+    Page:
+      name: page
+      in: query
+      description: Results page.
+      schema:
+        type: integer
+    ProjectId:
+      name: projectId
+      in: path
+      required: true
+      description: Project ID in {platform code}:{platform ID} format (for example ev:1234567789001 or as:1234567789001).
+      schema:
+        type: string
+    IncludeBilling:
+      name: opts_include_billing
+      in: query
+      description: Set to 1 to include billing data (admins with billing permissions only).
+      schema:
+        type: integer
+        enum:
+        - 1
+    TaskId:
+      name: taskId
+      in: path
+      required: true
+      description: Task ID (for example ev:3000010034).
+      schema:
+        type: string
+    To:
+      name: to
+      in: query
+      description: Date to (YYYY-MM-DD).
+      schema:
+        type: string
+        format: date
+    TimeLimit:
+      name: limit
+      in: query
+      description: Max results per page (max 50000).
+      schema:
+        type: integer
+    UserId:
+      name: userId
+      in: path
+      required: true
+      description: User ID.
+      schema:
+        type: integer
+    TimeId:
+      name: timeId
+      in: path
+      required: true
+      description: Time record ID.
+      schema:
+        type: integer
+  responses:
+    Unauthorized:
+      description: Missing or invalid X-Api-Key header.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    TooManyRequests:
+      description: Rate limit exceeded (around 20 requests per 10 seconds per API key). The Retry-After response header specifies the number of seconds to wait before making another request.
+      headers:
+        Retry-After:
+          description: Seconds to wait before retrying.
+          schema:
+            type: integer
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: header
+      name: X-Api-Key
+      description: API key from the bottom of your Everhour profile page.

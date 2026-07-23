@@ -1,0 +1,407 @@
+openapi: 3.0.3
+info:
+  title: Everhour Clients Tasks API
+  description: The Everhour API is a RESTful interface providing programmatic access to time tracking, timesheets, timers, projects, tasks, clients, invoices, expenses, resource scheduling, time off, and reporting data in Everhour. The API accepts and returns JSON (UTF-8 only). All requests are authenticated with an X-Api-Key header carrying an API key found at the bottom of your Everhour profile page. An optional X-Accept-Version header pins a specific API version (the most recent, 1.2, is used by default). The API is labeled BETA by Everhour, meaning some calls can be slightly adjusted; breaking changes are pushed in separate API versions. Time values are in seconds and money amounts are in cents throughout.
+  version: '1.2'
+  contact:
+    name: Everhour
+    url: https://everhour.com
+    email: ask@everhour.com
+servers:
+- url: https://api.everhour.com
+  description: Everhour production API
+security:
+- apiKey: []
+tags:
+- name: Tasks
+  description: Tasks, task search, and task estimates.
+paths:
+  /projects/{projectId}/tasks:
+    parameters:
+    - $ref: '#/components/parameters/ProjectId'
+    get:
+      operationId: getProjectTasks
+      tags:
+      - Tasks
+      summary: Get project tasks
+      description: Returns the tasks of a project, paginated up to 250 per page.
+      parameters:
+      - name: page
+        in: query
+        description: Results page.
+        schema:
+          type: integer
+      - name: limit
+        in: query
+        description: Tasks per page, 250 max.
+        schema:
+          type: integer
+      - name: exclude-closed
+        in: query
+        description: Exclude closed/completed tasks.
+        schema:
+          type: boolean
+      - name: query
+        in: query
+        description: Search tasks by name.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: A list of tasks.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Task'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+    post:
+      operationId: createTask
+      tags:
+      - Tasks
+      summary: Create task
+      description: Creates a task in a project section.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TaskRequest'
+      responses:
+        '201':
+          description: The created task.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /tasks/search:
+    get:
+      operationId: searchTasks
+      tags:
+      - Tasks
+      summary: Search tasks
+      description: Searches tasks across all projects by name.
+      parameters:
+      - name: query
+        in: query
+        description: Search query.
+        schema:
+          type: string
+      - name: limit
+        in: query
+        description: Max number of search results.
+        schema:
+          type: integer
+      - name: searchInClosed
+        in: query
+        description: Also search closed/completed tasks.
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: Matching tasks.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Task'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /projects/{projectId}/tasks/search:
+    get:
+      operationId: searchProjectTasks
+      tags:
+      - Tasks
+      summary: Search project tasks
+      description: Searches tasks within a single project by name.
+      parameters:
+      - $ref: '#/components/parameters/ProjectId'
+      - name: query
+        in: query
+        description: Search query.
+        schema:
+          type: string
+      - name: limit
+        in: query
+        description: Max number of search results.
+        schema:
+          type: integer
+      - name: searchInClosed
+        in: query
+        description: Also search closed/completed tasks.
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: Matching tasks.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Task'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /tasks/{taskId}:
+    parameters:
+    - $ref: '#/components/parameters/TaskId'
+    get:
+      operationId: getTask
+      tags:
+      - Tasks
+      summary: Get task
+      description: Returns a single task by ID. Pass opts_include_billing=1 to include billing data (admins with billing permissions only).
+      parameters:
+      - $ref: '#/components/parameters/IncludeBilling'
+      responses:
+        '200':
+          description: The task.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+    put:
+      operationId: updateTask
+      tags:
+      - Tasks
+      summary: Update task
+      description: Updates a task, including custom field values.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TaskRequest'
+      responses:
+        '200':
+          description: The updated task.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+    delete:
+      operationId: deleteTask
+      tags:
+      - Tasks
+      summary: Delete task
+      description: Deletes a task.
+      responses:
+        '204':
+          description: Task deleted.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /tasks/{taskId}/estimate:
+    parameters:
+    - $ref: '#/components/parameters/TaskId'
+    put:
+      operationId: updateTaskEstimate
+      tags:
+      - Tasks
+      summary: Update task estimate
+      description: Sets or updates the time estimate on a task (overall or per user).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TaskEstimate'
+      responses:
+        '200':
+          description: The task with the updated estimate.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+    delete:
+      operationId: deleteTaskEstimate
+      tags:
+      - Tasks
+      summary: Delete task estimate
+      description: Removes the time estimate from a task.
+      responses:
+        '204':
+          description: Estimate deleted.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+components:
+  schemas:
+    TaskRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        section:
+          type: integer
+          description: Section ID.
+        labels:
+          type: array
+          items:
+            type: string
+        position:
+          type: integer
+        description:
+          type: string
+        dueOn:
+          type: string
+          format: date
+        assignees:
+          type: array
+          items:
+            type: object
+            properties:
+              userId:
+                type: integer
+        status:
+          type: string
+          enum:
+          - open
+          - closed
+    TaskTime:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: Total task time in seconds.
+        users:
+          type: object
+          description: Task time in seconds keyed by user ID.
+          additionalProperties:
+            type: integer
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+    Task:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Task ID (for example ev:9876543210).
+        name:
+          type: string
+        projects:
+          type: array
+          description: Project IDs.
+          items:
+            type: string
+        section:
+          type: integer
+          description: Section ID.
+        labels:
+          type: array
+          items:
+            type: string
+        position:
+          type: integer
+        description:
+          type: string
+        dueAt:
+          type: string
+        status:
+          type: string
+          enum:
+          - open
+          - closed
+        time:
+          $ref: '#/components/schemas/TaskTime'
+        estimate:
+          $ref: '#/components/schemas/TaskEstimate'
+        unbillable:
+          type: boolean
+    TaskEstimate:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: Total task estimate in seconds.
+        type:
+          type: string
+          enum:
+          - overall
+          - users
+        users:
+          type: object
+          description: Task estimate in seconds keyed by user ID.
+          additionalProperties:
+            type: integer
+  parameters:
+    IncludeBilling:
+      name: opts_include_billing
+      in: query
+      description: Set to 1 to include billing data (admins with billing permissions only).
+      schema:
+        type: integer
+        enum:
+        - 1
+    TaskId:
+      name: taskId
+      in: path
+      required: true
+      description: Task ID (for example ev:3000010034).
+      schema:
+        type: string
+    ProjectId:
+      name: projectId
+      in: path
+      required: true
+      description: Project ID in {platform code}:{platform ID} format (for example ev:1234567789001 or as:1234567789001).
+      schema:
+        type: string
+  responses:
+    Unauthorized:
+      description: Missing or invalid X-Api-Key header.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    TooManyRequests:
+      description: Rate limit exceeded (around 20 requests per 10 seconds per API key). The Retry-After response header specifies the number of seconds to wait before making another request.
+      headers:
+        Retry-After:
+          description: Seconds to wait before retrying.
+          schema:
+            type: integer
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: header
+      name: X-Api-Key
+      description: API key from the bottom of your Everhour profile page.

@@ -1,0 +1,333 @@
+openapi: 3.0.3
+info:
+  title: Everhour Clients Expenses API
+  description: The Everhour API is a RESTful interface providing programmatic access to time tracking, timesheets, timers, projects, tasks, clients, invoices, expenses, resource scheduling, time off, and reporting data in Everhour. The API accepts and returns JSON (UTF-8 only). All requests are authenticated with an X-Api-Key header carrying an API key found at the bottom of your Everhour profile page. An optional X-Accept-Version header pins a specific API version (the most recent, 1.2, is used by default). The API is labeled BETA by Everhour, meaning some calls can be slightly adjusted; breaking changes are pushed in separate API versions. Time values are in seconds and money amounts are in cents throughout.
+  version: '1.2'
+  contact:
+    name: Everhour
+    url: https://everhour.com
+    email: ask@everhour.com
+servers:
+- url: https://api.everhour.com
+  description: Everhour production API
+security:
+- apiKey: []
+tags:
+- name: Expenses
+  description: Expenses, expense categories, and attachments.
+paths:
+  /expenses:
+    get:
+      operationId: getAllExpenses
+      tags:
+      - Expenses
+      summary: Get all expenses
+      description: Returns all expenses.
+      responses:
+        '200':
+          description: A list of expenses.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Expense'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+    post:
+      operationId: createExpense
+      tags:
+      - Expenses
+      summary: Create expense
+      description: Creates an expense in a category, optionally linked to a project and user.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExpenseRequest'
+      responses:
+        '201':
+          description: The created expense.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Expense'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /expenses/{expenseId}:
+    parameters:
+    - name: expenseId
+      in: path
+      required: true
+      description: Expense ID.
+      schema:
+        type: integer
+    put:
+      operationId: updateExpense
+      tags:
+      - Expenses
+      summary: Update expense
+      description: Updates an expense.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExpenseRequest'
+      responses:
+        '200':
+          description: The updated expense.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Expense'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+    delete:
+      operationId: deleteExpense
+      tags:
+      - Expenses
+      summary: Delete expense
+      description: Deletes an expense.
+      responses:
+        '204':
+          description: Expense deleted.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /expenses/categories:
+    get:
+      operationId: getAllExpenseCategories
+      tags:
+      - Expenses
+      summary: Get all expense categories
+      description: Returns all expense categories.
+      responses:
+        '200':
+          description: A list of expense categories.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ExpenseCategory'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+    post:
+      operationId: createExpenseCategory
+      tags:
+      - Expenses
+      summary: Create expense category
+      description: Creates an expense category, optionally unit-based (for example mileage).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExpenseCategoryRequest'
+      responses:
+        '201':
+          description: The created expense category.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExpenseCategory'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /expenses/categories/{categoryId}:
+    parameters:
+    - name: categoryId
+      in: path
+      required: true
+      description: Expense category ID.
+      schema:
+        type: integer
+    put:
+      operationId: updateExpenseCategory
+      tags:
+      - Expenses
+      summary: Update expense category
+      description: Updates an expense category.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExpenseCategoryRequest'
+      responses:
+        '200':
+          description: The updated expense category.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExpenseCategory'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+    delete:
+      operationId: deleteExpenseCategory
+      tags:
+      - Expenses
+      summary: Delete expense category
+      description: Deletes an expense category, optionally moving or removing its expenses.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                targetCategory:
+                  type: integer
+                  description: Category to move existing expenses into.
+                removeExpenses:
+                  type: boolean
+                  description: Remove the category's expenses instead of moving them.
+      responses:
+        '204':
+          description: Expense category deleted.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+components:
+  schemas:
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+    ExpenseCategory:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        color:
+          type: string
+        unitBased:
+          type: boolean
+        unitName:
+          type: string
+        unitPrice:
+          type: integer
+    ExpenseCategoryRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        color:
+          type: string
+        unitBased:
+          type: boolean
+        unitName:
+          type: string
+        unitPrice:
+          type: integer
+    ExpenseRequest:
+      type: object
+      required:
+      - category
+      - date
+      properties:
+        amount:
+          type: integer
+          description: Amount in cents.
+        attachments:
+          type: array
+          description: Attachment IDs.
+          items:
+            type: integer
+        billable:
+          type: boolean
+        category:
+          type: integer
+        date:
+          type: string
+          format: date
+        details:
+          type: string
+        project:
+          type: string
+        quantity:
+          type: number
+        user:
+          type: integer
+    Expense:
+      type: object
+      properties:
+        id:
+          type: integer
+        amount:
+          type: integer
+          description: Amount in cents.
+        attachments:
+          type: array
+          items:
+            $ref: '#/components/schemas/AttachmentDetails'
+        billable:
+          type: boolean
+        category:
+          type: integer
+          description: Expense category ID.
+        date:
+          type: string
+          format: date
+        details:
+          type: string
+        project:
+          type: string
+        quantity:
+          type: number
+        user:
+          type: integer
+    AttachmentDetails:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        token:
+          type: string
+  responses:
+    Unauthorized:
+      description: Missing or invalid X-Api-Key header.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    TooManyRequests:
+      description: Rate limit exceeded (around 20 requests per 10 seconds per API key). The Retry-After response header specifies the number of seconds to wait before making another request.
+      headers:
+        Retry-After:
+          description: Seconds to wait before retrying.
+          schema:
+            type: integer
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: header
+      name: X-Api-Key
+      description: API key from the bottom of your Everhour profile page.
