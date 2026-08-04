@@ -1,0 +1,40 @@
+{
+  "provider": "everhour",
+  "sources": [
+    "everhour-clients-api-openapi.yml",
+    "everhour-expenses-api-openapi.yml",
+    "everhour-invoices-api-openapi.yml",
+    "everhour-projects-api-openapi.yml",
+    "everhour-reports-api-openapi.yml",
+    "everhour-schedule-api-openapi.yml",
+    "everhour-tasks-api-openapi.yml",
+    "everhour-time-off-api-openapi.yml",
+    "everhour-time-records-api-openapi.yml",
+    "everhour-timecards-api-openapi.yml",
+    "everhour-timers-api-openapi.yml",
+    "everhour-timesheets-api-openapi.yml",
+    "everhour-users-api-openapi.yml",
+    "everhour-webhooks-api-openapi.yml"
+  ],
+  "outputs": [
+    "everhour-clients-api-openapi.yml",
+    "everhour-expenses-api-openapi.yml",
+    "everhour-invoices-api-openapi.yml",
+    "everhour-projects-api-openapi.yml",
+    "everhour-reports-api-openapi.yml",
+    "everhour-schedule-api-openapi.yml",
+    "everhour-tasks-api-openapi.yml",
+    "everhour-time-off-api-openapi.yml",
+    "everhour-time-records-api-openapi.yml",
+    "everhour-timecards-api-openapi.yml",
+    "everhour-timers-api-openapi.yml",
+    "everhour-timesheets-api-openapi.yml",
+    "everhour-users-api-openapi.yml",
+    "everhour-webhooks-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
