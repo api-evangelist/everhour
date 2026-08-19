@@ -1,0 +1,1812 @@
+{
+  "item": [
+    {
+      "id": "89df763e-d1b9-4e49-8418-9226c5a99a87",
+      "name": "Invoices",
+      "description": {
+        "content": "Invoices generated from tracked time and expenses.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c5b1dad4-7aeb-456b-9ba2-27e6b5068924",
+          "name": "Get all invoices",
+          "request": {
+            "name": "Get all invoices",
+            "description": {
+              "content": "Returns all invoices.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "invoices"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b9a7178b-3408-4669-a1bf-56ee2256d5e3",
+              "name": "A list of invoices.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 5265,\n    \"client\": {\n      \"id\": 2076,\n      \"name\": \"string\",\n      \"projects\": [\n        \"string\",\n        \"string\"\n      ],\n      \"businessDetails\": \"string\",\n      \"budget\": {\n        \"type\": \"time\",\n        \"budget\": 8990,\n        \"period\": \"general\",\n        \"appliedFrom\": \"2022-11-30\",\n        \"disallowOverbudget\": false,\n        \"excludeUnbillableTime\": false,\n        \"excludeExpenses\": true,\n        \"threshold\": 1784,\n        \"progress\": 7546\n      }\n    },\n    \"createdAt\": \"string\",\n    \"createdBy\": {\n      \"id\": 2243,\n      \"name\": \"string\",\n      \"headline\": \"string\",\n      \"avatarUrl\": \"string\",\n      \"role\": \"admin\",\n      \"status\": \"pending\"\n    },\n    \"dueDate\": \"2009-02-04\",\n    \"issueDate\": \"1997-04-29\",\n    \"limitDateFrom\": \"1987-01-08\",\n    \"limitDateTill\": \"1947-11-30\",\n    \"discount\": {\n      \"amount\": 2704,\n      \"rate\": 3352.052889231011\n    },\n    \"tax\": {\n      \"amount\": 2725,\n      \"rate\": 1118.957580189508\n    },\n    \"includeExpenses\": false,\n    \"includeTime\": false,\n    \"invoiceItems\": [\n      {\n        \"id\": 7354,\n        \"name\": \"string\",\n        \"billedTime\": 8378,\n        \"listAmount\": 4544,\n        \"netAmount\": 653,\n        \"totalAmount\": 1513,\n        \"custom\": true,\n        \"taxable\": 7848,\n        \"position\": 8617,\n        \"createdAt\": \"string\"\n      },\n      {\n        \"id\": 1745,\n        \"name\": \"string\",\n        \"billedTime\": 7799,\n        \"listAmount\": 5513,\n        \"netAmount\": 8168,\n        \"totalAmount\": 6469,\n        \"custom\": true,\n        \"taxable\": 7243,\n        \"position\": 5658,\n        \"createdAt\": \"string\"\n      }\n    ],\n    \"listAmount\": 9212,\n    \"netAmount\": 5200,\n    \"totalAmount\": 9962,\n    \"totalTime\": 2645,\n    \"projects\": [\n      \"string\",\n      \"string\"\n    ],\n    \"publicId\": \"string\",\n    \"status\": \"sent\"\n  },\n  {\n    \"id\": 4987,\n    \"client\": {\n      \"id\": 3586,\n      \"name\": \"string\",\n      \"projects\": [\n        \"string\",\n        \"string\"\n      ],\n      \"businessDetails\": \"string\",\n      \"budget\": {\n        \"type\": \"time\",\n        \"budget\": 6121,\n        \"period\": \"daily\",\n        \"appliedFrom\": \"2009-12-03\",\n        \"disallowOverbudget\": true,\n        \"excludeUnbillableTime\": true,\n        \"excludeExpenses\": false,\n        \"threshold\": 4307,\n        \"progress\": 222\n      }\n    },\n    \"createdAt\": \"string\",\n    \"createdBy\": {\n      \"id\": 2094,\n      \"name\": \"string\",\n      \"headline\": \"string\",\n      \"avatarUrl\": \"string\",\n      \"role\": \"admin\",\n      \"status\": \"removed\"\n    },\n    \"dueDate\": \"2006-12-20\",\n    \"issueDate\": \"1960-01-19\",\n    \"limitDateFrom\": \"1949-10-31\",\n    \"limitDateTill\": \"2009-03-29\",\n    \"discount\": {\n      \"amount\": 1038,\n      \"rate\": 1350.992930255771\n    },\n    \"tax\": {\n      \"amount\": 5677,\n      \"rate\": 9093.943388749662\n    },\n    \"includeExpenses\": false,\n    \"includeTime\": true,\n    \"invoiceItems\": [\n      {\n        \"id\": 2178,\n        \"name\": \"string\",\n        \"billedTime\": 8848,\n        \"listAmount\": 5572,\n        \"netAmount\": 4510,\n        \"totalAmount\": 4321,\n        \"custom\": true,\n        \"taxable\": 9614,\n        \"position\": 329,\n        \"createdAt\": \"string\"\n      },\n      {\n        \"id\": 8516,\n        \"name\": \"string\",\n        \"billedTime\": 1122,\n        \"listAmount\": 9634,\n        \"netAmount\": 6769,\n        \"totalAmount\": 8733,\n        \"custom\": false,\n        \"taxable\": 9038,\n        \"position\": 8721,\n        \"createdAt\": \"string\"\n      }\n    ],\n    \"listAmount\": 3624,\n    \"netAmount\": 6957,\n    \"totalAmount\": 7688,\n    \"totalTime\": 6221,\n    \"projects\": [\n      \"string\",\n      \"string\"\n    ],\n    \"publicId\": \"string\",\n    \"status\": \"paid\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cdbc4826-f89c-4721-b30e-09722f3aeee0",
+              "name": "Missing or invalid X-Api-Key header.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 4975,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0f7a0219-7f6c-4a54-9214-e437aa961239",
+              "name": "Rate limit exceeded (around 20 requests per 10 seconds per API key). The Retry-After response header specifies the number of seconds to wait before making another request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Seconds to wait before retrying.",
+                  "key": "Retry-After",
+                  "value": "8671"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 4975,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b5ba4aae-6376-4208-9df6-9208ed38d6e4",
+          "name": "Get invoice",
+          "request": {
+            "name": "Get invoice",
+            "description": {
+              "content": "Returns a single invoice by ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "invoices",
+                ":invoiceId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "invoiceId",
+                  "description": "(Required) Invoice ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "51ea6d14-b6f0-463d-9376-29d72e1a73db",
+              "name": "The invoice.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices",
+                    ":invoiceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "invoiceId",
+                      "description": "(Required) Invoice ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 8716,\n  \"client\": {\n    \"id\": 1429,\n    \"name\": \"string\",\n    \"projects\": [\n      \"string\",\n      \"string\"\n    ],\n    \"businessDetails\": \"string\",\n    \"budget\": {\n      \"type\": \"time\",\n      \"budget\": 788,\n      \"period\": \"weekly\",\n      \"appliedFrom\": \"2015-11-01\",\n      \"disallowOverbudget\": false,\n      \"excludeUnbillableTime\": false,\n      \"excludeExpenses\": false,\n      \"threshold\": 87,\n      \"progress\": 3887\n    }\n  },\n  \"createdAt\": \"string\",\n  \"createdBy\": {\n    \"id\": 4586,\n    \"name\": \"string\",\n    \"headline\": \"string\",\n    \"avatarUrl\": \"string\",\n    \"role\": \"member\",\n    \"status\": \"removed\"\n  },\n  \"dueDate\": \"1953-05-03\",\n  \"issueDate\": \"1969-05-07\",\n  \"limitDateFrom\": \"2002-03-07\",\n  \"limitDateTill\": \"2005-07-02\",\n  \"discount\": {\n    \"amount\": 245,\n    \"rate\": 2375.9799723839624\n  },\n  \"tax\": {\n    \"amount\": 1860,\n    \"rate\": 4824.770011519883\n  },\n  \"includeExpenses\": true,\n  \"includeTime\": false,\n  \"invoiceItems\": [\n    {\n      \"id\": 2948,\n      \"name\": \"string\",\n      \"billedTime\": 5487,\n      \"listAmount\": 1123,\n      \"netAmount\": 6857,\n      \"totalAmount\": 8575,\n      \"custom\": true,\n      \"taxable\": 7057,\n      \"position\": 2861,\n      \"createdAt\": \"string\"\n    },\n    {\n      \"id\": 9022,\n      \"name\": \"string\",\n      \"billedTime\": 5482,\n      \"listAmount\": 7477,\n      \"netAmount\": 3045,\n      \"totalAmount\": 7712,\n      \"custom\": true,\n      \"taxable\": 1560,\n      \"position\": 2234,\n      \"createdAt\": \"string\"\n    }\n  ],\n  \"listAmount\": 6492,\n  \"netAmount\": 4833,\n  \"totalAmount\": 6877,\n  \"totalTime\": 5095,\n  \"projects\": [\n    \"string\",\n    \"string\"\n  ],\n  \"publicId\": \"string\",\n  \"status\": \"paid\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6fb7c787-ea46-40b5-8f23-ba2c90c87aae",
+              "name": "Missing or invalid X-Api-Key header.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices",
+                    ":invoiceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "invoiceId",
+                      "description": "(Required) Invoice ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 4975,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c32f309c-7b51-40ae-b25e-9c1e8dcfb7af",
+              "name": "Rate limit exceeded (around 20 requests per 10 seconds per API key). The Retry-After response header specifies the number of seconds to wait before making another request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices",
+                    ":invoiceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "invoiceId",
+                      "description": "(Required) Invoice ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Seconds to wait before retrying.",
+                  "key": "Retry-After",
+                  "value": "8671"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 4975,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bb23b8f4-5b8c-4545-9c44-195b4c8d62b8",
+          "name": "Update invoice",
+          "request": {
+            "name": "Update invoice",
+            "description": {
+              "content": "Updates invoice details, tax, discount, and line items.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "invoices",
+                ":invoiceId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "invoiceId",
+                  "description": "(Required) Invoice ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"publicId\": \"<string>\",\n  \"issueDate\": \"<date>\",\n  \"dueDate\": \"<date>\",\n  \"reference\": \"<string>\",\n  \"publicNotes\": \"<string>\",\n  \"tax\": {\n    \"rate\": \"<number>\",\n    \"amount\": \"<integer>\"\n  },\n  \"discount\": {\n    \"rate\": \"<number>\",\n    \"amount\": \"<integer>\"\n  },\n  \"invoiceItems\": [\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"billedTime\": \"<integer>\",\n      \"listAmount\": \"<integer>\",\n      \"netAmount\": \"<integer>\",\n      \"totalAmount\": \"<integer>\",\n      \"custom\": \"<boolean>\",\n      \"taxable\": \"<integer>\",\n      \"position\": \"<integer>\",\n      \"createdAt\": \"<string>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"billedTime\": \"<integer>\",\n      \"listAmount\": \"<integer>\",\n      \"netAmount\": \"<integer>\",\n      \"totalAmount\": \"<integer>\",\n      \"custom\": \"<boolean>\",\n      \"taxable\": \"<integer>\",\n      \"position\": \"<integer>\",\n      \"createdAt\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1e6a8fb9-716c-44c3-9a1b-f29826abecd6",
+              "name": "The updated invoice.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices",
+                    ":invoiceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "invoiceId",
+                      "description": "(Required) Invoice ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"publicId\": \"<string>\",\n  \"issueDate\": \"<date>\",\n  \"dueDate\": \"<date>\",\n  \"reference\": \"<string>\",\n  \"publicNotes\": \"<string>\",\n  \"tax\": {\n    \"rate\": \"<number>\",\n    \"amount\": \"<integer>\"\n  },\n  \"discount\": {\n    \"rate\": \"<number>\",\n    \"amount\": \"<integer>\"\n  },\n  \"invoiceItems\": [\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"billedTime\": \"<integer>\",\n      \"listAmount\": \"<integer>\",\n      \"netAmount\": \"<integer>\",\n      \"totalAmount\": \"<integer>\",\n      \"custom\": \"<boolean>\",\n      \"taxable\": \"<integer>\",\n      \"position\": \"<integer>\",\n      \"createdAt\": \"<string>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"billedTime\": \"<integer>\",\n      \"listAmount\": \"<integer>\",\n      \"netAmount\": \"<integer>\",\n      \"totalAmount\": \"<integer>\",\n      \"custom\": \"<boolean>\",\n      \"taxable\": \"<integer>\",\n      \"position\": \"<integer>\",\n      \"createdAt\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 4826,\n  \"client\": {\n    \"id\": 9267,\n    \"name\": \"string\",\n    \"projects\": [\n      \"string\",\n      \"string\"\n    ],\n    \"businessDetails\": \"string\",\n    \"budget\": {\n      \"type\": \"money\",\n      \"budget\": 2034,\n      \"period\": \"weekly\",\n      \"appliedFrom\": \"2005-09-19\",\n      \"disallowOverbudget\": false,\n      \"excludeUnbillableTime\": true,\n      \"excludeExpenses\": true,\n      \"threshold\": 9305,\n      \"progress\": 7067\n    }\n  },\n  \"createdAt\": \"string\",\n  \"createdBy\": {\n    \"id\": 1399,\n    \"name\": \"string\",\n    \"headline\": \"string\",\n    \"avatarUrl\": \"string\",\n    \"role\": \"admin\",\n    \"status\": \"pending\"\n  },\n  \"dueDate\": \"2004-08-13\",\n  \"issueDate\": \"1989-05-07\",\n  \"limitDateFrom\": \"2011-09-23\",\n  \"limitDateTill\": \"1974-03-05\",\n  \"discount\": {\n    \"amount\": 4224,\n    \"rate\": 9535.365542873846\n  },\n  \"tax\": {\n    \"amount\": 7119,\n    \"rate\": 1593.0766134495789\n  },\n  \"includeExpenses\": true,\n  \"includeTime\": true,\n  \"invoiceItems\": [\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"billedTime\": \"<integer>\",\n      \"listAmount\": \"<integer>\",\n      \"netAmount\": \"<integer>\",\n      \"totalAmount\": \"<integer>\",\n      \"custom\": \"<boolean>\",\n      \"taxable\": \"<integer>\",\n      \"position\": \"<integer>\",\n      \"createdAt\": \"<string>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"billedTime\": \"<integer>\",\n      \"listAmount\": \"<integer>\",\n      \"netAmount\": \"<integer>\",\n      \"totalAmount\": \"<integer>\",\n      \"custom\": \"<boolean>\",\n      \"taxable\": \"<integer>\",\n      \"position\": \"<integer>\",\n      \"createdAt\": \"<string>\"\n    }\n  ],\n  \"listAmount\": 5480,\n  \"netAmount\": 5828,\n  \"totalAmount\": 7662,\n  \"totalTime\": 6880,\n  \"projects\": [\n    \"string\",\n    \"string\"\n  ],\n  \"publicId\": \"string\",\n  \"status\": \"draft\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "71939364-8f9c-4e24-9aad-e8c5a4bf49cd",
+              "name": "Missing or invalid X-Api-Key header.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices",
+                    ":invoiceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "invoiceId",
+                      "description": "(Required) Invoice ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"publicId\": \"<string>\",\n  \"issueDate\": \"<date>\",\n  \"dueDate\": \"<date>\",\n  \"reference\": \"<string>\",\n  \"publicNotes\": \"<string>\",\n  \"tax\": {\n    \"rate\": \"<number>\",\n    \"amount\": \"<integer>\"\n  },\n  \"discount\": {\n    \"rate\": \"<number>\",\n    \"amount\": \"<integer>\"\n  },\n  \"invoiceItems\": [\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"billedTime\": \"<integer>\",\n      \"listAmount\": \"<integer>\",\n      \"netAmount\": \"<integer>\",\n      \"totalAmount\": \"<integer>\",\n      \"custom\": \"<boolean>\",\n      \"taxable\": \"<integer>\",\n      \"position\": \"<integer>\",\n      \"createdAt\": \"<string>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"billedTime\": \"<integer>\",\n      \"listAmount\": \"<integer>\",\n      \"netAmount\": \"<integer>\",\n      \"totalAmount\": \"<integer>\",\n      \"custom\": \"<boolean>\",\n      \"taxable\": \"<integer>\",\n      \"position\": \"<integer>\",\n      \"createdAt\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 4975,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "11e80ee2-8eea-4770-a73d-f862f3d37347",
+              "name": "Rate limit exceeded (around 20 requests per 10 seconds per API key). The Retry-After response header specifies the number of seconds to wait before making another request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices",
+                    ":invoiceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "invoiceId",
+                      "description": "(Required) Invoice ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"publicId\": \"<string>\",\n  \"issueDate\": \"<date>\",\n  \"dueDate\": \"<date>\",\n  \"reference\": \"<string>\",\n  \"publicNotes\": \"<string>\",\n  \"tax\": {\n    \"rate\": \"<number>\",\n    \"amount\": \"<integer>\"\n  },\n  \"discount\": {\n    \"rate\": \"<number>\",\n    \"amount\": \"<integer>\"\n  },\n  \"invoiceItems\": [\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"billedTime\": \"<integer>\",\n      \"listAmount\": \"<integer>\",\n      \"netAmount\": \"<integer>\",\n      \"totalAmount\": \"<integer>\",\n      \"custom\": \"<boolean>\",\n      \"taxable\": \"<integer>\",\n      \"position\": \"<integer>\",\n      \"createdAt\": \"<string>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"billedTime\": \"<integer>\",\n      \"listAmount\": \"<integer>\",\n      \"netAmount\": \"<integer>\",\n      \"totalAmount\": \"<integer>\",\n      \"custom\": \"<boolean>\",\n      \"taxable\": \"<integer>\",\n      \"position\": \"<integer>\",\n      \"createdAt\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Seconds to wait before retrying.",
+                  "key": "Retry-After",
+                  "value": "8671"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 4975,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e98777d9-675a-4daa-bfb0-7619eabf9980",
+          "name": "Delete invoice",
+          "request": {
+            "name": "Delete invoice",
+            "description": {
+              "content": "Deletes an invoice.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "invoices",
+                ":invoiceId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "invoiceId",
+                  "description": "(Required) Invoice ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "986ef9e7-3442-4596-b3c8-884b63cd072f",
+              "name": "Invoice deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices",
+                    ":invoiceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "invoiceId",
+                      "description": "(Required) Invoice ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d432c48c-eb5a-4172-a51b-224cefcd2b29",
+              "name": "Missing or invalid X-Api-Key header.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices",
+                    ":invoiceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "invoiceId",
+                      "description": "(Required) Invoice ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 4975,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "69efcac4-6a51-419e-83fa-197312a229b9",
+              "name": "Rate limit exceeded (around 20 requests per 10 seconds per API key). The Retry-After response header specifies the number of seconds to wait before making another request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices",
+                    ":invoiceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "invoiceId",
+                      "description": "(Required) Invoice ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Seconds to wait before retrying.",
+                  "key": "Retry-After",
+                  "value": "8671"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 4975,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1d795b45-5c87-4a3d-850e-432058b45aa4",
+          "name": "Create invoice",
+          "request": {
+            "name": "Create invoice",
+            "description": {
+              "content": "Creates an invoice for a client from uninvoiced time and expenses within a date range.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "clients",
+                ":clientId",
+                "invoices"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "clientId",
+                  "description": "(Required) Client ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"limitDateFrom\": \"<date>\",\n  \"limitDateTill\": \"<date>\",\n  \"includeExpenses\": \"<boolean>\",\n  \"includeTime\": \"<boolean>\",\n  \"projects\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"tax\": {\n    \"rate\": \"<number>\",\n    \"amount\": \"<integer>\"\n  },\n  \"discount\": {\n    \"rate\": \"<number>\",\n    \"amount\": \"<integer>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c469bcd5-7094-43e7-95e7-65bf0cd45247",
+              "name": "The created invoice.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "clients",
+                    ":clientId",
+                    "invoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "clientId",
+                      "description": "(Required) Client ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"limitDateFrom\": \"<date>\",\n  \"limitDateTill\": \"<date>\",\n  \"includeExpenses\": \"<boolean>\",\n  \"includeTime\": \"<boolean>\",\n  \"projects\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"tax\": {\n    \"rate\": \"<number>\",\n    \"amount\": \"<integer>\"\n  },\n  \"discount\": {\n    \"rate\": \"<number>\",\n    \"amount\": \"<integer>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 4826,\n  \"client\": {\n    \"id\": 9267,\n    \"name\": \"string\",\n    \"projects\": [\n      \"string\",\n      \"string\"\n    ],\n    \"businessDetails\": \"string\",\n    \"budget\": {\n      \"type\": \"money\",\n      \"budget\": 2034,\n      \"period\": \"weekly\",\n      \"appliedFrom\": \"2005-09-19\",\n      \"disallowOverbudget\": false,\n      \"excludeUnbillableTime\": true,\n      \"excludeExpenses\": true,\n      \"threshold\": 9305,\n      \"progress\": 7067\n    }\n  },\n  \"createdAt\": \"string\",\n  \"createdBy\": {\n    \"id\": 1399,\n    \"name\": \"string\",\n    \"headline\": \"string\",\n    \"avatarUrl\": \"string\",\n    \"role\": \"admin\",\n    \"status\": \"pending\"\n  },\n  \"dueDate\": \"2004-08-13\",\n  \"issueDate\": \"1989-05-07\",\n  \"limitDateFrom\": \"2011-09-23\",\n  \"limitDateTill\": \"1974-03-05\",\n  \"discount\": {\n    \"amount\": 4224,\n    \"rate\": 9535.365542873846\n  },\n  \"tax\": {\n    \"amount\": 7119,\n    \"rate\": 1593.0766134495789\n  },\n  \"includeExpenses\": true,\n  \"includeTime\": true,\n  \"invoiceItems\": [\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"billedTime\": \"<integer>\",\n      \"listAmount\": \"<integer>\",\n      \"netAmount\": \"<integer>\",\n      \"totalAmount\": \"<integer>\",\n      \"custom\": \"<boolean>\",\n      \"taxable\": \"<integer>\",\n      \"position\": \"<integer>\",\n      \"createdAt\": \"<string>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"billedTime\": \"<integer>\",\n      \"listAmount\": \"<integer>\",\n      \"netAmount\": \"<integer>\",\n      \"totalAmount\": \"<integer>\",\n      \"custom\": \"<boolean>\",\n      \"taxable\": \"<integer>\",\n      \"position\": \"<integer>\",\n      \"createdAt\": \"<string>\"\n    }\n  ],\n  \"listAmount\": 5480,\n  \"netAmount\": 5828,\n  \"totalAmount\": 7662,\n  \"totalTime\": 6880,\n  \"projects\": [\n    \"string\",\n    \"string\"\n  ],\n  \"publicId\": \"string\",\n  \"status\": \"draft\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "38f0678f-2ca8-488a-b276-75d602a96594",
+              "name": "Missing or invalid X-Api-Key header.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "clients",
+                    ":clientId",
+                    "invoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "clientId",
+                      "description": "(Required) Client ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"limitDateFrom\": \"<date>\",\n  \"limitDateTill\": \"<date>\",\n  \"includeExpenses\": \"<boolean>\",\n  \"includeTime\": \"<boolean>\",\n  \"projects\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"tax\": {\n    \"rate\": \"<number>\",\n    \"amount\": \"<integer>\"\n  },\n  \"discount\": {\n    \"rate\": \"<number>\",\n    \"amount\": \"<integer>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 4975,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5d2cd2b2-f9d5-4e20-b9f0-cd813b8d2006",
+              "name": "Rate limit exceeded (around 20 requests per 10 seconds per API key). The Retry-After response header specifies the number of seconds to wait before making another request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "clients",
+                    ":clientId",
+                    "invoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "clientId",
+                      "description": "(Required) Client ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"limitDateFrom\": \"<date>\",\n  \"limitDateTill\": \"<date>\",\n  \"includeExpenses\": \"<boolean>\",\n  \"includeTime\": \"<boolean>\",\n  \"projects\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"tax\": {\n    \"rate\": \"<number>\",\n    \"amount\": \"<integer>\"\n  },\n  \"discount\": {\n    \"rate\": \"<number>\",\n    \"amount\": \"<integer>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Seconds to wait before retrying.",
+                  "key": "Retry-After",
+                  "value": "8671"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 4975,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6206df67-5a3c-4fc2-b095-153a2bdcf0ea",
+          "name": "Refresh invoice line items",
+          "request": {
+            "name": "Refresh invoice line items",
+            "description": {
+              "content": "Rebuilds the invoice line items from current time and expense data.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "invoices",
+                ":invoiceId",
+                "reset-time"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "invoiceId",
+                  "description": "(Required) Invoice ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"limitDateFrom\": \"<date>\",\n  \"limitDateTill\": \"<date>\",\n  \"includeExpenses\": \"<boolean>\",\n  \"includeTime\": \"<boolean>\",\n  \"projects\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"expenseMask\": \"<string>\",\n  \"timeMask\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "38e44e05-fef9-461d-9240-b72b13638a52",
+              "name": "The refreshed invoice.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices",
+                    ":invoiceId",
+                    "reset-time"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "invoiceId",
+                      "description": "(Required) Invoice ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"limitDateFrom\": \"<date>\",\n  \"limitDateTill\": \"<date>\",\n  \"includeExpenses\": \"<boolean>\",\n  \"includeTime\": \"<boolean>\",\n  \"projects\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"expenseMask\": \"<string>\",\n  \"timeMask\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 4826,\n  \"client\": {\n    \"id\": 9267,\n    \"name\": \"string\",\n    \"projects\": [\n      \"string\",\n      \"string\"\n    ],\n    \"businessDetails\": \"string\",\n    \"budget\": {\n      \"type\": \"money\",\n      \"budget\": 2034,\n      \"period\": \"weekly\",\n      \"appliedFrom\": \"2005-09-19\",\n      \"disallowOverbudget\": false,\n      \"excludeUnbillableTime\": true,\n      \"excludeExpenses\": true,\n      \"threshold\": 9305,\n      \"progress\": 7067\n    }\n  },\n  \"createdAt\": \"string\",\n  \"createdBy\": {\n    \"id\": 1399,\n    \"name\": \"string\",\n    \"headline\": \"string\",\n    \"avatarUrl\": \"string\",\n    \"role\": \"admin\",\n    \"status\": \"pending\"\n  },\n  \"dueDate\": \"2004-08-13\",\n  \"issueDate\": \"1989-05-07\",\n  \"limitDateFrom\": \"2011-09-23\",\n  \"limitDateTill\": \"1974-03-05\",\n  \"discount\": {\n    \"amount\": 4224,\n    \"rate\": 9535.365542873846\n  },\n  \"tax\": {\n    \"amount\": 7119,\n    \"rate\": 1593.0766134495789\n  },\n  \"includeExpenses\": true,\n  \"includeTime\": true,\n  \"invoiceItems\": [\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"billedTime\": \"<integer>\",\n      \"listAmount\": \"<integer>\",\n      \"netAmount\": \"<integer>\",\n      \"totalAmount\": \"<integer>\",\n      \"custom\": \"<boolean>\",\n      \"taxable\": \"<integer>\",\n      \"position\": \"<integer>\",\n      \"createdAt\": \"<string>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"billedTime\": \"<integer>\",\n      \"listAmount\": \"<integer>\",\n      \"netAmount\": \"<integer>\",\n      \"totalAmount\": \"<integer>\",\n      \"custom\": \"<boolean>\",\n      \"taxable\": \"<integer>\",\n      \"position\": \"<integer>\",\n      \"createdAt\": \"<string>\"\n    }\n  ],\n  \"listAmount\": 5480,\n  \"netAmount\": 5828,\n  \"totalAmount\": 7662,\n  \"totalTime\": 6880,\n  \"projects\": [\n    \"string\",\n    \"string\"\n  ],\n  \"publicId\": \"string\",\n  \"status\": \"draft\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "88ddd706-2311-44b8-a9c7-6c827a940a6c",
+              "name": "Missing or invalid X-Api-Key header.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices",
+                    ":invoiceId",
+                    "reset-time"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "invoiceId",
+                      "description": "(Required) Invoice ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"limitDateFrom\": \"<date>\",\n  \"limitDateTill\": \"<date>\",\n  \"includeExpenses\": \"<boolean>\",\n  \"includeTime\": \"<boolean>\",\n  \"projects\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"expenseMask\": \"<string>\",\n  \"timeMask\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 4975,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8d2fd9af-4e4a-4c2a-9dd3-821b8a0a2f52",
+              "name": "Rate limit exceeded (around 20 requests per 10 seconds per API key). The Retry-After response header specifies the number of seconds to wait before making another request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices",
+                    ":invoiceId",
+                    "reset-time"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "invoiceId",
+                      "description": "(Required) Invoice ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"limitDateFrom\": \"<date>\",\n  \"limitDateTill\": \"<date>\",\n  \"includeExpenses\": \"<boolean>\",\n  \"includeTime\": \"<boolean>\",\n  \"projects\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"expenseMask\": \"<string>\",\n  \"timeMask\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Seconds to wait before retrying.",
+                  "key": "Retry-After",
+                  "value": "8671"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 4975,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8673c8b0-4d7b-4271-8b21-81569785a3aa",
+          "name": "Mark invoice as draft, sent, or paid",
+          "request": {
+            "name": "Mark invoice as draft, sent, or paid",
+            "description": {
+              "content": "Transitions an invoice between draft, sent, and paid statuses.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "invoices",
+                ":invoiceId",
+                ":status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "invoiceId",
+                  "description": "(Required) Invoice ID."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "status",
+                  "description": "(Required) Target invoice status."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "876c9be8-2cfc-426c-bcd3-d6dcf724329c",
+              "name": "The invoice with the new status.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices",
+                    ":invoiceId",
+                    ":status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "invoiceId",
+                      "description": "(Required) Invoice ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "status",
+                      "description": "(Required) Target invoice status."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 4826,\n  \"client\": {\n    \"id\": 9267,\n    \"name\": \"string\",\n    \"projects\": [\n      \"string\",\n      \"string\"\n    ],\n    \"businessDetails\": \"string\",\n    \"budget\": {\n      \"type\": \"money\",\n      \"budget\": 2034,\n      \"period\": \"weekly\",\n      \"appliedFrom\": \"2005-09-19\",\n      \"disallowOverbudget\": false,\n      \"excludeUnbillableTime\": true,\n      \"excludeExpenses\": true,\n      \"threshold\": 9305,\n      \"progress\": 7067\n    }\n  },\n  \"createdAt\": \"string\",\n  \"createdBy\": {\n    \"id\": 1399,\n    \"name\": \"string\",\n    \"headline\": \"string\",\n    \"avatarUrl\": \"string\",\n    \"role\": \"admin\",\n    \"status\": \"pending\"\n  },\n  \"dueDate\": \"2004-08-13\",\n  \"issueDate\": \"1989-05-07\",\n  \"limitDateFrom\": \"2011-09-23\",\n  \"limitDateTill\": \"1974-03-05\",\n  \"discount\": {\n    \"amount\": 4224,\n    \"rate\": 9535.365542873846\n  },\n  \"tax\": {\n    \"amount\": 7119,\n    \"rate\": 1593.0766134495789\n  },\n  \"includeExpenses\": true,\n  \"includeTime\": true,\n  \"invoiceItems\": [\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"billedTime\": \"<integer>\",\n      \"listAmount\": \"<integer>\",\n      \"netAmount\": \"<integer>\",\n      \"totalAmount\": \"<integer>\",\n      \"custom\": \"<boolean>\",\n      \"taxable\": \"<integer>\",\n      \"position\": \"<integer>\",\n      \"createdAt\": \"<string>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"billedTime\": \"<integer>\",\n      \"listAmount\": \"<integer>\",\n      \"netAmount\": \"<integer>\",\n      \"totalAmount\": \"<integer>\",\n      \"custom\": \"<boolean>\",\n      \"taxable\": \"<integer>\",\n      \"position\": \"<integer>\",\n      \"createdAt\": \"<string>\"\n    }\n  ],\n  \"listAmount\": 5480,\n  \"netAmount\": 5828,\n  \"totalAmount\": 7662,\n  \"totalTime\": 6880,\n  \"projects\": [\n    \"string\",\n    \"string\"\n  ],\n  \"publicId\": \"string\",\n  \"status\": \"draft\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0927b92c-2ff9-4ddd-8b83-77d667d1c179",
+              "name": "Missing or invalid X-Api-Key header.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices",
+                    ":invoiceId",
+                    ":status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "invoiceId",
+                      "description": "(Required) Invoice ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "status",
+                      "description": "(Required) Target invoice status."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 4975,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ef823ced-bdac-44ac-876a-2a610138b923",
+              "name": "Rate limit exceeded (around 20 requests per 10 seconds per API key). The Retry-After response header specifies the number of seconds to wait before making another request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices",
+                    ":invoiceId",
+                    ":status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "invoiceId",
+                      "description": "(Required) Invoice ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "status",
+                      "description": "(Required) Target invoice status."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Seconds to wait before retrying.",
+                  "key": "Retry-After",
+                  "value": "8671"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 4975,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "59bf8fea-7aff-4c9b-af06-3c3ae1856999",
+          "name": "Export invoice to Xero, QuickBooks, or FreshBooks",
+          "request": {
+            "name": "Export invoice to Xero, QuickBooks, or FreshBooks",
+            "description": {
+              "content": "Exports the invoice to a connected accounting integration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "invoices",
+                ":invoiceId",
+                "export"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "invoiceId",
+                  "description": "(Required) Invoice ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4beaf67a-ee71-4f09-8f51-aac33309a202",
+              "name": "The exported invoice.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices",
+                    ":invoiceId",
+                    "export"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "invoiceId",
+                      "description": "(Required) Invoice ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 4826,\n  \"client\": {\n    \"id\": 9267,\n    \"name\": \"string\",\n    \"projects\": [\n      \"string\",\n      \"string\"\n    ],\n    \"businessDetails\": \"string\",\n    \"budget\": {\n      \"type\": \"money\",\n      \"budget\": 2034,\n      \"period\": \"weekly\",\n      \"appliedFrom\": \"2005-09-19\",\n      \"disallowOverbudget\": false,\n      \"excludeUnbillableTime\": true,\n      \"excludeExpenses\": true,\n      \"threshold\": 9305,\n      \"progress\": 7067\n    }\n  },\n  \"createdAt\": \"string\",\n  \"createdBy\": {\n    \"id\": 1399,\n    \"name\": \"string\",\n    \"headline\": \"string\",\n    \"avatarUrl\": \"string\",\n    \"role\": \"admin\",\n    \"status\": \"pending\"\n  },\n  \"dueDate\": \"2004-08-13\",\n  \"issueDate\": \"1989-05-07\",\n  \"limitDateFrom\": \"2011-09-23\",\n  \"limitDateTill\": \"1974-03-05\",\n  \"discount\": {\n    \"amount\": 4224,\n    \"rate\": 9535.365542873846\n  },\n  \"tax\": {\n    \"amount\": 7119,\n    \"rate\": 1593.0766134495789\n  },\n  \"includeExpenses\": true,\n  \"includeTime\": true,\n  \"invoiceItems\": [\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"billedTime\": \"<integer>\",\n      \"listAmount\": \"<integer>\",\n      \"netAmount\": \"<integer>\",\n      \"totalAmount\": \"<integer>\",\n      \"custom\": \"<boolean>\",\n      \"taxable\": \"<integer>\",\n      \"position\": \"<integer>\",\n      \"createdAt\": \"<string>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"billedTime\": \"<integer>\",\n      \"listAmount\": \"<integer>\",\n      \"netAmount\": \"<integer>\",\n      \"totalAmount\": \"<integer>\",\n      \"custom\": \"<boolean>\",\n      \"taxable\": \"<integer>\",\n      \"position\": \"<integer>\",\n      \"createdAt\": \"<string>\"\n    }\n  ],\n  \"listAmount\": 5480,\n  \"netAmount\": 5828,\n  \"totalAmount\": 7662,\n  \"totalTime\": 6880,\n  \"projects\": [\n    \"string\",\n    \"string\"\n  ],\n  \"publicId\": \"string\",\n  \"status\": \"draft\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b643fd04-c77a-4010-8987-e6b7d23b3109",
+              "name": "Missing or invalid X-Api-Key header.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices",
+                    ":invoiceId",
+                    "export"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "invoiceId",
+                      "description": "(Required) Invoice ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 4975,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "26971fbb-d052-4488-a529-0e75805c1993",
+              "name": "Rate limit exceeded (around 20 requests per 10 seconds per API key). The Retry-After response header specifies the number of seconds to wait before making another request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices",
+                    ":invoiceId",
+                    "export"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "invoiceId",
+                      "description": "(Required) Invoice ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Seconds to wait before retrying.",
+                  "key": "Retry-After",
+                  "value": "8671"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 4975,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.everhour.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Api-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f156cc72-1e45-4929-b1bd-b1e3639fb1bb",
+    "name": "Everhour Clients Invoices API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Everhour API is a RESTful interface providing programmatic access to time tracking, timesheets, timers, projects, tasks, clients, invoices, expenses, resource scheduling, time off, and reporting data in Everhour. The API accepts and returns JSON (UTF-8 only). All requests are authenticated with an X-Api-Key header carrying an API key found at the bottom of your Everhour profile page. An optional X-Accept-Version header pins a specific API version (the most recent, 1.2, is used by default). The API is labeled BETA by Everhour, meaning some calls can be slightly adjusted; breaking changes are pushed in separate API versions. Time values are in seconds and money amounts are in cents throughout.\n\nContact Support:\n Name: Everhour\n Email: ask@everhour.com",
+      "type": "text/plain"
+    }
+  }
+}

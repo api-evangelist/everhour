@@ -1,0 +1,166 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Everhour Clients Expenses API",
+    "version": "1.2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Api-Key",
+      "value": "{{X-Api-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Expenses",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all expenses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.everhour.com/expenses"
+          },
+          "docs": "Returns all expenses."
+        },
+        {
+          "info": {
+            "name": "Create expense",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.everhour.com/expenses",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates an expense in a category, optionally linked to a project and user."
+        },
+        {
+          "info": {
+            "name": "Update expense",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.everhour.com/expenses/:expenseId",
+            "params": [
+              {
+                "name": "expenseId",
+                "value": "",
+                "type": "path",
+                "description": "Expense ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an expense."
+        },
+        {
+          "info": {
+            "name": "Delete expense",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.everhour.com/expenses/:expenseId",
+            "params": [
+              {
+                "name": "expenseId",
+                "value": "",
+                "type": "path",
+                "description": "Expense ID."
+              }
+            ]
+          },
+          "docs": "Deletes an expense."
+        },
+        {
+          "info": {
+            "name": "Get all expense categories",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.everhour.com/expenses/categories"
+          },
+          "docs": "Returns all expense categories."
+        },
+        {
+          "info": {
+            "name": "Create expense category",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.everhour.com/expenses/categories",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates an expense category, optionally unit-based (for example mileage)."
+        },
+        {
+          "info": {
+            "name": "Update expense category",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.everhour.com/expenses/categories/:categoryId",
+            "params": [
+              {
+                "name": "categoryId",
+                "value": "",
+                "type": "path",
+                "description": "Expense category ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an expense category."
+        },
+        {
+          "info": {
+            "name": "Delete expense category",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.everhour.com/expenses/categories/:categoryId",
+            "params": [
+              {
+                "name": "categoryId",
+                "value": "",
+                "type": "path",
+                "description": "Expense category ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Deletes an expense category, optionally moving or removing its expenses."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

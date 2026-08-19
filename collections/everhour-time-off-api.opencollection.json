@@ -1,0 +1,162 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Everhour Clients Time Off API",
+    "version": "1.2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Api-Key",
+      "value": "{{X-Api-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Time Off",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get time off types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.everhour.com/resource-planner/time-off-types"
+          },
+          "docs": "Returns the team's time off types (vacation, sick leave, and so on)."
+        },
+        {
+          "info": {
+            "name": "Create time off type",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.everhour.com/resource-planner/time-off-types",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a time off type."
+        },
+        {
+          "info": {
+            "name": "Update time off type",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.everhour.com/resource-planner/time-off-types/:typeId",
+            "params": [
+              {
+                "name": "typeId",
+                "value": "",
+                "type": "path",
+                "description": "Time off type ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a time off type."
+        },
+        {
+          "info": {
+            "name": "Delete time off type",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.everhour.com/resource-planner/time-off-types/:typeId",
+            "params": [
+              {
+                "name": "typeId",
+                "value": "",
+                "type": "path",
+                "description": "Time off type ID."
+              }
+            ]
+          },
+          "docs": "Deletes a time off type."
+        },
+        {
+          "info": {
+            "name": "Get all allocations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.everhour.com/allocations"
+          },
+          "docs": "Returns time off allocations (accrual balances) for team members."
+        },
+        {
+          "info": {
+            "name": "Create allocation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.everhour.com/allocations",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a time off allocation for one or more users."
+        },
+        {
+          "info": {
+            "name": "Update allocation",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.everhour.com/allocations/:allocationId",
+            "params": [
+              {
+                "name": "allocationId",
+                "value": "",
+                "type": "path",
+                "description": "Allocation ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a time off allocation."
+        },
+        {
+          "info": {
+            "name": "Delete allocation",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.everhour.com/allocations/:allocationId",
+            "params": [
+              {
+                "name": "allocationId",
+                "value": "",
+                "type": "path",
+                "description": "Allocation ID."
+              }
+            ]
+          },
+          "docs": "Deletes a time off allocation."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

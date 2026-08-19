@@ -1,0 +1,139 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Everhour Clients Timesheets API",
+    "version": "1.2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Api-Key",
+      "value": "{{X-Api-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Timesheets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get user timesheets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.everhour.com/users/:userId/timesheets",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "User ID."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Max number of weeks to return."
+              }
+            ]
+          },
+          "docs": "Returns weekly timesheets for a user (most recent weeks first)."
+        },
+        {
+          "info": {
+            "name": "Get team timesheets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.everhour.com/timesheets",
+            "params": [
+              {
+                "name": "weekId",
+                "value": "",
+                "type": "query",
+                "description": "Week ID (two-digit year + week number)."
+              }
+            ]
+          },
+          "docs": "Returns timesheets for the whole team for a given week. The week ID is the two-digit year plus the week number (for example 2535 for week 35 of 2025)."
+        },
+        {
+          "info": {
+            "name": "Approve week / request approval",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.everhour.com/timesheets/:timesheetId/approval",
+            "params": [
+              {
+                "name": "timesheetId",
+                "value": "",
+                "type": "path",
+                "description": "Timesheet ID (user ID concatenated with week ID)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submits a weekly timesheet for approval (or approves it directly when called by an admin). The timesheet ID is the user ID concatenated with the week ID."
+        },
+        {
+          "info": {
+            "name": "Approve or reject approval request",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.everhour.com/timesheets/:timesheetId/approval",
+            "params": [
+              {
+                "name": "timesheetId",
+                "value": "",
+                "type": "path",
+                "description": "Timesheet ID (user ID concatenated with week ID)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Approves or rejects a pending timesheet approval request, optionally per day of the week."
+        },
+        {
+          "info": {
+            "name": "Discard your approval request",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.everhour.com/timesheets/:timesheetId/discard-approval",
+            "params": [
+              {
+                "name": "timesheetId",
+                "value": "",
+                "type": "path",
+                "description": "Timesheet ID (user ID concatenated with week ID)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Discards a previously submitted timesheet approval request."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

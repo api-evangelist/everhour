@@ -1,0 +1,853 @@
+{
+  "item": [
+    {
+      "id": "7bda830f-3d89-4837-9ab8-663eaaba8be1",
+      "name": "Reports",
+      "description": {
+        "content": "Dashboard reports for projects, clients, and users.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7239e12b-cc45-4d05-8798-1a7db360ff10",
+          "name": "Projects report",
+          "request": {
+            "name": "Projects report",
+            "description": {
+              "content": "Returns aggregated time, billable amounts, costs, profit, and expense metrics per project. Time columns are in seconds and amounts in cents.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "dashboards",
+                "projects"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "date.gte",
+                  "value": "<date>",
+                  "description": "Report start date (YYYY-MM-DD)."
+                },
+                {
+                  "disabled": false,
+                  "key": "date.lte",
+                  "value": "<date>",
+                  "description": "Report end date (YYYY-MM-DD)."
+                },
+                {
+                  "disabled": false,
+                  "key": "projectId",
+                  "value": "<string>",
+                  "description": "Filter by project ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "clientId",
+                  "value": "<integer>",
+                  "description": "Filter by client ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "memberId",
+                  "value": "<integer>",
+                  "description": "Filter by user ID."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "07590892-beea-41ec-9caf-9a0769b1123c",
+              "name": "Per-project report rows.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dashboards",
+                    "projects"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "date.gte",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "date.lte",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "projectId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "clientId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "memberId",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"projectId\": \"string\",\n    \"projectName\": \"string\",\n    \"projectStatus\": \"archived\",\n    \"clientId\": 7434,\n    \"clientName\": \"string\",\n    \"billingType\": \"hourly\",\n    \"time\": 9227,\n    \"billableTime\": 9211,\n    \"nonBillableTime\": 7861,\n    \"billableAmount\": 2045,\n    \"costs\": 8098,\n    \"profit\": 5590,\n    \"uninvoicedAmount\": 8636,\n    \"expenses\": 5066\n  },\n  {\n    \"projectId\": \"string\",\n    \"projectName\": \"string\",\n    \"projectStatus\": \"open\",\n    \"clientId\": 6992,\n    \"clientName\": \"string\",\n    \"billingType\": \"non_billable\",\n    \"time\": 1363,\n    \"billableTime\": 8605,\n    \"nonBillableTime\": 6708,\n    \"billableAmount\": 4445,\n    \"costs\": 4638,\n    \"profit\": 4070,\n    \"uninvoicedAmount\": 3108,\n    \"expenses\": 951\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d189b5db-a87b-4abe-a7cd-80e4c622b682",
+              "name": "Missing or invalid X-Api-Key header.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dashboards",
+                    "projects"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "date.gte",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "date.lte",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "projectId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "clientId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "memberId",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9440,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ea138cf1-1483-4d5f-8fab-59bc5e1718f3",
+              "name": "Rate limit exceeded (around 20 requests per 10 seconds per API key). The Retry-After response header specifies the number of seconds to wait before making another request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dashboards",
+                    "projects"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "date.gte",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "date.lte",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "projectId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "clientId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "memberId",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Seconds to wait before retrying.",
+                  "key": "Retry-After",
+                  "value": "5706"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9440,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9162899a-3bc8-414b-bb5c-732889d8db9b",
+          "name": "Clients report",
+          "request": {
+            "name": "Clients report",
+            "description": {
+              "content": "Returns aggregated time, billable amounts, costs, profit, and expense metrics per client.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "dashboards",
+                "clients"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "date.gte",
+                  "value": "<date>",
+                  "description": "Report start date (YYYY-MM-DD)."
+                },
+                {
+                  "disabled": false,
+                  "key": "date.lte",
+                  "value": "<date>",
+                  "description": "Report end date (YYYY-MM-DD)."
+                },
+                {
+                  "disabled": false,
+                  "key": "projectId",
+                  "value": "<string>",
+                  "description": "Filter by project ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "clientId",
+                  "value": "<integer>",
+                  "description": "Filter by client ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "memberId",
+                  "value": "<integer>",
+                  "description": "Filter by user ID."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1924afec-9e89-480d-874e-ffe23f28e97a",
+              "name": "Per-client report rows.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dashboards",
+                    "clients"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "date.gte",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "date.lte",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "projectId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "clientId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "memberId",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"clientId\": 409,\n    \"clientName\": \"string\",\n    \"time\": 78,\n    \"billableTime\": 8336,\n    \"nonBillableTime\": 4497,\n    \"billableAmount\": 3324,\n    \"costs\": 2899,\n    \"profit\": 6274,\n    \"uninvoicedAmount\": 6900,\n    \"expenses\": 3085\n  },\n  {\n    \"clientId\": 3804,\n    \"clientName\": \"string\",\n    \"time\": 2960,\n    \"billableTime\": 2710,\n    \"nonBillableTime\": 5097,\n    \"billableAmount\": 9337,\n    \"costs\": 7339,\n    \"profit\": 5472,\n    \"uninvoicedAmount\": 6096,\n    \"expenses\": 560\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d71903ee-ab83-442b-bb45-cd9e185804d8",
+              "name": "Missing or invalid X-Api-Key header.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dashboards",
+                    "clients"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "date.gte",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "date.lte",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "projectId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "clientId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "memberId",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9440,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9f798bc6-2c82-4138-b821-1a2b22727f08",
+              "name": "Rate limit exceeded (around 20 requests per 10 seconds per API key). The Retry-After response header specifies the number of seconds to wait before making another request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dashboards",
+                    "clients"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "date.gte",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "date.lte",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "projectId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "clientId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "memberId",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Seconds to wait before retrying.",
+                  "key": "Retry-After",
+                  "value": "5706"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9440,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dd9177a5-d1e7-4e36-ab9d-c6a6f0ea1e16",
+          "name": "Users report",
+          "request": {
+            "name": "Users report",
+            "description": {
+              "content": "Returns aggregated time, time off, billable amounts, costs, and profit metrics per team member.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "dashboards",
+                "users"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "date.gte",
+                  "value": "<date>",
+                  "description": "Report start date (YYYY-MM-DD)."
+                },
+                {
+                  "disabled": false,
+                  "key": "date.lte",
+                  "value": "<date>",
+                  "description": "Report end date (YYYY-MM-DD)."
+                },
+                {
+                  "disabled": false,
+                  "key": "projectId",
+                  "value": "<string>",
+                  "description": "Filter by project ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "clientId",
+                  "value": "<integer>",
+                  "description": "Filter by client ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "memberId",
+                  "value": "<integer>",
+                  "description": "Filter by user ID."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "95c04199-1d71-4fec-9eea-3b92468100bf",
+              "name": "Per-user report rows.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dashboards",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "date.gte",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "date.lte",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "projectId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "clientId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "memberId",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"memberId\": 2803,\n    \"memberName\": \"string\",\n    \"memberHeadline\": \"string\",\n    \"memberStatus\": \"pending\",\n    \"time\": 2962,\n    \"billableTime\": 2139,\n    \"nonBillableTime\": 7834,\n    \"timeOffTime\": 8265,\n    \"timeOffDays\": 4210.725745709805,\n    \"billableAmount\": 2934,\n    \"costs\": 1828,\n    \"profit\": 5183,\n    \"expenses\": 7676\n  },\n  {\n    \"memberId\": 6462,\n    \"memberName\": \"string\",\n    \"memberHeadline\": \"string\",\n    \"memberStatus\": \"removed\",\n    \"time\": 6903,\n    \"billableTime\": 6822,\n    \"nonBillableTime\": 6188,\n    \"timeOffTime\": 2613,\n    \"timeOffDays\": 2669.3762906915917,\n    \"billableAmount\": 9622,\n    \"costs\": 2468,\n    \"profit\": 3695,\n    \"expenses\": 6519\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "06535920-ac23-4c39-8947-2eba50bea8d3",
+              "name": "Missing or invalid X-Api-Key header.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dashboards",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "date.gte",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "date.lte",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "projectId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "clientId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "memberId",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9440,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c1152084-10c7-49f0-a9a0-a2fbead39685",
+              "name": "Rate limit exceeded (around 20 requests per 10 seconds per API key). The Retry-After response header specifies the number of seconds to wait before making another request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dashboards",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "date.gte",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "date.lte",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "projectId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "clientId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "memberId",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Seconds to wait before retrying.",
+                  "key": "Retry-After",
+                  "value": "5706"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9440,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.everhour.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Api-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "80f2d9f0-a6f6-450b-a142-db34b9f3f2e6",
+    "name": "Everhour Clients Reports API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Everhour API is a RESTful interface providing programmatic access to time tracking, timesheets, timers, projects, tasks, clients, invoices, expenses, resource scheduling, time off, and reporting data in Everhour. The API accepts and returns JSON (UTF-8 only). All requests are authenticated with an X-Api-Key header carrying an API key found at the bottom of your Everhour profile page. An optional X-Accept-Version header pins a specific API version (the most recent, 1.2, is used by default). The API is labeled BETA by Everhour, meaning some calls can be slightly adjusted; breaking changes are pushed in separate API versions. Time values are in seconds and money amounts are in cents throughout.\n\nContact Support:\n Name: Everhour\n Email: ask@everhour.com",
+      "type": "text/plain"
+    }
+  }
+}

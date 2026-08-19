@@ -1,0 +1,132 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Everhour Clients Schedule API",
+    "version": "1.2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Api-Key",
+      "value": "{{X-Api-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Schedule",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all assignments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.everhour.com/resource-planner/assignments",
+            "params": [
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by assignment type (assignment or time-off)."
+              },
+              {
+                "name": "project",
+                "value": "",
+                "type": "query",
+                "description": "Filter by project ID."
+              },
+              {
+                "name": "task",
+                "value": "",
+                "type": "query",
+                "description": "Filter by task ID."
+              },
+              {
+                "name": "client",
+                "value": "",
+                "type": "query",
+                "description": "Filter by client ID."
+              },
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "Assignments starting from this date."
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "Assignments ending at this date."
+              }
+            ]
+          },
+          "docs": "Returns resource planner assignments, filterable by type, project, task, client, and date range."
+        },
+        {
+          "info": {
+            "name": "Create assignment or time off",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.everhour.com/resource-planner/assignments",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a resource planner assignment. With type time-off (plus timeOffType, timeOffPeriod, and approval fields) this same endpoint creates time off for a user."
+        },
+        {
+          "info": {
+            "name": "Update assignment",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.everhour.com/resource-planner/assignments/:assignmentId",
+            "params": [
+              {
+                "name": "assignmentId",
+                "value": "",
+                "type": "path",
+                "description": "Assignment ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a resource planner assignment."
+        },
+        {
+          "info": {
+            "name": "Delete assignment",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.everhour.com/resource-planner/assignments/:assignmentId",
+            "params": [
+              {
+                "name": "assignmentId",
+                "value": "",
+                "type": "path",
+                "description": "Assignment ID."
+              }
+            ]
+          },
+          "docs": "Deletes a resource planner assignment."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

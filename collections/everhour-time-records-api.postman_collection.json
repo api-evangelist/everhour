@@ -1,0 +1,1831 @@
+{
+  "item": [
+    {
+      "id": "bf754615-6792-4c79-9a44-1ff9d1714ed6",
+      "name": "Time Records",
+      "description": {
+        "content": "Reported time records for the team, users, tasks, and projects.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "af0b7311-06ee-4854-8502-6a0a2399b88f",
+          "name": "Get all time records",
+          "request": {
+            "name": "Get all time records",
+            "description": {
+              "content": "Returns time records across the whole team, optionally filtered by date range and paginated. Pass opts_include_billing=1 to include billing data (admins with billing permissions only).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "team",
+                "time"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "from",
+                  "value": "<date>",
+                  "description": "Date from (YYYY-MM-DD)."
+                },
+                {
+                  "disabled": false,
+                  "key": "to",
+                  "value": "<date>",
+                  "description": "Date to (YYYY-MM-DD)."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Max results per page (max 50000)."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "Results page."
+                },
+                {
+                  "disabled": false,
+                  "key": "opts_include_billing",
+                  "value": "<integer>",
+                  "description": "Set to 1 to include billing data (admins with billing permissions only)."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8fdb946d-f0e4-4154-9d4a-2a581271a9e5",
+              "name": "A list of time records.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "team",
+                    "time"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "opts_include_billing",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 8691,\n    \"time\": 324,\n    \"user\": 5361,\n    \"date\": \"1968-05-06\",\n    \"task\": {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"projects\": [\n        \"string\",\n        \"string\"\n      ],\n      \"section\": 843,\n      \"labels\": [\n        \"string\",\n        \"string\"\n      ],\n      \"position\": 3246,\n      \"description\": \"string\",\n      \"dueAt\": \"string\",\n      \"status\": \"closed\",\n      \"time\": {\n        \"total\": 3346,\n        \"users\": {\n          \"key_0\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_1\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"estimate\": {\n        \"total\": 3719,\n        \"type\": \"overall\",\n        \"users\": {\n          \"key_0\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_1\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_2\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"unbillable\": true\n    },\n    \"isLocked\": false,\n    \"isInvoiced\": true,\n    \"comment\": \"string\",\n    \"history\": [\n      {\n        \"id\": 8323,\n        \"createdBy\": 3860,\n        \"time\": 6927,\n        \"previousTime\": 1265,\n        \"action\": \"MOVE\",\n        \"createdAt\": \"string\"\n      },\n      {\n        \"id\": 7367,\n        \"createdBy\": 5886,\n        \"time\": 5982,\n        \"previousTime\": 6639,\n        \"action\": \"REMOVE\",\n        \"createdAt\": \"string\"\n      }\n    ]\n  },\n  {\n    \"id\": 2558,\n    \"time\": 6814,\n    \"user\": 9340,\n    \"date\": \"1966-07-06\",\n    \"task\": {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"projects\": [\n        \"string\",\n        \"string\"\n      ],\n      \"section\": 8417,\n      \"labels\": [\n        \"string\",\n        \"string\"\n      ],\n      \"position\": 3926,\n      \"description\": \"string\",\n      \"dueAt\": \"string\",\n      \"status\": \"closed\",\n      \"time\": {\n        \"total\": 2506,\n        \"users\": {\n          \"key_0\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_1\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_2\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_3\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"estimate\": {\n        \"total\": 5129,\n        \"type\": \"users\",\n        \"users\": {\n          \"key_0\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"unbillable\": false\n    },\n    \"isLocked\": false,\n    \"isInvoiced\": false,\n    \"comment\": \"string\",\n    \"history\": [\n      {\n        \"id\": 337,\n        \"createdBy\": 1427,\n        \"time\": 1016,\n        \"previousTime\": 361,\n        \"action\": \"ADD\",\n        \"createdAt\": \"string\"\n      },\n      {\n        \"id\": 5990,\n        \"createdBy\": 8084,\n        \"time\": 1129,\n        \"previousTime\": 2016,\n        \"action\": \"MOVE\",\n        \"createdAt\": \"string\"\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4a5b787b-eaa0-4026-92d4-99b662d29d53",
+              "name": "Missing or invalid X-Api-Key header.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "team",
+                    "time"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "opts_include_billing",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6437,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3ed53e08-0de7-420b-9dc9-731825910c28",
+              "name": "Rate limit exceeded (around 20 requests per 10 seconds per API key). The Retry-After response header specifies the number of seconds to wait before making another request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "team",
+                    "time"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "opts_include_billing",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Seconds to wait before retrying.",
+                  "key": "Retry-After",
+                  "value": "6056"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6437,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6847795e-1275-419a-b14c-77b3398eea15",
+          "name": "Get user time records",
+          "request": {
+            "name": "Get user time records",
+            "description": {
+              "content": "Returns time records reported by a specific user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                ":userId",
+                "time"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "from",
+                  "value": "<date>",
+                  "description": "Date from (YYYY-MM-DD)."
+                },
+                {
+                  "disabled": false,
+                  "key": "to",
+                  "value": "<date>",
+                  "description": "Date to (YYYY-MM-DD)."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Max results per page (max 50000)."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "Results page."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "userId",
+                  "description": "(Required) User ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3b4acfa4-099e-420c-8c63-c891c192036e",
+              "name": "A list of the user's time records.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":userId",
+                    "time"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "userId",
+                      "description": "(Required) User ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 2806,\n    \"time\": 3026,\n    \"user\": 956,\n    \"date\": \"2017-08-15\",\n    \"task\": {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"projects\": [\n        \"string\",\n        \"string\"\n      ],\n      \"section\": 9976,\n      \"labels\": [\n        \"string\",\n        \"string\"\n      ],\n      \"position\": 3093,\n      \"description\": \"string\",\n      \"dueAt\": \"string\",\n      \"status\": \"open\",\n      \"time\": {\n        \"total\": 9103,\n        \"users\": {\n          \"key_0\": 2991\n        }\n      },\n      \"estimate\": {\n        \"total\": 667,\n        \"type\": \"users\",\n        \"users\": {\n          \"key_0\": 1840,\n          \"key_1\": 498\n        }\n      },\n      \"unbillable\": true\n    },\n    \"isLocked\": false,\n    \"isInvoiced\": false,\n    \"comment\": \"string\"\n  },\n  {\n    \"id\": 7764,\n    \"time\": 9717,\n    \"user\": 6763,\n    \"date\": \"1949-02-20\",\n    \"task\": {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"projects\": [\n        \"string\",\n        \"string\"\n      ],\n      \"section\": 9127,\n      \"labels\": [\n        \"string\",\n        \"string\"\n      ],\n      \"position\": 6765,\n      \"description\": \"string\",\n      \"dueAt\": \"string\",\n      \"status\": \"closed\",\n      \"time\": {\n        \"total\": 7225,\n        \"users\": {\n          \"key_0\": 2877,\n          \"key_1\": 9171\n        }\n      },\n      \"estimate\": {\n        \"total\": 3432,\n        \"type\": \"users\",\n        \"users\": {\n          \"key_0\": 9264\n        }\n      },\n      \"unbillable\": true\n    },\n    \"isLocked\": true,\n    \"isInvoiced\": true,\n    \"comment\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d9c72a6d-88f8-4cf4-947f-b731c26a8f1a",
+              "name": "Missing or invalid X-Api-Key header.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":userId",
+                    "time"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "userId",
+                      "description": "(Required) User ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6437,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "62cb153d-27d2-4b37-a768-87ce7bb6bbe2",
+              "name": "Rate limit exceeded (around 20 requests per 10 seconds per API key). The Retry-After response header specifies the number of seconds to wait before making another request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":userId",
+                    "time"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "userId",
+                      "description": "(Required) User ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Seconds to wait before retrying.",
+                  "key": "Retry-After",
+                  "value": "6056"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6437,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9bbea715-98f8-49e0-8089-934853f043e5",
+          "name": "Get task time records",
+          "request": {
+            "name": "Get task time records",
+            "description": {
+              "content": "Returns time records reported against a specific task.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tasks",
+                ":taskId",
+                "time"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "from",
+                  "value": "<date>",
+                  "description": "Date from (YYYY-MM-DD)."
+                },
+                {
+                  "disabled": false,
+                  "key": "to",
+                  "value": "<date>",
+                  "description": "Date to (YYYY-MM-DD)."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Max results per page (max 50000)."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "Results page."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "taskId",
+                  "description": "(Required) Task ID (for example ev:3000010034)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "48a8fc78-8b46-4f65-83ca-0cadfaddaf39",
+              "name": "A list of the task's time records.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tasks",
+                    ":taskId",
+                    "time"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taskId",
+                      "description": "(Required) Task ID (for example ev:3000010034)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 7199,\n    \"time\": 7201,\n    \"user\": 8231,\n    \"date\": \"1974-04-07\",\n    \"task\": {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"projects\": [\n        \"string\",\n        \"string\"\n      ],\n      \"section\": 7264,\n      \"labels\": [\n        \"string\",\n        \"string\"\n      ],\n      \"position\": 9180,\n      \"description\": \"string\",\n      \"dueAt\": \"string\",\n      \"status\": \"open\",\n      \"time\": {\n        \"total\": 3729,\n        \"users\": {\n          \"key_0\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_1\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"estimate\": {\n        \"total\": 8727,\n        \"type\": \"overall\",\n        \"users\": {\n          \"key_0\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"unbillable\": false\n    },\n    \"isLocked\": true,\n    \"isInvoiced\": true,\n    \"comment\": \"string\",\n    \"history\": [\n      {\n        \"id\": 1021,\n        \"createdBy\": 1280,\n        \"time\": 1779,\n        \"previousTime\": 3659,\n        \"action\": \"ADD\",\n        \"createdAt\": \"string\"\n      },\n      {\n        \"id\": 5291,\n        \"createdBy\": 3591,\n        \"time\": 1939,\n        \"previousTime\": 6839,\n        \"action\": \"REMOVE\",\n        \"createdAt\": \"string\"\n      }\n    ]\n  },\n  {\n    \"id\": 866,\n    \"time\": 422,\n    \"user\": 5601,\n    \"date\": \"2024-03-27\",\n    \"task\": {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"projects\": [\n        \"string\",\n        \"string\"\n      ],\n      \"section\": 3344,\n      \"labels\": [\n        \"string\",\n        \"string\"\n      ],\n      \"position\": 9866,\n      \"description\": \"string\",\n      \"dueAt\": \"string\",\n      \"status\": \"open\",\n      \"time\": {\n        \"total\": 7160,\n        \"users\": {\n          \"key_0\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_1\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"estimate\": {\n        \"total\": 5278,\n        \"type\": \"overall\",\n        \"users\": {\n          \"key_0\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_1\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"unbillable\": true\n    },\n    \"isLocked\": true,\n    \"isInvoiced\": false,\n    \"comment\": \"string\",\n    \"history\": [\n      {\n        \"id\": 6768,\n        \"createdBy\": 5821,\n        \"time\": 9561,\n        \"previousTime\": 7755,\n        \"action\": \"MOVE\",\n        \"createdAt\": \"string\"\n      },\n      {\n        \"id\": 1431,\n        \"createdBy\": 4689,\n        \"time\": 8804,\n        \"previousTime\": 9598,\n        \"action\": \"ADD\",\n        \"createdAt\": \"string\"\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6ab0a824-b995-4d22-bd6a-a6c4ad68b917",
+              "name": "Missing or invalid X-Api-Key header.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tasks",
+                    ":taskId",
+                    "time"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taskId",
+                      "description": "(Required) Task ID (for example ev:3000010034)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6437,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d39d3075-4dc5-4c61-9481-d064ccbf532e",
+              "name": "Rate limit exceeded (around 20 requests per 10 seconds per API key). The Retry-After response header specifies the number of seconds to wait before making another request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tasks",
+                    ":taskId",
+                    "time"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taskId",
+                      "description": "(Required) Task ID (for example ev:3000010034)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Seconds to wait before retrying.",
+                  "key": "Retry-After",
+                  "value": "6056"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6437,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1eb41f00-92e9-4d16-9f32-cc58f548d7fc",
+          "name": "Get project time records",
+          "request": {
+            "name": "Get project time records",
+            "description": {
+              "content": "Returns time records reported against a specific project.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "projects",
+                ":projectId",
+                "time"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "from",
+                  "value": "<date>",
+                  "description": "Date from (YYYY-MM-DD)."
+                },
+                {
+                  "disabled": false,
+                  "key": "to",
+                  "value": "<date>",
+                  "description": "Date to (YYYY-MM-DD)."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Max results per page (max 50000)."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "Results page."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectId",
+                  "description": "(Required) Project ID in {platform code}:{platform ID} format (for example ev:1234567789001 or as:1234567789001)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "949bb144-e5a9-4892-8b19-e36cd5898d6a",
+              "name": "A list of the project's time records.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":projectId",
+                    "time"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) Project ID in {platform code}:{platform ID} format (for example ev:1234567789001 or as:1234567789001)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 7199,\n    \"time\": 7201,\n    \"user\": 8231,\n    \"date\": \"1974-04-07\",\n    \"task\": {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"projects\": [\n        \"string\",\n        \"string\"\n      ],\n      \"section\": 7264,\n      \"labels\": [\n        \"string\",\n        \"string\"\n      ],\n      \"position\": 9180,\n      \"description\": \"string\",\n      \"dueAt\": \"string\",\n      \"status\": \"open\",\n      \"time\": {\n        \"total\": 3729,\n        \"users\": {\n          \"key_0\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_1\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"estimate\": {\n        \"total\": 8727,\n        \"type\": \"overall\",\n        \"users\": {\n          \"key_0\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"unbillable\": false\n    },\n    \"isLocked\": true,\n    \"isInvoiced\": true,\n    \"comment\": \"string\",\n    \"history\": [\n      {\n        \"id\": 1021,\n        \"createdBy\": 1280,\n        \"time\": 1779,\n        \"previousTime\": 3659,\n        \"action\": \"ADD\",\n        \"createdAt\": \"string\"\n      },\n      {\n        \"id\": 5291,\n        \"createdBy\": 3591,\n        \"time\": 1939,\n        \"previousTime\": 6839,\n        \"action\": \"REMOVE\",\n        \"createdAt\": \"string\"\n      }\n    ]\n  },\n  {\n    \"id\": 866,\n    \"time\": 422,\n    \"user\": 5601,\n    \"date\": \"2024-03-27\",\n    \"task\": {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"projects\": [\n        \"string\",\n        \"string\"\n      ],\n      \"section\": 3344,\n      \"labels\": [\n        \"string\",\n        \"string\"\n      ],\n      \"position\": 9866,\n      \"description\": \"string\",\n      \"dueAt\": \"string\",\n      \"status\": \"open\",\n      \"time\": {\n        \"total\": 7160,\n        \"users\": {\n          \"key_0\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_1\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"estimate\": {\n        \"total\": 5278,\n        \"type\": \"overall\",\n        \"users\": {\n          \"key_0\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_1\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"unbillable\": true\n    },\n    \"isLocked\": true,\n    \"isInvoiced\": false,\n    \"comment\": \"string\",\n    \"history\": [\n      {\n        \"id\": 6768,\n        \"createdBy\": 5821,\n        \"time\": 9561,\n        \"previousTime\": 7755,\n        \"action\": \"MOVE\",\n        \"createdAt\": \"string\"\n      },\n      {\n        \"id\": 1431,\n        \"createdBy\": 4689,\n        \"time\": 8804,\n        \"previousTime\": 9598,\n        \"action\": \"ADD\",\n        \"createdAt\": \"string\"\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9c27c734-4cea-490e-8b6b-9aed6805e7cc",
+              "name": "Missing or invalid X-Api-Key header.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":projectId",
+                    "time"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) Project ID in {platform code}:{platform ID} format (for example ev:1234567789001 or as:1234567789001)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6437,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "def86b4b-79ff-48fd-9325-505ac59f7007",
+              "name": "Rate limit exceeded (around 20 requests per 10 seconds per API key). The Retry-After response header specifies the number of seconds to wait before making another request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":projectId",
+                    "time"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) Project ID in {platform code}:{platform ID} format (for example ev:1234567789001 or as:1234567789001)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Seconds to wait before retrying.",
+                  "key": "Retry-After",
+                  "value": "6056"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6437,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0c0cc383-c802-4d5e-840c-19673395d58c",
+          "name": "Add time",
+          "request": {
+            "name": "Add time",
+            "description": {
+              "content": "Adds a time record to a task for a user on a given date.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "time"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"time\": \"<integer>\",\n  \"date\": \"<date>\",\n  \"task\": \"<string>\",\n  \"user\": \"<integer>\",\n  \"comment\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ff52b0b1-c475-41a3-8fb4-74d0f3a98d45",
+              "name": "The created time record.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "time"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"time\": \"<integer>\",\n  \"date\": \"<date>\",\n  \"task\": \"<string>\",\n  \"user\": \"<integer>\",\n  \"comment\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 9953,\n  \"time\": 2007,\n  \"user\": 8395,\n  \"date\": \"1981-07-08\",\n  \"task\": {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"projects\": [\n      \"string\",\n      \"string\"\n    ],\n    \"section\": 2764,\n    \"labels\": [\n      \"string\",\n      \"string\"\n    ],\n    \"position\": 203,\n    \"description\": \"string\",\n    \"dueAt\": \"string\",\n    \"status\": \"closed\",\n    \"time\": {\n      \"total\": 6071,\n      \"users\": {\n        \"key_0\": 9050\n      }\n    },\n    \"estimate\": {\n      \"total\": 5635,\n      \"type\": \"users\",\n      \"users\": {\n        \"key_0\": 7157\n      }\n    },\n    \"unbillable\": true\n  },\n  \"isLocked\": true,\n  \"isInvoiced\": true,\n  \"comment\": \"string\",\n  \"history\": [\n    {\n      \"id\": 8149,\n      \"createdBy\": 5434,\n      \"time\": 8501,\n      \"previousTime\": 3214,\n      \"action\": \"ADD\",\n      \"createdAt\": \"string\"\n    },\n    {\n      \"id\": 4426,\n      \"createdBy\": 8953,\n      \"time\": 5521,\n      \"previousTime\": 9084,\n      \"action\": \"MOVE\",\n      \"createdAt\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ee449d16-ed3c-42be-803f-b2bc00104801",
+              "name": "Missing or invalid X-Api-Key header.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "time"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"time\": \"<integer>\",\n  \"date\": \"<date>\",\n  \"task\": \"<string>\",\n  \"user\": \"<integer>\",\n  \"comment\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6437,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0f3188e6-6beb-4e14-87f4-0d281375a792",
+              "name": "Rate limit exceeded (around 20 requests per 10 seconds per API key). The Retry-After response header specifies the number of seconds to wait before making another request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "time"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"time\": \"<integer>\",\n  \"date\": \"<date>\",\n  \"task\": \"<string>\",\n  \"user\": \"<integer>\",\n  \"comment\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Seconds to wait before retrying.",
+                  "key": "Retry-After",
+                  "value": "6056"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6437,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f96f7e00-049f-48b6-b4ad-f28220b8ca94",
+          "name": "Update time record",
+          "request": {
+            "name": "Update time record",
+            "description": {
+              "content": "Updates an existing time record.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "time",
+                ":timeId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "timeId",
+                  "description": "(Required) Time record ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"time\": \"<integer>\",\n  \"date\": \"<date>\",\n  \"task\": \"<string>\",\n  \"user\": \"<integer>\",\n  \"comment\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c38d069c-ebfe-467f-b488-ec1fd6315082",
+              "name": "The updated time record.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "time",
+                    ":timeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "timeId",
+                      "description": "(Required) Time record ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"time\": \"<integer>\",\n  \"date\": \"<date>\",\n  \"task\": \"<string>\",\n  \"user\": \"<integer>\",\n  \"comment\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 9953,\n  \"time\": 2007,\n  \"user\": 8395,\n  \"date\": \"1981-07-08\",\n  \"task\": {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"projects\": [\n      \"string\",\n      \"string\"\n    ],\n    \"section\": 2764,\n    \"labels\": [\n      \"string\",\n      \"string\"\n    ],\n    \"position\": 203,\n    \"description\": \"string\",\n    \"dueAt\": \"string\",\n    \"status\": \"closed\",\n    \"time\": {\n      \"total\": 6071,\n      \"users\": {\n        \"key_0\": 9050\n      }\n    },\n    \"estimate\": {\n      \"total\": 5635,\n      \"type\": \"users\",\n      \"users\": {\n        \"key_0\": 7157\n      }\n    },\n    \"unbillable\": true\n  },\n  \"isLocked\": true,\n  \"isInvoiced\": true,\n  \"comment\": \"string\",\n  \"history\": [\n    {\n      \"id\": 8149,\n      \"createdBy\": 5434,\n      \"time\": 8501,\n      \"previousTime\": 3214,\n      \"action\": \"ADD\",\n      \"createdAt\": \"string\"\n    },\n    {\n      \"id\": 4426,\n      \"createdBy\": 8953,\n      \"time\": 5521,\n      \"previousTime\": 9084,\n      \"action\": \"MOVE\",\n      \"createdAt\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8132f6f8-4a21-45a9-858c-2202d97b9c34",
+              "name": "Missing or invalid X-Api-Key header.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "time",
+                    ":timeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "timeId",
+                      "description": "(Required) Time record ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"time\": \"<integer>\",\n  \"date\": \"<date>\",\n  \"task\": \"<string>\",\n  \"user\": \"<integer>\",\n  \"comment\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6437,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e5f02786-d3b8-4a44-a331-e793bd1e8598",
+              "name": "Rate limit exceeded (around 20 requests per 10 seconds per API key). The Retry-After response header specifies the number of seconds to wait before making another request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "time",
+                    ":timeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "timeId",
+                      "description": "(Required) Time record ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"time\": \"<integer>\",\n  \"date\": \"<date>\",\n  \"task\": \"<string>\",\n  \"user\": \"<integer>\",\n  \"comment\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Seconds to wait before retrying.",
+                  "key": "Retry-After",
+                  "value": "6056"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6437,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "39f8c39b-ffab-4ebc-be7a-78847b416c80",
+          "name": "Delete time record",
+          "request": {
+            "name": "Delete time record",
+            "description": {
+              "content": "Deletes a time record.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "time",
+                ":timeId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "timeId",
+                  "description": "(Required) Time record ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ac3df256-fd77-4118-aa16-d30b963f62b9",
+              "name": "The deleted time record.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "time",
+                    ":timeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "timeId",
+                      "description": "(Required) Time record ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 9953,\n  \"time\": 2007,\n  \"user\": 8395,\n  \"date\": \"1981-07-08\",\n  \"task\": {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"projects\": [\n      \"string\",\n      \"string\"\n    ],\n    \"section\": 2764,\n    \"labels\": [\n      \"string\",\n      \"string\"\n    ],\n    \"position\": 203,\n    \"description\": \"string\",\n    \"dueAt\": \"string\",\n    \"status\": \"closed\",\n    \"time\": {\n      \"total\": 6071,\n      \"users\": {\n        \"key_0\": 9050\n      }\n    },\n    \"estimate\": {\n      \"total\": 5635,\n      \"type\": \"users\",\n      \"users\": {\n        \"key_0\": 7157\n      }\n    },\n    \"unbillable\": true\n  },\n  \"isLocked\": true,\n  \"isInvoiced\": true,\n  \"comment\": \"string\",\n  \"history\": [\n    {\n      \"id\": 8149,\n      \"createdBy\": 5434,\n      \"time\": 8501,\n      \"previousTime\": 3214,\n      \"action\": \"ADD\",\n      \"createdAt\": \"string\"\n    },\n    {\n      \"id\": 4426,\n      \"createdBy\": 8953,\n      \"time\": 5521,\n      \"previousTime\": 9084,\n      \"action\": \"MOVE\",\n      \"createdAt\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "426797e0-94a8-40a0-b14f-74a6cd9f1359",
+              "name": "Missing or invalid X-Api-Key header.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "time",
+                    ":timeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "timeId",
+                      "description": "(Required) Time record ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6437,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a46dd1ca-34de-4d3e-afe5-742124742e91",
+              "name": "Rate limit exceeded (around 20 requests per 10 seconds per API key). The Retry-After response header specifies the number of seconds to wait before making another request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "time",
+                    ":timeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "timeId",
+                      "description": "(Required) Time record ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Seconds to wait before retrying.",
+                  "key": "Retry-After",
+                  "value": "6056"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6437,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.everhour.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Api-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "ab18cbab-e68c-4860-a45c-d7ddfb4494ae",
+    "name": "Everhour Clients Time Records API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Everhour API is a RESTful interface providing programmatic access to time tracking, timesheets, timers, projects, tasks, clients, invoices, expenses, resource scheduling, time off, and reporting data in Everhour. The API accepts and returns JSON (UTF-8 only). All requests are authenticated with an X-Api-Key header carrying an API key found at the bottom of your Everhour profile page. An optional X-Accept-Version header pins a specific API version (the most recent, 1.2, is used by default). The API is labeled BETA by Everhour, meaning some calls can be slightly adjusted; breaking changes are pushed in separate API versions. Time values are in seconds and money amounts are in cents throughout.\n\nContact Support:\n Name: Everhour\n Email: ask@everhour.com",
+      "type": "text/plain"
+    }
+  }
+}

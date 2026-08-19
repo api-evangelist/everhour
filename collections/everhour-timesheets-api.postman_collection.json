@@ -1,0 +1,1214 @@
+{
+  "item": [
+    {
+      "id": "281bde15-1954-48a3-8ae8-20bcf274e012",
+      "name": "Timesheets",
+      "description": {
+        "content": "Weekly timesheets and the timesheet approval workflow.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d64e73e6-f779-42ab-9ba1-8d254fe373bf",
+          "name": "Get user timesheets",
+          "request": {
+            "name": "Get user timesheets",
+            "description": {
+              "content": "Returns weekly timesheets for a user (most recent weeks first).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                ":userId",
+                "timesheets"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Max number of weeks to return."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "userId",
+                  "description": "(Required) User ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6860cf6c-35d9-4f14-8c38-a231b2913c32",
+              "name": "A list of the user's timesheets.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":userId",
+                    "timesheets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "userId",
+                      "description": "(Required) User ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 794,\n    \"week\": {\n      \"id\": 6170,\n      \"from\": \"string\",\n      \"to\": \"string\",\n      \"beginningOfWeek\": 1317\n    },\n    \"user\": 6953,\n    \"tasks\": [\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"projects\": [\n          \"string\",\n          \"string\"\n        ],\n        \"section\": 2626,\n        \"labels\": [\n          \"string\",\n          \"string\"\n        ],\n        \"position\": 2212,\n        \"description\": \"string\",\n        \"dueAt\": \"string\",\n        \"status\": \"open\",\n        \"time\": {\n          \"total\": 2919,\n          \"users\": {\n            \"key_0\": 7467,\n            \"key_1\": 2621\n          }\n        },\n        \"estimate\": {\n          \"total\": 6087,\n          \"type\": \"overall\",\n          \"users\": {\n            \"key_0\": 7020,\n            \"key_1\": 5438\n          }\n        },\n        \"unbillable\": true\n      },\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"projects\": [\n          \"string\",\n          \"string\"\n        ],\n        \"section\": 498,\n        \"labels\": [\n          \"string\",\n          \"string\"\n        ],\n        \"position\": 4954,\n        \"description\": \"string\",\n        \"dueAt\": \"string\",\n        \"status\": \"closed\",\n        \"time\": {\n          \"total\": 1649,\n          \"users\": {\n            \"key_0\": 7696,\n            \"key_1\": 3650\n          }\n        },\n        \"estimate\": {\n          \"total\": 6305,\n          \"type\": \"overall\",\n          \"users\": {\n            \"key_0\": 5323,\n            \"key_1\": 6825,\n            \"key_2\": 2400,\n            \"key_3\": 3916\n          }\n        },\n        \"unbillable\": false\n      }\n    ],\n    \"dailyTime\": [\n      {\n        \"date\": \"string\",\n        \"time\": 3367,\n        \"timeWithoutTask\": 4657,\n        \"user\": 6484\n      },\n      {\n        \"date\": \"string\",\n        \"time\": 2949,\n        \"timeWithoutTask\": 3258,\n        \"user\": 6061\n      }\n    ],\n    \"approval\": {\n      \"id\": 3994,\n      \"user\": 4122,\n      \"weekId\": 6637,\n      \"timesheetId\": 5017,\n      \"reviewer\": 4268,\n      \"history\": [\n        {\n          \"action\": \"rejected\",\n          \"days\": {\n            \"monday\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"tuesday\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"wednesday\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"thursday\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"friday\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"saturday\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sunday\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"user\": 5108,\n          \"comment\": \"string\",\n          \"createdAt\": \"string\"\n        },\n        {\n          \"action\": \"rejected\",\n          \"days\": {\n            \"monday\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"tuesday\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"wednesday\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"thursday\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"friday\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"saturday\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sunday\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"user\": 8614,\n          \"comment\": \"string\",\n          \"createdAt\": \"string\"\n        }\n      ]\n    },\n    \"timecards\": [\n      {\n        \"user\": 6865,\n        \"clockIn\": \"string\",\n        \"clockOut\": \"string\",\n        \"breakTime\": 6170,\n        \"workTime\": 7519,\n        \"history\": [\n          {\n            \"action\": \"break\",\n            \"previousTime\": \"string\",\n            \"time\": \"string\",\n            \"trigger\": \"manually\"\n          },\n          {\n            \"action\": \"break\",\n            \"previousTime\": \"string\",\n            \"time\": \"string\",\n            \"trigger\": \"day-end\"\n          }\n        ]\n      },\n      {\n        \"user\": 8642,\n        \"clockIn\": \"string\",\n        \"clockOut\": \"string\",\n        \"breakTime\": 6208,\n        \"workTime\": 3938,\n        \"history\": [\n          {\n            \"action\": \"clock-in\",\n            \"previousTime\": \"string\",\n            \"time\": \"string\",\n            \"trigger\": \"timer\"\n          },\n          {\n            \"action\": \"break\",\n            \"previousTime\": \"string\",\n            \"time\": \"string\",\n            \"trigger\": \"idle-state\"\n          }\n        ]\n      }\n    ]\n  },\n  {\n    \"id\": 7793,\n    \"week\": {\n      \"id\": 5480,\n      \"from\": \"string\",\n      \"to\": \"string\",\n      \"beginningOfWeek\": 9611\n    },\n    \"user\": 9303,\n    \"tasks\": [\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"projects\": [\n          \"string\",\n          \"string\"\n        ],\n        \"section\": 3185,\n        \"labels\": [\n          \"string\",\n          \"string\"\n        ],\n        \"position\": 4634,\n        \"description\": \"string\",\n        \"dueAt\": \"string\",\n        \"status\": \"closed\",\n        \"time\": {\n          \"total\": 4508,\n          \"users\": {\n            \"key_0\": 3245,\n            \"key_1\": 7040\n          }\n        },\n        \"estimate\": {\n          \"total\": 9204,\n          \"type\": \"overall\",\n          \"users\": {\n            \"key_0\": 5663,\n            \"key_1\": 9275,\n            \"key_2\": 5231\n          }\n        },\n        \"unbillable\": false\n      },\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"projects\": [\n          \"string\",\n          \"string\"\n        ],\n        \"section\": 5089,\n        \"labels\": [\n          \"string\",\n          \"string\"\n        ],\n        \"position\": 385,\n        \"description\": \"string\",\n        \"dueAt\": \"string\",\n        \"status\": \"open\",\n        \"time\": {\n          \"total\": 4441,\n          \"users\": {\n            \"key_0\": 8672\n          }\n        },\n        \"estimate\": {\n          \"total\": 7367,\n          \"type\": \"overall\",\n          \"users\": {\n            \"key_0\": 2756,\n            \"key_1\": 1704,\n            \"key_2\": 7954\n          }\n        },\n        \"unbillable\": false\n      }\n    ],\n    \"dailyTime\": [\n      {\n        \"date\": \"string\",\n        \"time\": 8802,\n        \"timeWithoutTask\": 3253,\n        \"user\": 2079\n      },\n      {\n        \"date\": \"string\",\n        \"time\": 1339,\n        \"timeWithoutTask\": 8782,\n        \"user\": 5586\n      }\n    ],\n    \"approval\": {\n      \"id\": 722,\n      \"user\": 5583,\n      \"weekId\": 7206,\n      \"timesheetId\": 3888,\n      \"reviewer\": 7023,\n      \"history\": [\n        {\n          \"action\": \"approved\",\n          \"days\": {\n            \"monday\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"tuesday\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"wednesday\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"thursday\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"friday\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"saturday\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sunday\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"user\": 3910,\n          \"comment\": \"string\",\n          \"createdAt\": \"string\"\n        },\n        {\n          \"action\": \"discarded\",\n          \"days\": {\n            \"monday\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"tuesday\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"wednesday\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"thursday\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"friday\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"saturday\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sunday\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"user\": 732,\n          \"comment\": \"string\",\n          \"createdAt\": \"string\"\n        }\n      ]\n    },\n    \"timecards\": [\n      {\n        \"user\": 8916,\n        \"clockIn\": \"string\",\n        \"clockOut\": \"string\",\n        \"breakTime\": 3475,\n        \"workTime\": 7174,\n        \"history\": [\n          {\n            \"action\": \"clock-out\",\n            \"previousTime\": \"string\",\n            \"time\": \"string\",\n            \"trigger\": \"manually\"\n          },\n          {\n            \"action\": \"clock-out\",\n            \"previousTime\": \"string\",\n            \"time\": \"string\",\n            \"trigger\": \"idle-state\"\n          }\n        ]\n      },\n      {\n        \"user\": 2778,\n        \"clockIn\": \"string\",\n        \"clockOut\": \"string\",\n        \"breakTime\": 8535,\n        \"workTime\": 1371,\n        \"history\": [\n          {\n            \"action\": \"clock-out\",\n            \"previousTime\": \"string\",\n            \"time\": \"string\",\n            \"trigger\": \"timer\"\n          },\n          {\n            \"action\": \"clock-out\",\n            \"previousTime\": \"string\",\n            \"time\": \"string\",\n            \"trigger\": \"day-end\"\n          }\n        ]\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9433183b-c034-4344-8f76-a9b743518b4b",
+              "name": "Missing or invalid X-Api-Key header.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":userId",
+                    "timesheets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "userId",
+                      "description": "(Required) User ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5911,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "02910df0-cfa0-4ea3-87ef-966a76b00159",
+              "name": "Rate limit exceeded (around 20 requests per 10 seconds per API key). The Retry-After response header specifies the number of seconds to wait before making another request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":userId",
+                    "timesheets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "userId",
+                      "description": "(Required) User ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Seconds to wait before retrying.",
+                  "key": "Retry-After",
+                  "value": "8658"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5911,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "13874326-7bd8-4d32-b762-f91582158a1c",
+          "name": "Get team timesheets",
+          "request": {
+            "name": "Get team timesheets",
+            "description": {
+              "content": "Returns timesheets for the whole team for a given week. The week ID is the two-digit year plus the week number (for example 2535 for week 35 of 2025).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "timesheets"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "weekId",
+                  "value": "<integer>",
+                  "description": "(Required) Week ID (two-digit year + week number)."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c2bf9f83-5840-41cb-a8af-de2457284d9e",
+              "name": "A list of team timesheets for the week.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "timesheets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "weekId",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 7196,\n    \"week\": {\n      \"id\": 2098,\n      \"from\": \"string\",\n      \"to\": \"string\",\n      \"beginningOfWeek\": 8213\n    },\n    \"user\": 6017,\n    \"tasks\": [\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"projects\": [\n          \"string\",\n          \"string\"\n        ],\n        \"section\": 9193,\n        \"labels\": [\n          \"string\",\n          \"string\"\n        ],\n        \"position\": 8694,\n        \"description\": \"string\",\n        \"dueAt\": \"string\",\n        \"status\": \"open\",\n        \"time\": {\n          \"total\": 8695,\n          \"users\": {\n            \"key_0\": 9730,\n            \"key_1\": 1539,\n            \"key_2\": 9063\n          }\n        },\n        \"estimate\": {\n          \"total\": 86,\n          \"type\": \"users\",\n          \"users\": {\n            \"key_0\": 9857,\n            \"key_1\": 9612\n          }\n        },\n        \"unbillable\": true\n      },\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"projects\": [\n          \"string\",\n          \"string\"\n        ],\n        \"section\": 5488,\n        \"labels\": [\n          \"string\",\n          \"string\"\n        ],\n        \"position\": 7540,\n        \"description\": \"string\",\n        \"dueAt\": \"string\",\n        \"status\": \"open\",\n        \"time\": {\n          \"total\": 8996,\n          \"users\": {\n            \"key_0\": 5362,\n            \"key_1\": 9530,\n            \"key_2\": 8769\n          }\n        },\n        \"estimate\": {\n          \"total\": 443,\n          \"type\": \"overall\",\n          \"users\": {\n            \"key_0\": 7369,\n            \"key_1\": 8937,\n            \"key_2\": 8330\n          }\n        },\n        \"unbillable\": false\n      }\n    ],\n    \"dailyTime\": [\n      {\n        \"date\": \"string\",\n        \"time\": 7797,\n        \"timeWithoutTask\": 5765,\n        \"user\": 9333\n      },\n      {\n        \"date\": \"string\",\n        \"time\": 1030,\n        \"timeWithoutTask\": 2078,\n        \"user\": 6304\n      }\n    ],\n    \"approval\": {\n      \"id\": 7340,\n      \"user\": 9971,\n      \"weekId\": 6976,\n      \"timesheetId\": 8931,\n      \"reviewer\": 9965,\n      \"history\": [\n        {\n          \"action\": \"rejected\",\n          \"days\": {\n            \"monday\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"tuesday\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"wednesday\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"thursday\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"friday\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"saturday\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sunday\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"user\": 6803,\n          \"comment\": \"string\",\n          \"createdAt\": \"string\"\n        },\n        {\n          \"action\": \"submitted\",\n          \"days\": {\n            \"monday\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"tuesday\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"wednesday\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"thursday\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"friday\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"saturday\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sunday\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"user\": 9246,\n          \"comment\": \"string\",\n          \"createdAt\": \"string\"\n        }\n      ]\n    },\n    \"timecards\": [\n      {\n        \"user\": 1156,\n        \"clockIn\": \"string\",\n        \"clockOut\": \"string\",\n        \"breakTime\": 8623,\n        \"workTime\": 599,\n        \"history\": [\n          {\n            \"action\": \"break\",\n            \"previousTime\": \"string\",\n            \"time\": \"string\",\n            \"trigger\": \"button\"\n          },\n          {\n            \"action\": \"clock-in\",\n            \"previousTime\": \"string\",\n            \"time\": \"string\",\n            \"trigger\": \"idle-state\"\n          }\n        ]\n      },\n      {\n        \"user\": 8403,\n        \"clockIn\": \"string\",\n        \"clockOut\": \"string\",\n        \"breakTime\": 6248,\n        \"workTime\": 8541,\n        \"history\": [\n          {\n            \"action\": \"clock-out\",\n            \"previousTime\": \"string\",\n            \"time\": \"string\",\n            \"trigger\": \"manually\"\n          },\n          {\n            \"action\": \"clock-out\",\n            \"previousTime\": \"string\",\n            \"time\": \"string\",\n            \"trigger\": \"manually\"\n          }\n        ]\n      }\n    ]\n  },\n  {\n    \"id\": 1035,\n    \"week\": {\n      \"id\": 6358,\n      \"from\": \"string\",\n      \"to\": \"string\",\n      \"beginningOfWeek\": 7368\n    },\n    \"user\": 5349,\n    \"tasks\": [\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"projects\": [\n          \"string\",\n          \"string\"\n        ],\n        \"section\": 6615,\n        \"labels\": [\n          \"string\",\n          \"string\"\n        ],\n        \"position\": 3853,\n        \"description\": \"string\",\n        \"dueAt\": \"string\",\n        \"status\": \"closed\",\n        \"time\": {\n          \"total\": 8284,\n          \"users\": {\n            \"key_0\": 2320,\n            \"key_1\": 1244\n          }\n        },\n        \"estimate\": {\n          \"total\": 8672,\n          \"type\": \"users\",\n          \"users\": {\n            \"key_0\": 2455,\n            \"key_1\": 1257\n          }\n        },\n        \"unbillable\": true\n      },\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"projects\": [\n          \"string\",\n          \"string\"\n        ],\n        \"section\": 1835,\n        \"labels\": [\n          \"string\",\n          \"string\"\n        ],\n        \"position\": 6548,\n        \"description\": \"string\",\n        \"dueAt\": \"string\",\n        \"status\": \"open\",\n        \"time\": {\n          \"total\": 6602,\n          \"users\": {\n            \"key_0\": 8881,\n            \"key_1\": 4815,\n            \"key_2\": 9261\n          }\n        },\n        \"estimate\": {\n          \"total\": 619,\n          \"type\": \"overall\",\n          \"users\": {\n            \"key_0\": 9346,\n            \"key_1\": 2776\n          }\n        },\n        \"unbillable\": false\n      }\n    ],\n    \"dailyTime\": [\n      {\n        \"date\": \"string\",\n        \"time\": 3275,\n        \"timeWithoutTask\": 7385,\n        \"user\": 822\n      },\n      {\n        \"date\": \"string\",\n        \"time\": 3216,\n        \"timeWithoutTask\": 6945,\n        \"user\": 2443\n      }\n    ],\n    \"approval\": {\n      \"id\": 5497,\n      \"user\": 1834,\n      \"weekId\": 8047,\n      \"timesheetId\": 6374,\n      \"reviewer\": 1347,\n      \"history\": [\n        {\n          \"action\": \"submitted\",\n          \"days\": {\n            \"monday\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"tuesday\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"wednesday\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"thursday\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"friday\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"saturday\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sunday\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"user\": 9654,\n          \"comment\": \"string\",\n          \"createdAt\": \"string\"\n        },\n        {\n          \"action\": \"submitted\",\n          \"days\": {\n            \"monday\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"tuesday\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"wednesday\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"thursday\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"friday\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"saturday\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sunday\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"user\": 8561,\n          \"comment\": \"string\",\n          \"createdAt\": \"string\"\n        }\n      ]\n    },\n    \"timecards\": [\n      {\n        \"user\": 4116,\n        \"clockIn\": \"string\",\n        \"clockOut\": \"string\",\n        \"breakTime\": 2849,\n        \"workTime\": 7971,\n        \"history\": [\n          {\n            \"action\": \"break\",\n            \"previousTime\": \"string\",\n            \"time\": \"string\",\n            \"trigger\": \"manually\"\n          },\n          {\n            \"action\": \"break\",\n            \"previousTime\": \"string\",\n            \"time\": \"string\",\n            \"trigger\": \"idle-state\"\n          }\n        ]\n      },\n      {\n        \"user\": 7572,\n        \"clockIn\": \"string\",\n        \"clockOut\": \"string\",\n        \"breakTime\": 9718,\n        \"workTime\": 2620,\n        \"history\": [\n          {\n            \"action\": \"clock-out\",\n            \"previousTime\": \"string\",\n            \"time\": \"string\",\n            \"trigger\": \"timer\"\n          },\n          {\n            \"action\": \"clock-in\",\n            \"previousTime\": \"string\",\n            \"time\": \"string\",\n            \"trigger\": \"timer\"\n          }\n        ]\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "62a63897-38e4-4007-b569-443841d60e7a",
+              "name": "Missing or invalid X-Api-Key header.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "timesheets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "weekId",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5911,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fa5b2d3d-bbd4-42fa-967d-11fc39ecb2ea",
+              "name": "Rate limit exceeded (around 20 requests per 10 seconds per API key). The Retry-After response header specifies the number of seconds to wait before making another request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "timesheets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "weekId",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Seconds to wait before retrying.",
+                  "key": "Retry-After",
+                  "value": "8658"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5911,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "57bc0e11-0a73-4d5f-938e-386337f07070",
+          "name": "Approve week / request approval",
+          "request": {
+            "name": "Approve week / request approval",
+            "description": {
+              "content": "Submits a weekly timesheet for approval (or approves it directly when called by an admin). The timesheet ID is the user ID concatenated with the week ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "timesheets",
+                ":timesheetId",
+                "approval"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "timesheetId",
+                  "description": "(Required) Timesheet ID (user ID concatenated with week ID)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"comment\": \"<string>\",\n  \"reviewer\": \"<integer>\",\n  \"sendNotification\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f412cbf0-07e8-4804-950d-f24c6267607e",
+              "name": "The timesheet approval.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "timesheets",
+                    ":timesheetId",
+                    "approval"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "timesheetId",
+                      "description": "(Required) Timesheet ID (user ID concatenated with week ID)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"comment\": \"<string>\",\n  \"reviewer\": \"<integer>\",\n  \"sendNotification\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 4877,\n  \"user\": 4478,\n  \"weekId\": 3767,\n  \"timesheetId\": 1596,\n  \"reviewer\": 4174,\n  \"history\": [\n    {\n      \"action\": \"discarded\",\n      \"days\": {\n        \"monday\": true,\n        \"tuesday\": false,\n        \"wednesday\": false,\n        \"thursday\": true,\n        \"friday\": false,\n        \"saturday\": true,\n        \"sunday\": true\n      },\n      \"user\": 4057,\n      \"comment\": \"string\",\n      \"createdAt\": \"string\"\n    },\n    {\n      \"action\": \"submitted\",\n      \"days\": {\n        \"monday\": false,\n        \"tuesday\": false,\n        \"wednesday\": true,\n        \"thursday\": false,\n        \"friday\": false,\n        \"saturday\": false,\n        \"sunday\": true\n      },\n      \"user\": 2770,\n      \"comment\": \"string\",\n      \"createdAt\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3a6ea6e9-a977-4257-9b12-d4399d0b8831",
+              "name": "Missing or invalid X-Api-Key header.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "timesheets",
+                    ":timesheetId",
+                    "approval"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "timesheetId",
+                      "description": "(Required) Timesheet ID (user ID concatenated with week ID)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"comment\": \"<string>\",\n  \"reviewer\": \"<integer>\",\n  \"sendNotification\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5911,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "665d2460-ef8f-4e8c-870b-80fd18051daa",
+              "name": "Rate limit exceeded (around 20 requests per 10 seconds per API key). The Retry-After response header specifies the number of seconds to wait before making another request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "timesheets",
+                    ":timesheetId",
+                    "approval"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "timesheetId",
+                      "description": "(Required) Timesheet ID (user ID concatenated with week ID)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"comment\": \"<string>\",\n  \"reviewer\": \"<integer>\",\n  \"sendNotification\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Seconds to wait before retrying.",
+                  "key": "Retry-After",
+                  "value": "8658"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5911,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "872ade94-a8bc-494d-8bbc-dbde6c28c88e",
+          "name": "Approve or reject approval request",
+          "request": {
+            "name": "Approve or reject approval request",
+            "description": {
+              "content": "Approves or rejects a pending timesheet approval request, optionally per day of the week.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "timesheets",
+                ":timesheetId",
+                "approval"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "timesheetId",
+                  "description": "(Required) Timesheet ID (user ID concatenated with week ID)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"<string>\",\n  \"days\": {\n    \"monday\": \"<boolean>\",\n    \"tuesday\": \"<boolean>\",\n    \"wednesday\": \"<boolean>\",\n    \"thursday\": \"<boolean>\",\n    \"friday\": \"<boolean>\",\n    \"saturday\": \"<boolean>\",\n    \"sunday\": \"<boolean>\"\n  },\n  \"comment\": \"<string>\",\n  \"sendNotification\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "840454fc-07a3-4a8d-9988-05dd7db2e914",
+              "name": "The reviewed timesheet approval.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "timesheets",
+                    ":timesheetId",
+                    "approval"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "timesheetId",
+                      "description": "(Required) Timesheet ID (user ID concatenated with week ID)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"<string>\",\n  \"days\": {\n    \"monday\": \"<boolean>\",\n    \"tuesday\": \"<boolean>\",\n    \"wednesday\": \"<boolean>\",\n    \"thursday\": \"<boolean>\",\n    \"friday\": \"<boolean>\",\n    \"saturday\": \"<boolean>\",\n    \"sunday\": \"<boolean>\"\n  },\n  \"comment\": \"<string>\",\n  \"sendNotification\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 5138,\n  \"user\": 5368,\n  \"weekId\": 4330,\n  \"timesheetId\": 5278,\n  \"reviewer\": 1401,\n  \"history\": [\n    {\n      \"action\": \"submitted\",\n      \"days\": {\n        \"monday\": \"<boolean>\",\n        \"tuesday\": \"<boolean>\",\n        \"wednesday\": \"<boolean>\",\n        \"thursday\": \"<boolean>\",\n        \"friday\": \"<boolean>\",\n        \"saturday\": \"<boolean>\",\n        \"sunday\": \"<boolean>\"\n      },\n      \"user\": 6794,\n      \"comment\": \"string\",\n      \"createdAt\": \"string\"\n    },\n    {\n      \"action\": \"rejected\",\n      \"days\": {\n        \"monday\": \"<boolean>\",\n        \"tuesday\": \"<boolean>\",\n        \"wednesday\": \"<boolean>\",\n        \"thursday\": \"<boolean>\",\n        \"friday\": \"<boolean>\",\n        \"saturday\": \"<boolean>\",\n        \"sunday\": \"<boolean>\"\n      },\n      \"user\": 228,\n      \"comment\": \"string\",\n      \"createdAt\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b2408461-f3b4-478a-aede-886016e0287f",
+              "name": "Missing or invalid X-Api-Key header.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "timesheets",
+                    ":timesheetId",
+                    "approval"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "timesheetId",
+                      "description": "(Required) Timesheet ID (user ID concatenated with week ID)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"<string>\",\n  \"days\": {\n    \"monday\": \"<boolean>\",\n    \"tuesday\": \"<boolean>\",\n    \"wednesday\": \"<boolean>\",\n    \"thursday\": \"<boolean>\",\n    \"friday\": \"<boolean>\",\n    \"saturday\": \"<boolean>\",\n    \"sunday\": \"<boolean>\"\n  },\n  \"comment\": \"<string>\",\n  \"sendNotification\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5911,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8d5aa008-6fc5-4693-97ea-3c31f9a3396a",
+              "name": "Rate limit exceeded (around 20 requests per 10 seconds per API key). The Retry-After response header specifies the number of seconds to wait before making another request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "timesheets",
+                    ":timesheetId",
+                    "approval"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "timesheetId",
+                      "description": "(Required) Timesheet ID (user ID concatenated with week ID)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"<string>\",\n  \"days\": {\n    \"monday\": \"<boolean>\",\n    \"tuesday\": \"<boolean>\",\n    \"wednesday\": \"<boolean>\",\n    \"thursday\": \"<boolean>\",\n    \"friday\": \"<boolean>\",\n    \"saturday\": \"<boolean>\",\n    \"sunday\": \"<boolean>\"\n  },\n  \"comment\": \"<string>\",\n  \"sendNotification\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Seconds to wait before retrying.",
+                  "key": "Retry-After",
+                  "value": "8658"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5911,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e4375359-ccae-480f-97be-d8b3ead121f4",
+          "name": "Discard your approval request",
+          "request": {
+            "name": "Discard your approval request",
+            "description": {
+              "content": "Discards a previously submitted timesheet approval request.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "timesheets",
+                ":timesheetId",
+                "discard-approval"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "timesheetId",
+                  "description": "(Required) Timesheet ID (user ID concatenated with week ID)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"comment\": \"<string>\",\n  \"reviewer\": \"<integer>\",\n  \"sendNotification\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "906a6cea-07fc-474a-9866-b7936c9a7124",
+              "name": "The timesheet approval after discarding.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "timesheets",
+                    ":timesheetId",
+                    "discard-approval"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "timesheetId",
+                      "description": "(Required) Timesheet ID (user ID concatenated with week ID)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"comment\": \"<string>\",\n  \"reviewer\": \"<integer>\",\n  \"sendNotification\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 5138,\n  \"user\": 5368,\n  \"weekId\": 4330,\n  \"timesheetId\": 5278,\n  \"reviewer\": 1401,\n  \"history\": [\n    {\n      \"action\": \"submitted\",\n      \"days\": {\n        \"monday\": \"<boolean>\",\n        \"tuesday\": \"<boolean>\",\n        \"wednesday\": \"<boolean>\",\n        \"thursday\": \"<boolean>\",\n        \"friday\": \"<boolean>\",\n        \"saturday\": \"<boolean>\",\n        \"sunday\": \"<boolean>\"\n      },\n      \"user\": 6794,\n      \"comment\": \"string\",\n      \"createdAt\": \"string\"\n    },\n    {\n      \"action\": \"rejected\",\n      \"days\": {\n        \"monday\": \"<boolean>\",\n        \"tuesday\": \"<boolean>\",\n        \"wednesday\": \"<boolean>\",\n        \"thursday\": \"<boolean>\",\n        \"friday\": \"<boolean>\",\n        \"saturday\": \"<boolean>\",\n        \"sunday\": \"<boolean>\"\n      },\n      \"user\": 228,\n      \"comment\": \"string\",\n      \"createdAt\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0b4b8cd0-8083-48db-a1b8-23af304f8a6a",
+              "name": "Missing or invalid X-Api-Key header.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "timesheets",
+                    ":timesheetId",
+                    "discard-approval"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "timesheetId",
+                      "description": "(Required) Timesheet ID (user ID concatenated with week ID)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"comment\": \"<string>\",\n  \"reviewer\": \"<integer>\",\n  \"sendNotification\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5911,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7795af94-1b43-45ca-8563-d75412940f35",
+              "name": "Rate limit exceeded (around 20 requests per 10 seconds per API key). The Retry-After response header specifies the number of seconds to wait before making another request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "timesheets",
+                    ":timesheetId",
+                    "discard-approval"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "timesheetId",
+                      "description": "(Required) Timesheet ID (user ID concatenated with week ID)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"comment\": \"<string>\",\n  \"reviewer\": \"<integer>\",\n  \"sendNotification\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Seconds to wait before retrying.",
+                  "key": "Retry-After",
+                  "value": "8658"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5911,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.everhour.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Api-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "33230926-d3b5-48f3-b305-91d35c10aaff",
+    "name": "Everhour Clients Timesheets API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Everhour API is a RESTful interface providing programmatic access to time tracking, timesheets, timers, projects, tasks, clients, invoices, expenses, resource scheduling, time off, and reporting data in Everhour. The API accepts and returns JSON (UTF-8 only). All requests are authenticated with an X-Api-Key header carrying an API key found at the bottom of your Everhour profile page. An optional X-Accept-Version header pins a specific API version (the most recent, 1.2, is used by default). The API is labeled BETA by Everhour, meaning some calls can be slightly adjusted; breaking changes are pushed in separate API versions. Time values are in seconds and money amounts are in cents throughout.\n\nContact Support:\n Name: Everhour\n Email: ask@everhour.com",
+      "type": "text/plain"
+    }
+  }
+}

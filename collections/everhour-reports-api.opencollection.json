@@ -1,0 +1,155 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Everhour Clients Reports API",
+    "version": "1.2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Api-Key",
+      "value": "{{X-Api-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Reports",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Projects report",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.everhour.com/dashboards/projects",
+            "params": [
+              {
+                "name": "date.gte",
+                "value": "",
+                "type": "query",
+                "description": "Report start date (YYYY-MM-DD)."
+              },
+              {
+                "name": "date.lte",
+                "value": "",
+                "type": "query",
+                "description": "Report end date (YYYY-MM-DD)."
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "query",
+                "description": "Filter by project ID."
+              },
+              {
+                "name": "clientId",
+                "value": "",
+                "type": "query",
+                "description": "Filter by client ID."
+              },
+              {
+                "name": "memberId",
+                "value": "",
+                "type": "query",
+                "description": "Filter by user ID."
+              }
+            ]
+          },
+          "docs": "Returns aggregated time, billable amounts, costs, profit, and expense metrics per project. Time columns are in seconds and amounts in cents."
+        },
+        {
+          "info": {
+            "name": "Clients report",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.everhour.com/dashboards/clients",
+            "params": [
+              {
+                "name": "date.gte",
+                "value": "",
+                "type": "query",
+                "description": "Report start date (YYYY-MM-DD)."
+              },
+              {
+                "name": "date.lte",
+                "value": "",
+                "type": "query",
+                "description": "Report end date (YYYY-MM-DD)."
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "query",
+                "description": "Filter by project ID."
+              },
+              {
+                "name": "clientId",
+                "value": "",
+                "type": "query",
+                "description": "Filter by client ID."
+              },
+              {
+                "name": "memberId",
+                "value": "",
+                "type": "query",
+                "description": "Filter by user ID."
+              }
+            ]
+          },
+          "docs": "Returns aggregated time, billable amounts, costs, profit, and expense metrics per client."
+        },
+        {
+          "info": {
+            "name": "Users report",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.everhour.com/dashboards/users",
+            "params": [
+              {
+                "name": "date.gte",
+                "value": "",
+                "type": "query",
+                "description": "Report start date (YYYY-MM-DD)."
+              },
+              {
+                "name": "date.lte",
+                "value": "",
+                "type": "query",
+                "description": "Report end date (YYYY-MM-DD)."
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "query",
+                "description": "Filter by project ID."
+              },
+              {
+                "name": "clientId",
+                "value": "",
+                "type": "query",
+                "description": "Filter by client ID."
+              },
+              {
+                "name": "memberId",
+                "value": "",
+                "type": "query",
+                "description": "Filter by user ID."
+              }
+            ]
+          },
+          "docs": "Returns aggregated time, time off, billable amounts, costs, and profit metrics per team member."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

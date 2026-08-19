@@ -1,0 +1,301 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Everhour Clients Projects API",
+    "version": "1.2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Api-Key",
+      "value": "{{X-Api-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Projects",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all projects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.everhour.com/projects",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Max results."
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "Search projects by name."
+              },
+              {
+                "name": "platform",
+                "value": "",
+                "type": "query",
+                "description": "Filter by integration platform code (for example as, ev, b3, b2, pv, gh, in, tr, jr)."
+              }
+            ]
+          },
+          "docs": "Returns projects, optionally filtered by name query or source integration platform."
+        },
+        {
+          "info": {
+            "name": "Create project",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.everhour.com/projects",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a native Everhour project."
+        },
+        {
+          "info": {
+            "name": "Get project",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.everhour.com/projects/:projectId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project ID in {platform code}:{platform ID} format (for example ev:1234567789001 or as:1234567789001)."
+              }
+            ]
+          },
+          "docs": "Returns a single project by ID."
+        },
+        {
+          "info": {
+            "name": "Update project",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.everhour.com/projects/:projectId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project ID in {platform code}:{platform ID} format (for example ev:1234567789001 or as:1234567789001)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a project."
+        },
+        {
+          "info": {
+            "name": "Delete project",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.everhour.com/projects/:projectId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project ID in {platform code}:{platform ID} format (for example ev:1234567789001 or as:1234567789001)."
+              }
+            ]
+          },
+          "docs": "Deletes a project."
+        },
+        {
+          "info": {
+            "name": "Archive or unarchive project",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.everhour.com/projects/:projectId/archive",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project ID in {platform code}:{platform ID} format (for example ev:1234567789001 or as:1234567789001)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Archives or unarchives a project."
+        },
+        {
+          "info": {
+            "name": "Update project billing and budget",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.everhour.com/projects/:projectId/billing",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project ID in {platform code}:{platform ID} format (for example ev:1234567789001 or as:1234567789001)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a project's billing type (non_billable, hourly, fixed_fee), rate configuration (project_rate or user_rate with per-user overrides), and budget (money, time, or costs; general, monthly, weekly, or daily periods)."
+        },
+        {
+          "info": {
+            "name": "Sync integration project",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.everhour.com/projects/:projectId/sync",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project ID in {platform code}:{platform ID} format (for example ev:1234567789001 or as:1234567789001)."
+              }
+            ]
+          },
+          "docs": "Instantly synchronizes a project from a connected integration (Asana, Trello, ClickUp, GitHub, and more) into Everhour instead of waiting for background sync. Safe to call multiple times; returns the existing project if already synced."
+        },
+        {
+          "info": {
+            "name": "Get project sections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.everhour.com/projects/:projectId/sections",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project ID in {platform code}:{platform ID} format (for example ev:1234567789001 or as:1234567789001)."
+              }
+            ]
+          },
+          "docs": "Returns the sections of a project."
+        },
+        {
+          "info": {
+            "name": "Create section",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.everhour.com/projects/:projectId/sections",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project ID in {platform code}:{platform ID} format (for example ev:1234567789001 or as:1234567789001)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a section in a project."
+        },
+        {
+          "info": {
+            "name": "Get section",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.everhour.com/sections/:sectionId",
+            "params": [
+              {
+                "name": "sectionId",
+                "value": "",
+                "type": "path",
+                "description": "Section ID."
+              }
+            ]
+          },
+          "docs": "Returns a single section by ID."
+        },
+        {
+          "info": {
+            "name": "Update section",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.everhour.com/sections/:sectionId",
+            "params": [
+              {
+                "name": "sectionId",
+                "value": "",
+                "type": "path",
+                "description": "Section ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a section."
+        },
+        {
+          "info": {
+            "name": "Delete section",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.everhour.com/sections/:sectionId",
+            "params": [
+              {
+                "name": "sectionId",
+                "value": "",
+                "type": "path",
+                "description": "Section ID."
+              }
+            ]
+          },
+          "docs": "Deletes a section."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

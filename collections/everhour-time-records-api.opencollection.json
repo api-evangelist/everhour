@@ -1,0 +1,255 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Everhour Clients Time Records API",
+    "version": "1.2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Api-Key",
+      "value": "{{X-Api-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Time Records",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all time records",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.everhour.com/team/time",
+            "params": [
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "Date from (YYYY-MM-DD)."
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "Date to (YYYY-MM-DD)."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Max results per page (max 50000)."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Results page."
+              },
+              {
+                "name": "opts_include_billing",
+                "value": "",
+                "type": "query",
+                "description": "Set to 1 to include billing data (admins with billing permissions only)."
+              }
+            ]
+          },
+          "docs": "Returns time records across the whole team, optionally filtered by date range and paginated. Pass opts_include_billing=1 to include billing data (admins with billing permissions only)."
+        },
+        {
+          "info": {
+            "name": "Get user time records",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.everhour.com/users/:userId/time",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "User ID."
+              },
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "Date from (YYYY-MM-DD)."
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "Date to (YYYY-MM-DD)."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Max results per page (max 50000)."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Results page."
+              }
+            ]
+          },
+          "docs": "Returns time records reported by a specific user."
+        },
+        {
+          "info": {
+            "name": "Get task time records",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.everhour.com/tasks/:taskId/time",
+            "params": [
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path",
+                "description": "Task ID (for example ev:3000010034)."
+              },
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "Date from (YYYY-MM-DD)."
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "Date to (YYYY-MM-DD)."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Max results per page (max 50000)."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Results page."
+              }
+            ]
+          },
+          "docs": "Returns time records reported against a specific task."
+        },
+        {
+          "info": {
+            "name": "Get project time records",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.everhour.com/projects/:projectId/time",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project ID in {platform code}:{platform ID} format (for example ev:1234567789001 or as:1234567789001)."
+              },
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "Date from (YYYY-MM-DD)."
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "Date to (YYYY-MM-DD)."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Max results per page (max 50000)."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Results page."
+              }
+            ]
+          },
+          "docs": "Returns time records reported against a specific project."
+        },
+        {
+          "info": {
+            "name": "Add time",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.everhour.com/time",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds a time record to a task for a user on a given date."
+        },
+        {
+          "info": {
+            "name": "Update time record",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.everhour.com/time/:timeId",
+            "params": [
+              {
+                "name": "timeId",
+                "value": "",
+                "type": "path",
+                "description": "Time record ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing time record."
+        },
+        {
+          "info": {
+            "name": "Delete time record",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.everhour.com/time/:timeId",
+            "params": [
+              {
+                "name": "timeId",
+                "value": "",
+                "type": "path",
+                "description": "Time record ID."
+              }
+            ]
+          },
+          "docs": "Deletes a time record."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

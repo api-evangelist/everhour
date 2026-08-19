@@ -1,0 +1,74 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Everhour Clients Timers API",
+    "version": "1.2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Api-Key",
+      "value": "{{X-Api-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Timers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Start timer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.everhour.com/timers",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Starts a timer on a task for the current user."
+        },
+        {
+          "info": {
+            "name": "Get running timer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.everhour.com/timers/current"
+          },
+          "docs": "Returns the currently running timer for the current user."
+        },
+        {
+          "info": {
+            "name": "Stop timer",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.everhour.com/timers/current"
+          },
+          "docs": "Stops the currently running timer and records the tracked time."
+        },
+        {
+          "info": {
+            "name": "Get all team timers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.everhour.com/team/timers"
+          },
+          "docs": "Returns all currently running timers across the team."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

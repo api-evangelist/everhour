@@ -1,0 +1,207 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Everhour Clients Timecards API",
+    "version": "1.2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Api-Key",
+      "value": "{{X-Api-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Timecards",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all timecards",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.everhour.com/timecards",
+            "params": [
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "Date from (YYYY-MM-DD)."
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "Date to (YYYY-MM-DD)."
+              }
+            ]
+          },
+          "docs": "Returns timecards for the whole team within a date range (last two weeks by default)."
+        },
+        {
+          "info": {
+            "name": "Get user timecards",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.everhour.com/users/:userId/timecards",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "User ID."
+              },
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "Date from (YYYY-MM-DD)."
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "Date to (YYYY-MM-DD)."
+              }
+            ]
+          },
+          "docs": "Returns timecards for a user within a date range (last two weeks by default)."
+        },
+        {
+          "info": {
+            "name": "Get timecard",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.everhour.com/users/:userId/timecards/:date",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "User ID."
+              },
+              {
+                "name": "date",
+                "value": "",
+                "type": "path",
+                "description": "Date in YYYY-MM-DD format."
+              }
+            ]
+          },
+          "docs": "Returns the timecard for a user on a specific date."
+        },
+        {
+          "info": {
+            "name": "Update timecard",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.everhour.com/users/:userId/timecards/:date",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "User ID."
+              },
+              {
+                "name": "date",
+                "value": "",
+                "type": "path",
+                "description": "Date in YYYY-MM-DD format."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates clock-in, clock-out, or break time on a timecard."
+        },
+        {
+          "info": {
+            "name": "Delete timecard",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.everhour.com/users/:userId/timecards/:date",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "User ID."
+              },
+              {
+                "name": "date",
+                "value": "",
+                "type": "path",
+                "description": "Date in YYYY-MM-DD format."
+              }
+            ]
+          },
+          "docs": "Deletes a user's timecard for a specific date."
+        },
+        {
+          "info": {
+            "name": "Clock in",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.everhour.com/users/:userId/timecards/clock-in",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "User ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Clocks a user in, creating or updating today's timecard."
+        },
+        {
+          "info": {
+            "name": "Clock out",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.everhour.com/users/:userId/timecards/clock-out",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "User ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Clocks a user out on today's timecard."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

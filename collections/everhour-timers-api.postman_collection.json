@@ -1,0 +1,778 @@
+{
+  "item": [
+    {
+      "id": "7e4c182b-c712-4e9e-9e41-0a93a1d8992f",
+      "name": "Timers",
+      "description": {
+        "content": "Start, inspect, and stop running timers.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "59737716-02ac-4f12-8694-f21b96615a0d",
+          "name": "Start timer",
+          "request": {
+            "name": "Start timer",
+            "description": {
+              "content": "Starts a timer on a task for the current user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "timers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"task\": \"<string>\",\n  \"userDate\": \"<date>\",\n  \"comment\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bf90c89a-6daf-4af2-98b9-f1e6dd88da3f",
+              "name": "The started timer.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "timers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"task\": \"<string>\",\n  \"userDate\": \"<date>\",\n  \"comment\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"stopped\",\n  \"duration\": 2476,\n  \"today\": 4871,\n  \"startedAt\": \"string\",\n  \"userDate\": \"1977-07-18\",\n  \"comment\": \"string\",\n  \"task\": {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"projects\": [\n      \"string\",\n      \"string\"\n    ],\n    \"section\": 4028,\n    \"labels\": [\n      \"string\",\n      \"string\"\n    ],\n    \"position\": 352,\n    \"description\": \"string\",\n    \"dueAt\": \"string\",\n    \"status\": \"open\",\n    \"time\": {\n      \"total\": 3986,\n      \"users\": {\n        \"key_0\": 2939,\n        \"key_1\": 6592\n      }\n    },\n    \"estimate\": {\n      \"total\": 7118,\n      \"type\": \"overall\",\n      \"users\": {\n        \"key_0\": 1653,\n        \"key_1\": 7579\n      }\n    },\n    \"unbillable\": true\n  },\n  \"user\": {\n    \"id\": 5119,\n    \"name\": \"string\",\n    \"headline\": \"string\",\n    \"avatarUrl\": \"string\",\n    \"role\": \"member\",\n    \"status\": \"active\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2ef8d3dd-8e2e-46fe-8455-72b903da0aae",
+              "name": "Missing or invalid X-Api-Key header.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "timers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"task\": \"<string>\",\n  \"userDate\": \"<date>\",\n  \"comment\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 4366,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "23c3a049-5180-47d9-8560-fb6d68f711a3",
+              "name": "Rate limit exceeded (around 20 requests per 10 seconds per API key). The Retry-After response header specifies the number of seconds to wait before making another request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "timers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"task\": \"<string>\",\n  \"userDate\": \"<date>\",\n  \"comment\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Seconds to wait before retrying.",
+                  "key": "Retry-After",
+                  "value": "3596"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 4366,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "83ee444e-2eff-4176-bc9c-765b5bf672ea",
+          "name": "Get running timer",
+          "request": {
+            "name": "Get running timer",
+            "description": {
+              "content": "Returns the currently running timer for the current user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "timers",
+                "current"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c5206055-5e83-4b95-9da7-03716f687acd",
+              "name": "The running timer (status stopped if none is running).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "timers",
+                    "current"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"active\",\n  \"duration\": 6582,\n  \"today\": 3596,\n  \"startedAt\": \"string\",\n  \"userDate\": \"1950-08-04\",\n  \"comment\": \"string\",\n  \"task\": {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"projects\": [\n      \"string\",\n      \"string\"\n    ],\n    \"section\": 2605,\n    \"labels\": [\n      \"string\",\n      \"string\"\n    ],\n    \"position\": 8159,\n    \"description\": \"string\",\n    \"dueAt\": \"string\",\n    \"status\": \"closed\",\n    \"time\": {\n      \"total\": 2237,\n      \"users\": {\n        \"key_0\": 6475,\n        \"key_1\": 9165\n      }\n    },\n    \"estimate\": {\n      \"total\": 7366,\n      \"type\": \"users\",\n      \"users\": {\n        \"key_0\": 6244,\n        \"key_1\": 3000,\n        \"key_2\": 4913\n      }\n    },\n    \"unbillable\": true\n  },\n  \"user\": {\n    \"id\": 9290,\n    \"name\": \"string\",\n    \"headline\": \"string\",\n    \"avatarUrl\": \"string\",\n    \"role\": \"supervisor\",\n    \"status\": \"pending\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "634ade96-d926-446f-a75f-998a534ab6d0",
+              "name": "Missing or invalid X-Api-Key header.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "timers",
+                    "current"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 4366,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fa8f95ce-b7b9-4d2f-a1ba-e094f4599a46",
+              "name": "Rate limit exceeded (around 20 requests per 10 seconds per API key). The Retry-After response header specifies the number of seconds to wait before making another request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "timers",
+                    "current"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Seconds to wait before retrying.",
+                  "key": "Retry-After",
+                  "value": "3596"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 4366,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e2fbe75b-f982-4b60-9ecc-95c6a3cffee9",
+          "name": "Stop timer",
+          "request": {
+            "name": "Stop timer",
+            "description": {
+              "content": "Stops the currently running timer and records the tracked time.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "timers",
+                "current"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bbda4bba-f625-4460-86c5-68966bcb9e6b",
+              "name": "The stopped timer.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "timers",
+                    "current"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"active\",\n  \"duration\": 6582,\n  \"today\": 3596,\n  \"startedAt\": \"string\",\n  \"userDate\": \"1950-08-04\",\n  \"comment\": \"string\",\n  \"task\": {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"projects\": [\n      \"string\",\n      \"string\"\n    ],\n    \"section\": 2605,\n    \"labels\": [\n      \"string\",\n      \"string\"\n    ],\n    \"position\": 8159,\n    \"description\": \"string\",\n    \"dueAt\": \"string\",\n    \"status\": \"closed\",\n    \"time\": {\n      \"total\": 2237,\n      \"users\": {\n        \"key_0\": 6475,\n        \"key_1\": 9165\n      }\n    },\n    \"estimate\": {\n      \"total\": 7366,\n      \"type\": \"users\",\n      \"users\": {\n        \"key_0\": 6244,\n        \"key_1\": 3000,\n        \"key_2\": 4913\n      }\n    },\n    \"unbillable\": true\n  },\n  \"user\": {\n    \"id\": 9290,\n    \"name\": \"string\",\n    \"headline\": \"string\",\n    \"avatarUrl\": \"string\",\n    \"role\": \"supervisor\",\n    \"status\": \"pending\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e2a0ee39-bd35-478a-9272-da4f475e5693",
+              "name": "Missing or invalid X-Api-Key header.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "timers",
+                    "current"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 4366,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7bc3905b-b691-4ea6-8121-41250a404f7b",
+              "name": "Rate limit exceeded (around 20 requests per 10 seconds per API key). The Retry-After response header specifies the number of seconds to wait before making another request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "timers",
+                    "current"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Seconds to wait before retrying.",
+                  "key": "Retry-After",
+                  "value": "3596"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 4366,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "301749fd-57e3-4a08-95b8-adf23395d316",
+          "name": "Get all team timers",
+          "request": {
+            "name": "Get all team timers",
+            "description": {
+              "content": "Returns all currently running timers across the team.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "team",
+                "timers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "dc6477ae-f999-477a-8176-9fe4960a5fc6",
+              "name": "A list of running timers.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "team",
+                    "timers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"status\": \"stopped\",\n    \"duration\": 481,\n    \"today\": 4389,\n    \"startedAt\": \"string\",\n    \"userDate\": \"1967-02-26\",\n    \"comment\": \"string\",\n    \"task\": {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"projects\": [\n        \"string\",\n        \"string\"\n      ],\n      \"section\": 7453,\n      \"labels\": [\n        \"string\",\n        \"string\"\n      ],\n      \"position\": 8449,\n      \"description\": \"string\",\n      \"dueAt\": \"string\",\n      \"status\": \"open\",\n      \"time\": {\n        \"total\": 9452,\n        \"users\": {\n          \"key_0\": 784,\n          \"key_1\": 7931\n        }\n      },\n      \"estimate\": {\n        \"total\": 892,\n        \"type\": \"users\",\n        \"users\": {\n          \"key_0\": 2520,\n          \"key_1\": 2942,\n          \"key_2\": 4025\n        }\n      },\n      \"unbillable\": false\n    },\n    \"user\": {\n      \"id\": 8957,\n      \"name\": \"string\",\n      \"headline\": \"string\",\n      \"avatarUrl\": \"string\",\n      \"role\": \"member\",\n      \"status\": \"invited\"\n    }\n  },\n  {\n    \"status\": \"active\",\n    \"duration\": 528,\n    \"today\": 159,\n    \"startedAt\": \"string\",\n    \"userDate\": \"1985-07-07\",\n    \"comment\": \"string\",\n    \"task\": {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"projects\": [\n        \"string\",\n        \"string\"\n      ],\n      \"section\": 2194,\n      \"labels\": [\n        \"string\",\n        \"string\"\n      ],\n      \"position\": 7620,\n      \"description\": \"string\",\n      \"dueAt\": \"string\",\n      \"status\": \"closed\",\n      \"time\": {\n        \"total\": 3002,\n        \"users\": {\n          \"key_0\": 4516,\n          \"key_1\": 2237,\n          \"key_2\": 9008,\n          \"key_3\": 3516\n        }\n      },\n      \"estimate\": {\n        \"total\": 8626,\n        \"type\": \"overall\",\n        \"users\": {\n          \"key_0\": 1030\n        }\n      },\n      \"unbillable\": true\n    },\n    \"user\": {\n      \"id\": 6218,\n      \"name\": \"string\",\n      \"headline\": \"string\",\n      \"avatarUrl\": \"string\",\n      \"role\": \"supervisor\",\n      \"status\": \"invited\"\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4b3c8671-9645-4edd-9a1d-240a7cef015e",
+              "name": "Missing or invalid X-Api-Key header.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "team",
+                    "timers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 4366,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dbf5f8fe-badb-43d5-9faa-156ae4f06317",
+              "name": "Rate limit exceeded (around 20 requests per 10 seconds per API key). The Retry-After response header specifies the number of seconds to wait before making another request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "team",
+                    "timers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Seconds to wait before retrying.",
+                  "key": "Retry-After",
+                  "value": "3596"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 4366,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.everhour.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Api-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "7111ee63-9c3d-4794-8f35-5ed2c94ade9c",
+    "name": "Everhour Clients Timers API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Everhour API is a RESTful interface providing programmatic access to time tracking, timesheets, timers, projects, tasks, clients, invoices, expenses, resource scheduling, time off, and reporting data in Everhour. The API accepts and returns JSON (UTF-8 only). All requests are authenticated with an X-Api-Key header carrying an API key found at the bottom of your Everhour profile page. An optional X-Accept-Version header pins a specific API version (the most recent, 1.2, is used by default). The API is labeled BETA by Everhour, meaning some calls can be slightly adjusted; breaking changes are pushed in separate API versions. Time values are in seconds and money amounts are in cents throughout.\n\nContact Support:\n Name: Everhour\n Email: ask@everhour.com",
+      "type": "text/plain"
+    }
+  }
+}

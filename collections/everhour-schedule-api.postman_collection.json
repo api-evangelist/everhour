@@ -1,0 +1,999 @@
+{
+  "item": [
+    {
+      "id": "45ac0bc8-8094-4905-9675-8c9781a43cf1",
+      "name": "Schedule",
+      "description": {
+        "content": "Resource planner assignments.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8eff32b3-67a7-4bff-a847-23e6a9379870",
+          "name": "Get all assignments",
+          "request": {
+            "name": "Get all assignments",
+            "description": {
+              "content": "Returns resource planner assignments, filterable by type, project, task, client, and date range.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resource-planner",
+                "assignments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "Filter by assignment type (assignment or time-off)."
+                },
+                {
+                  "disabled": false,
+                  "key": "project",
+                  "value": "<string>",
+                  "description": "Filter by project ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "task",
+                  "value": "<string>",
+                  "description": "Filter by task ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "client",
+                  "value": "<integer>",
+                  "description": "Filter by client ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "from",
+                  "value": "<date>",
+                  "description": "Assignments starting from this date."
+                },
+                {
+                  "disabled": false,
+                  "key": "to",
+                  "value": "<date>",
+                  "description": "Assignments ending at this date."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d11e003c-203b-465f-a512-475356a73c2e",
+              "name": "A list of assignments.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resource-planner",
+                    "assignments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "project",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "task",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "from",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 2624,\n    \"days\": 4307,\n    \"startDate\": \"2004-08-13\",\n    \"endDate\": \"1954-10-10\",\n    \"project\": \"string\",\n    \"time\": 7973,\n    \"type\": \"time-off\",\n    \"user\": 5253\n  },\n  {\n    \"id\": 5568,\n    \"days\": 4345,\n    \"startDate\": \"1993-10-18\",\n    \"endDate\": \"2026-04-24\",\n    \"project\": \"string\",\n    \"time\": 4720,\n    \"type\": \"project\",\n    \"user\": 2416\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "01abd9fc-8cf0-47ab-85ce-5c0d78530d75",
+              "name": "Missing or invalid X-Api-Key header.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resource-planner",
+                    "assignments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "project",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "task",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "from",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6630,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "38a002b3-fd37-4384-926a-a3cf6af72bdb",
+              "name": "Rate limit exceeded (around 20 requests per 10 seconds per API key). The Retry-After response header specifies the number of seconds to wait before making another request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resource-planner",
+                    "assignments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "project",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "task",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "from",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Seconds to wait before retrying.",
+                  "key": "Retry-After",
+                  "value": "9062"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6630,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bd135554-a0b4-4855-a794-aaf372c0a42a",
+          "name": "Create assignment or time off",
+          "request": {
+            "name": "Create assignment or time off",
+            "description": {
+              "content": "Creates a resource planner assignment. With type time-off (plus timeOffType, timeOffPeriod, and approval fields) this same endpoint creates time off for a user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resource-planner",
+                "assignments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\",\n  \"project\": \"<string>\",\n  \"time\": \"<integer>\",\n  \"type\": \"<string>\",\n  \"user\": \"<integer>\",\n  \"users\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"timeOffType\": \"<integer>\",\n  \"timeOffPeriod\": \"<string>\",\n  \"status\": \"<string>\",\n  \"reviewer\": \"<integer>\",\n  \"sendNotification\": \"<boolean>\",\n  \"considerAllocations\": \"<boolean>\",\n  \"forceOverride\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ad5d21aa-8efe-4cfe-82c7-5ca2dd8a7be1",
+              "name": "The created assignment.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resource-planner",
+                    "assignments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\",\n  \"project\": \"<string>\",\n  \"time\": \"<integer>\",\n  \"type\": \"<string>\",\n  \"user\": \"<integer>\",\n  \"users\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"timeOffType\": \"<integer>\",\n  \"timeOffPeriod\": \"<string>\",\n  \"status\": \"<string>\",\n  \"reviewer\": \"<integer>\",\n  \"sendNotification\": \"<boolean>\",\n  \"considerAllocations\": \"<boolean>\",\n  \"forceOverride\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 1958,\n  \"days\": 8896,\n  \"startDate\": \"1998-03-16\",\n  \"endDate\": \"1970-02-23\",\n  \"project\": \"string\",\n  \"time\": 1406,\n  \"type\": \"project\",\n  \"user\": 615\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b064ad66-e7a6-4891-8105-3cc0cbed4e36",
+              "name": "Missing or invalid X-Api-Key header.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resource-planner",
+                    "assignments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\",\n  \"project\": \"<string>\",\n  \"time\": \"<integer>\",\n  \"type\": \"<string>\",\n  \"user\": \"<integer>\",\n  \"users\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"timeOffType\": \"<integer>\",\n  \"timeOffPeriod\": \"<string>\",\n  \"status\": \"<string>\",\n  \"reviewer\": \"<integer>\",\n  \"sendNotification\": \"<boolean>\",\n  \"considerAllocations\": \"<boolean>\",\n  \"forceOverride\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6630,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "39cdcaec-e4a5-4a91-ac0e-c6d91f0b437f",
+              "name": "Rate limit exceeded (around 20 requests per 10 seconds per API key). The Retry-After response header specifies the number of seconds to wait before making another request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resource-planner",
+                    "assignments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\",\n  \"project\": \"<string>\",\n  \"time\": \"<integer>\",\n  \"type\": \"<string>\",\n  \"user\": \"<integer>\",\n  \"users\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"timeOffType\": \"<integer>\",\n  \"timeOffPeriod\": \"<string>\",\n  \"status\": \"<string>\",\n  \"reviewer\": \"<integer>\",\n  \"sendNotification\": \"<boolean>\",\n  \"considerAllocations\": \"<boolean>\",\n  \"forceOverride\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Seconds to wait before retrying.",
+                  "key": "Retry-After",
+                  "value": "9062"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6630,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "705e0f4d-eff6-45e4-985b-73317b785ad2",
+          "name": "Update assignment",
+          "request": {
+            "name": "Update assignment",
+            "description": {
+              "content": "Updates a resource planner assignment.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resource-planner",
+                "assignments",
+                ":assignmentId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "assignmentId",
+                  "description": "(Required) Assignment ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\",\n  \"project\": \"<string>\",\n  \"time\": \"<integer>\",\n  \"type\": \"<string>\",\n  \"user\": \"<integer>\",\n  \"users\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"timeOffType\": \"<integer>\",\n  \"timeOffPeriod\": \"<string>\",\n  \"status\": \"<string>\",\n  \"reviewer\": \"<integer>\",\n  \"sendNotification\": \"<boolean>\",\n  \"considerAllocations\": \"<boolean>\",\n  \"forceOverride\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f58e1a03-4711-425f-83ce-3be79ce9e927",
+              "name": "The updated assignment.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resource-planner",
+                    "assignments",
+                    ":assignmentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "assignmentId",
+                      "description": "(Required) Assignment ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\",\n  \"project\": \"<string>\",\n  \"time\": \"<integer>\",\n  \"type\": \"<string>\",\n  \"user\": \"<integer>\",\n  \"users\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"timeOffType\": \"<integer>\",\n  \"timeOffPeriod\": \"<string>\",\n  \"status\": \"<string>\",\n  \"reviewer\": \"<integer>\",\n  \"sendNotification\": \"<boolean>\",\n  \"considerAllocations\": \"<boolean>\",\n  \"forceOverride\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 1958,\n  \"days\": 8896,\n  \"startDate\": \"1998-03-16\",\n  \"endDate\": \"1970-02-23\",\n  \"project\": \"string\",\n  \"time\": 1406,\n  \"type\": \"project\",\n  \"user\": 615\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "db764c6e-562a-4e06-ba8a-03ae6d19f68c",
+              "name": "Missing or invalid X-Api-Key header.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resource-planner",
+                    "assignments",
+                    ":assignmentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "assignmentId",
+                      "description": "(Required) Assignment ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\",\n  \"project\": \"<string>\",\n  \"time\": \"<integer>\",\n  \"type\": \"<string>\",\n  \"user\": \"<integer>\",\n  \"users\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"timeOffType\": \"<integer>\",\n  \"timeOffPeriod\": \"<string>\",\n  \"status\": \"<string>\",\n  \"reviewer\": \"<integer>\",\n  \"sendNotification\": \"<boolean>\",\n  \"considerAllocations\": \"<boolean>\",\n  \"forceOverride\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6630,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a77dc98e-90c1-4e4b-bae4-ef443e20d3c8",
+              "name": "Rate limit exceeded (around 20 requests per 10 seconds per API key). The Retry-After response header specifies the number of seconds to wait before making another request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resource-planner",
+                    "assignments",
+                    ":assignmentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "assignmentId",
+                      "description": "(Required) Assignment ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\",\n  \"project\": \"<string>\",\n  \"time\": \"<integer>\",\n  \"type\": \"<string>\",\n  \"user\": \"<integer>\",\n  \"users\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"timeOffType\": \"<integer>\",\n  \"timeOffPeriod\": \"<string>\",\n  \"status\": \"<string>\",\n  \"reviewer\": \"<integer>\",\n  \"sendNotification\": \"<boolean>\",\n  \"considerAllocations\": \"<boolean>\",\n  \"forceOverride\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Seconds to wait before retrying.",
+                  "key": "Retry-After",
+                  "value": "9062"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6630,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "881d3a50-6465-48a4-a3a9-1172b7e5701e",
+          "name": "Delete assignment",
+          "request": {
+            "name": "Delete assignment",
+            "description": {
+              "content": "Deletes a resource planner assignment.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resource-planner",
+                "assignments",
+                ":assignmentId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "assignmentId",
+                  "description": "(Required) Assignment ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "646ccea6-8ffa-4ad9-859e-fe45c4770e89",
+              "name": "Assignment deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resource-planner",
+                    "assignments",
+                    ":assignmentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "assignmentId",
+                      "description": "(Required) Assignment ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1941eca4-5d3d-4c6d-b1e3-3ead3471f14a",
+              "name": "Missing or invalid X-Api-Key header.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resource-planner",
+                    "assignments",
+                    ":assignmentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "assignmentId",
+                      "description": "(Required) Assignment ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6630,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8acb34d6-5e68-44f6-8ab4-cd034071d989",
+              "name": "Rate limit exceeded (around 20 requests per 10 seconds per API key). The Retry-After response header specifies the number of seconds to wait before making another request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resource-planner",
+                    "assignments",
+                    ":assignmentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "assignmentId",
+                      "description": "(Required) Assignment ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Seconds to wait before retrying.",
+                  "key": "Retry-After",
+                  "value": "9062"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6630,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.everhour.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Api-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "1ea5fb97-5c07-4db0-a6bf-7239ecc2f4c0",
+    "name": "Everhour Clients Schedule API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Everhour API is a RESTful interface providing programmatic access to time tracking, timesheets, timers, projects, tasks, clients, invoices, expenses, resource scheduling, time off, and reporting data in Everhour. The API accepts and returns JSON (UTF-8 only). All requests are authenticated with an X-Api-Key header carrying an API key found at the bottom of your Everhour profile page. An optional X-Accept-Version header pins a specific API version (the most recent, 1.2, is used by default). The API is labeled BETA by Everhour, meaning some calls can be slightly adjusted; breaking changes are pushed in separate API versions. Time values are in seconds and money amounts are in cents throughout.\n\nContact Support:\n Name: Everhour\n Email: ask@everhour.com",
+      "type": "text/plain"
+    }
+  }
+}

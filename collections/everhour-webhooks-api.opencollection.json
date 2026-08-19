@@ -1,0 +1,102 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Everhour Clients Webhooks API",
+    "version": "1.2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Api-Key",
+      "value": "{{X-Api-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Webhooks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.everhour.com/hooks",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a webhook subscription. Everhour sends a verification POST with an X-Hook-Secret header to the target URL; the target must echo the header back to complete verification. Supported events cover project, task, timer, time, section, client, and estimate changes."
+        },
+        {
+          "info": {
+            "name": "Get webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.everhour.com/hooks/:hookId",
+            "params": [
+              {
+                "name": "hookId",
+                "value": "",
+                "type": "path",
+                "description": "Webhook ID."
+              }
+            ]
+          },
+          "docs": "Returns a webhook subscription by ID."
+        },
+        {
+          "info": {
+            "name": "Update webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.everhour.com/hooks/:hookId",
+            "params": [
+              {
+                "name": "hookId",
+                "value": "",
+                "type": "path",
+                "description": "Webhook ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a webhook subscription (re-triggers target URL verification)."
+        },
+        {
+          "info": {
+            "name": "Delete webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.everhour.com/hooks/:hookId",
+            "params": [
+              {
+                "name": "hookId",
+                "value": "",
+                "type": "path",
+                "description": "Webhook ID."
+              }
+            ]
+          },
+          "docs": "Deletes a webhook subscription."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

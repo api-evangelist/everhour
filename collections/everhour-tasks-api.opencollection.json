@@ -1,0 +1,269 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Everhour Clients Tasks API",
+    "version": "1.2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Api-Key",
+      "value": "{{X-Api-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Tasks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get project tasks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.everhour.com/projects/:projectId/tasks",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project ID in {platform code}:{platform ID} format (for example ev:1234567789001 or as:1234567789001)."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Results page."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Tasks per page, 250 max."
+              },
+              {
+                "name": "exclude-closed",
+                "value": "",
+                "type": "query",
+                "description": "Exclude closed/completed tasks."
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "Search tasks by name."
+              }
+            ]
+          },
+          "docs": "Returns the tasks of a project, paginated up to 250 per page."
+        },
+        {
+          "info": {
+            "name": "Create task",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.everhour.com/projects/:projectId/tasks",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project ID in {platform code}:{platform ID} format (for example ev:1234567789001 or as:1234567789001)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a task in a project section."
+        },
+        {
+          "info": {
+            "name": "Search tasks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.everhour.com/tasks/search",
+            "params": [
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "Search query."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Max number of search results."
+              },
+              {
+                "name": "searchInClosed",
+                "value": "",
+                "type": "query",
+                "description": "Also search closed/completed tasks."
+              }
+            ]
+          },
+          "docs": "Searches tasks across all projects by name."
+        },
+        {
+          "info": {
+            "name": "Search project tasks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.everhour.com/projects/:projectId/tasks/search",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project ID in {platform code}:{platform ID} format (for example ev:1234567789001 or as:1234567789001)."
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "Search query."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Max number of search results."
+              },
+              {
+                "name": "searchInClosed",
+                "value": "",
+                "type": "query",
+                "description": "Also search closed/completed tasks."
+              }
+            ]
+          },
+          "docs": "Searches tasks within a single project by name."
+        },
+        {
+          "info": {
+            "name": "Get task",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.everhour.com/tasks/:taskId",
+            "params": [
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path",
+                "description": "Task ID (for example ev:3000010034)."
+              },
+              {
+                "name": "opts_include_billing",
+                "value": "",
+                "type": "query",
+                "description": "Set to 1 to include billing data (admins with billing permissions only)."
+              }
+            ]
+          },
+          "docs": "Returns a single task by ID. Pass opts_include_billing=1 to include billing data (admins with billing permissions only)."
+        },
+        {
+          "info": {
+            "name": "Update task",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.everhour.com/tasks/:taskId",
+            "params": [
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path",
+                "description": "Task ID (for example ev:3000010034)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a task, including custom field values."
+        },
+        {
+          "info": {
+            "name": "Delete task",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.everhour.com/tasks/:taskId",
+            "params": [
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path",
+                "description": "Task ID (for example ev:3000010034)."
+              }
+            ]
+          },
+          "docs": "Deletes a task."
+        },
+        {
+          "info": {
+            "name": "Update task estimate",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.everhour.com/tasks/:taskId/estimate",
+            "params": [
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path",
+                "description": "Task ID (for example ev:3000010034)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sets or updates the time estimate on a task (overall or per user)."
+        },
+        {
+          "info": {
+            "name": "Delete task estimate",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.everhour.com/tasks/:taskId/estimate",
+            "params": [
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path",
+                "description": "Task ID (for example ev:3000010034)."
+              }
+            ]
+          },
+          "docs": "Removes the time estimate from a task."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
