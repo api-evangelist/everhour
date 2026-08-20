@@ -161,6 +161,8 @@ apis:
   humanURL: https://everhour.docs.apiary.io/#reference/time-records
   baseURL: https://api.everhour.com
   tags:
+  - Project
+  tags_raw:
   - Projects
   properties:
   - type: OpenAPI
@@ -281,6 +283,8 @@ apis:
   humanURL: https://everhour.docs.apiary.io/#reference/time-records
   baseURL: https://api.everhour.com
   tags:
+  - Task
+  tags_raw:
   - Tasks
   properties:
   - type: OpenAPI
@@ -521,6 +525,8 @@ apis:
   humanURL: https://everhour.docs.apiary.io/#reference/time-records
   baseURL: https://api.everhour.com
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
@@ -561,6 +567,8 @@ apis:
   humanURL: https://everhour.docs.apiary.io/#reference/time-records
   baseURL: https://api.everhour.com
   tags:
+  - Webhook
+  tags_raw:
   - Webhooks
   properties:
   - type: OpenAPI
