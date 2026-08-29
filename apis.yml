@@ -10,6 +10,18 @@ description: Everhour is a time tracking and budgeting platform for teams that
   and approvals, clock-in/clock-out timecards, projects and tasks, clients,
   invoices, expenses, resource scheduling, time off, and reporting dashboards,
   plus webhooks for time, timer, task, and project change events.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: open
