@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Everhour Clients Invoices API
-  description: The Everhour API is a RESTful interface providing programmatic access to time tracking, timesheets, timers, projects, tasks, clients, invoices, expenses, resource scheduling, time off, and reporting data in Everhour. The API accepts and returns JSON (UTF-8 only). All requests are authenticated with an X-Api-Key header carrying an API key found at the bottom of your Everhour profile page. An optional X-Accept-Version header pins a specific API version (the most recent, 1.2, is used by default). The API is labeled BETA by Everhour, meaning some calls can be slightly adjusted; breaking changes are pushed in separate API versions. Time values are in seconds and money amounts are in cents throughout.
+  title: Everhour Invoices API
+  description: The Everhour API is a RESTful interface providing programmatic access to time tracking, timesheets, timers, projects, tasks, clients, invoices, expenses, resource scheduling, time off, and reporting data in Everhour.
   version: '1.2'
   contact:
     name: Everhour
@@ -195,85 +195,7 @@ paths:
         '429':
           $ref: '#/components/responses/TooManyRequests'
 components:
-  parameters:
-    ClientId:
-      name: clientId
-      in: path
-      required: true
-      description: Client ID.
-      schema:
-        type: integer
-    InvoiceId:
-      name: invoiceId
-      in: path
-      required: true
-      description: Invoice ID.
-      schema:
-        type: integer
   schemas:
-    InvoiceCreateRequest:
-      type: object
-      properties:
-        limitDateFrom:
-          type: string
-          format: date
-        limitDateTill:
-          type: string
-          format: date
-        includeExpenses:
-          type: boolean
-        includeTime:
-          type: boolean
-        projects:
-          type: array
-          items:
-            type: string
-        tax:
-          type: object
-          properties:
-            rate:
-              type: number
-            amount:
-              type: integer
-        discount:
-          type: object
-          properties:
-            rate:
-              type: number
-            amount:
-              type: integer
-    Error:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-    InvoiceItem:
-      type: object
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        billedTime:
-          type: integer
-          description: Time in seconds.
-        listAmount:
-          type: integer
-          description: Amount in cents.
-        netAmount:
-          type: integer
-        totalAmount:
-          type: integer
-        custom:
-          type: boolean
-        taxable:
-          type: integer
-        position:
-          type: integer
-        createdAt:
-          type: string
     Invoice:
       type: object
       properties:
@@ -359,6 +281,27 @@ components:
           type: string
         budget:
           $ref: '#/components/schemas/ClientBudget'
+    InvoiceRefreshRequest:
+      type: object
+      properties:
+        limitDateFrom:
+          type: string
+          format: date
+        limitDateTill:
+          type: string
+          format: date
+        includeExpenses:
+          type: boolean
+        includeTime:
+          type: boolean
+        projects:
+          type: array
+          items:
+            type: string
+        expenseMask:
+          type: string
+        timeMask:
+          type: string
     InvoiceUpdateRequest:
       type: object
       properties:
@@ -416,6 +359,37 @@ components:
           - invited
           - pending
           - removed
+    InvoiceCreateRequest:
+      type: object
+      properties:
+        limitDateFrom:
+          type: string
+          format: date
+        limitDateTill:
+          type: string
+          format: date
+        includeExpenses:
+          type: boolean
+        includeTime:
+          type: boolean
+        projects:
+          type: array
+          items:
+            type: string
+        tax:
+          type: object
+          properties:
+            rate:
+              type: number
+            amount:
+              type: integer
+        discount:
+          type: object
+          properties:
+            rate:
+              type: number
+            amount:
+              type: integer
     ClientBudget:
       type: object
       required:
@@ -456,27 +430,53 @@ components:
           type: integer
           readOnly: true
           description: Current budget usage in cents or seconds.
-    InvoiceRefreshRequest:
+    InvoiceItem:
       type: object
       properties:
-        limitDateFrom:
+        id:
+          type: integer
+        name:
           type: string
-          format: date
-        limitDateTill:
-          type: string
-          format: date
-        includeExpenses:
+        billedTime:
+          type: integer
+          description: Time in seconds.
+        listAmount:
+          type: integer
+          description: Amount in cents.
+        netAmount:
+          type: integer
+        totalAmount:
+          type: integer
+        custom:
           type: boolean
-        includeTime:
-          type: boolean
-        projects:
-          type: array
-          items:
-            type: string
-        expenseMask:
+        taxable:
+          type: integer
+        position:
+          type: integer
+        createdAt:
           type: string
-        timeMask:
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
           type: string
+  parameters:
+    InvoiceId:
+      name: invoiceId
+      in: path
+      required: true
+      description: Invoice ID.
+      schema:
+        type: integer
+    ClientId:
+      name: clientId
+      in: path
+      required: true
+      description: Client ID.
+      schema:
+        type: integer
   responses:
     Unauthorized:
       description: Missing or invalid X-Api-Key header.

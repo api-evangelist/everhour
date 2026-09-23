@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Everhour Clients Timecards API
-  description: The Everhour API is a RESTful interface providing programmatic access to time tracking, timesheets, timers, projects, tasks, clients, invoices, expenses, resource scheduling, time off, and reporting data in Everhour. The API accepts and returns JSON (UTF-8 only). All requests are authenticated with an X-Api-Key header carrying an API key found at the bottom of your Everhour profile page. An optional X-Accept-Version header pins a specific API version (the most recent, 1.2, is used by default). The API is labeled BETA by Everhour, meaning some calls can be slightly adjusted; breaking changes are pushed in separate API versions. Time values are in seconds and money amounts are in cents throughout.
+  title: Everhour Timecards API
+  description: The Everhour API is a RESTful interface providing programmatic access to time tracking, timesheets, timers, projects, tasks, clients, invoices, expenses, resource scheduling, time off, and reporting data in Everhour.
   version: '1.2'
   contact:
     name: Everhour
@@ -172,6 +172,46 @@ paths:
           $ref: '#/components/responses/TooManyRequests'
 components:
   schemas:
+    ClockRequest:
+      type: object
+      properties:
+        userDate:
+          type: string
+          format: date
+          description: Current user date; defaults to the user profile timezone.
+    TimecardHistory:
+      type: object
+      properties:
+        action:
+          type: string
+          enum:
+          - clock-in
+          - clock-out
+          - break
+        previousTime:
+          type: string
+        time:
+          type: string
+        trigger:
+          type: string
+          enum:
+          - manually
+          - timer
+          - button
+          - day-end
+          - idle-state
+    TimecardUpdateRequest:
+      type: object
+      properties:
+        clockIn:
+          type: string
+          description: Clock-in time in the user timezone (HH:MM).
+        clockOut:
+          type: string
+          description: Clock-out time in the user timezone (HH:MM).
+        breakTime:
+          type: integer
+          description: Breaks duration in seconds.
     Error:
       type: object
       properties:
@@ -201,65 +241,11 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/TimecardHistory'
-    ClockRequest:
-      type: object
-      properties:
-        userDate:
-          type: string
-          format: date
-          description: Current user date; defaults to the user profile timezone.
-    TimecardUpdateRequest:
-      type: object
-      properties:
-        clockIn:
-          type: string
-          description: Clock-in time in the user timezone (HH:MM).
-        clockOut:
-          type: string
-          description: Clock-out time in the user timezone (HH:MM).
-        breakTime:
-          type: integer
-          description: Breaks duration in seconds.
-    TimecardHistory:
-      type: object
-      properties:
-        action:
-          type: string
-          enum:
-          - clock-in
-          - clock-out
-          - break
-        previousTime:
-          type: string
-        time:
-          type: string
-        trigger:
-          type: string
-          enum:
-          - manually
-          - timer
-          - button
-          - day-end
-          - idle-state
   parameters:
-    UserId:
-      name: userId
-      in: path
-      required: true
-      description: User ID.
-      schema:
-        type: integer
     From:
       name: from
       in: query
       description: Date from (YYYY-MM-DD).
-      schema:
-        type: string
-        format: date
-    To:
-      name: to
-      in: query
-      description: Date to (YYYY-MM-DD).
       schema:
         type: string
         format: date
@@ -271,13 +257,21 @@ components:
       schema:
         type: string
         format: date
+    UserId:
+      name: userId
+      in: path
+      required: true
+      description: User ID.
+      schema:
+        type: integer
+    To:
+      name: to
+      in: query
+      description: Date to (YYYY-MM-DD).
+      schema:
+        type: string
+        format: date
   responses:
-    Unauthorized:
-      description: Missing or invalid X-Api-Key header.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     TooManyRequests:
       description: Rate limit exceeded (around 20 requests per 10 seconds per API key). The Retry-After response header specifies the number of seconds to wait before making another request.
       headers:
@@ -285,6 +279,12 @@ components:
           description: Seconds to wait before retrying.
           schema:
             type: integer
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing or invalid X-Api-Key header.
       content:
         application/json:
           schema:

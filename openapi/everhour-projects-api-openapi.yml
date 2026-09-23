@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Everhour Clients Projects API
-  description: The Everhour API is a RESTful interface providing programmatic access to time tracking, timesheets, timers, projects, tasks, clients, invoices, expenses, resource scheduling, time off, and reporting data in Everhour. The API accepts and returns JSON (UTF-8 only). All requests are authenticated with an X-Api-Key header carrying an API key found at the bottom of your Everhour profile page. An optional X-Accept-Version header pins a specific API version (the most recent, 1.2, is used by default). The API is labeled BETA by Everhour, meaning some calls can be slightly adjusted; breaking changes are pushed in separate API versions. Time values are in seconds and money amounts are in cents throughout.
+  title: Everhour Projects API
+  description: The Everhour API is a RESTful interface providing programmatic access to time tracking, timesheets, timers, projects, tasks, clients, invoices, expenses, resource scheduling, time off, and reporting data in Everhour.
   version: '1.2'
   contact:
     name: Everhour
@@ -314,29 +314,6 @@ paths:
           $ref: '#/components/responses/TooManyRequests'
 components:
   schemas:
-    Error:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-    ProjectBillingRate:
-      type: object
-      properties:
-        type:
-          type: string
-          enum:
-          - project_rate
-          - user_rate
-        rate:
-          type: integer
-          description: Flat rate in cents per hour (project_rate type only).
-        userRateOverrides:
-          type: object
-          description: Per-user rate overrides in cents per hour, keyed by user ID.
-          additionalProperties:
-            type: integer
     SectionRequest:
       type: object
       required:
@@ -351,78 +328,6 @@ components:
           enum:
           - open
           - archived
-    ProjectBilling:
-      type: object
-      properties:
-        billing:
-          $ref: '#/components/schemas/ProjectBillingBilling'
-        rate:
-          $ref: '#/components/schemas/ProjectBillingRate'
-        budget:
-          $ref: '#/components/schemas/ProjectBillingBudget'
-    ProjectBillingBilling:
-      type: object
-      properties:
-        type:
-          type: string
-          enum:
-          - non_billable
-          - hourly
-          - fixed_fee
-        fee:
-          type: integer
-          description: Fixed fee in cents (fixed_fee type only).
-    ProjectRequest:
-      type: object
-      required:
-      - name
-      - type
-      properties:
-        name:
-          type: string
-        type:
-          type: string
-          enum:
-          - board
-          - list
-        users:
-          type: array
-          description: Assigned user IDs.
-          items:
-            type: integer
-    Project:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Project ID in {platform code}:{platform ID} format.
-        name:
-          type: string
-        workspaceId:
-          type: string
-        workspaceName:
-          type: string
-        client:
-          type: integer
-          description: Client ID.
-        type:
-          type: string
-          enum:
-          - board
-          - list
-        favorite:
-          type: boolean
-        users:
-          type: array
-          description: Assigned user IDs.
-          items:
-            type: integer
-        billing:
-          $ref: '#/components/schemas/ProjectBillingBilling'
-        rate:
-          $ref: '#/components/schemas/ProjectBillingRate'
-        budget:
-          $ref: '#/components/schemas/ProjectBillingBudget'
     ProjectBillingBudget:
       type: object
       properties:
@@ -483,13 +388,102 @@ components:
           enum:
           - open
           - archived
+    ProjectBilling:
+      type: object
+      properties:
+        billing:
+          $ref: '#/components/schemas/ProjectBillingBilling'
+        rate:
+          $ref: '#/components/schemas/ProjectBillingRate'
+        budget:
+          $ref: '#/components/schemas/ProjectBillingBudget'
+    ProjectBillingBilling:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - non_billable
+          - hourly
+          - fixed_fee
+        fee:
+          type: integer
+          description: Fixed fee in cents (fixed_fee type only).
+    ProjectBillingRate:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - project_rate
+          - user_rate
+        rate:
+          type: integer
+          description: Flat rate in cents per hour (project_rate type only).
+        userRateOverrides:
+          type: object
+          description: Per-user rate overrides in cents per hour, keyed by user ID.
+          additionalProperties:
+            type: integer
+    Project:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Project ID in {platform code}:{platform ID} format.
+        name:
+          type: string
+        workspaceId:
+          type: string
+        workspaceName:
+          type: string
+        client:
+          type: integer
+          description: Client ID.
+        type:
+          type: string
+          enum:
+          - board
+          - list
+        favorite:
+          type: boolean
+        users:
+          type: array
+          description: Assigned user IDs.
+          items:
+            type: integer
+        billing:
+          $ref: '#/components/schemas/ProjectBillingBilling'
+        rate:
+          $ref: '#/components/schemas/ProjectBillingRate'
+        budget:
+          $ref: '#/components/schemas/ProjectBillingBudget'
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+    ProjectRequest:
+      type: object
+      required:
+      - name
+      - type
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+          enum:
+          - board
+          - list
+        users:
+          type: array
+          description: Assigned user IDs.
+          items:
+            type: integer
   responses:
-    Unauthorized:
-      description: Missing or invalid X-Api-Key header.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     TooManyRequests:
       description: Rate limit exceeded (around 20 requests per 10 seconds per API key). The Retry-After response header specifies the number of seconds to wait before making another request.
       headers:
@@ -497,6 +491,12 @@ components:
           description: Seconds to wait before retrying.
           schema:
             type: integer
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing or invalid X-Api-Key header.
       content:
         application/json:
           schema:

@@ -1,20 +1,7 @@
 {
   "provider": "everhour",
   "sources": [
-    "everhour-clients-api-openapi.yml",
-    "everhour-expenses-api-openapi.yml",
-    "everhour-invoices-api-openapi.yml",
-    "everhour-projects-api-openapi.yml",
-    "everhour-reports-api-openapi.yml",
-    "everhour-schedule-api-openapi.yml",
-    "everhour-tasks-api-openapi.yml",
-    "everhour-time-off-api-openapi.yml",
-    "everhour-time-records-api-openapi.yml",
-    "everhour-timecards-api-openapi.yml",
-    "everhour-timers-api-openapi.yml",
-    "everhour-timesheets-api-openapi.yml",
-    "everhour-users-api-openapi.yml",
-    "everhour-webhooks-api-openapi.yml"
+    "_original/everhour-openapi.yml"
   ],
   "outputs": [
     "everhour-clients-api-openapi.yml",
@@ -35,6 +22,25 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "everhour-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "everhour-clients-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "everhour-expenses-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "everhour-invoices-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "everhour-projects-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "everhour-reports-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "everhour-schedule-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "everhour-tasks-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "everhour-time-off-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "everhour-time-records-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "everhour-timecards-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "everhour-timers-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "everhour-timesheets-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "everhour-users-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "everhour-webhooks-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

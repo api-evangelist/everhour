@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Everhour Clients Reports API
-  description: The Everhour API is a RESTful interface providing programmatic access to time tracking, timesheets, timers, projects, tasks, clients, invoices, expenses, resource scheduling, time off, and reporting data in Everhour. The API accepts and returns JSON (UTF-8 only). All requests are authenticated with an X-Api-Key header carrying an API key found at the bottom of your Everhour profile page. An optional X-Accept-Version header pins a specific API version (the most recent, 1.2, is used by default). The API is labeled BETA by Everhour, meaning some calls can be slightly adjusted; breaking changes are pushed in separate API versions. Time values are in seconds and money amounts are in cents throughout.
+  title: Everhour Reports API
+  description: The Everhour API is a RESTful interface providing programmatic access to time tracking, timesheets, timers, projects, tasks, clients, invoices, expenses, resource scheduling, time off, and reporting data in Everhour.
   version: '1.2'
   contact:
     name: Everhour
@@ -95,47 +95,7 @@ paths:
         '429':
           $ref: '#/components/responses/TooManyRequests'
 components:
-  parameters:
-    DateGte:
-      name: date.gte
-      in: query
-      description: Report start date (YYYY-MM-DD).
-      schema:
-        type: string
-        format: date
-    FilterProjectId:
-      name: projectId
-      in: query
-      description: Filter by project ID.
-      schema:
-        type: string
-    FilterMemberId:
-      name: memberId
-      in: query
-      description: Filter by user ID.
-      schema:
-        type: integer
-    FilterClientId:
-      name: clientId
-      in: query
-      description: Filter by client ID.
-      schema:
-        type: integer
-    DateLte:
-      name: date.lte
-      in: query
-      description: Report end date (YYYY-MM-DD).
-      schema:
-        type: string
-        format: date
   schemas:
-    Error:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
     UsersDashboardItem:
       type: object
       description: Per-user report row. Time is in seconds and amounts in cents.
@@ -210,6 +170,13 @@ components:
           type: integer
         expenses:
           type: integer
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
     ClientsDashboardItem:
       type: object
       description: Per-client report row. Time is in seconds and amounts in cents.
@@ -235,12 +202,6 @@ components:
         expenses:
           type: integer
   responses:
-    Unauthorized:
-      description: Missing or invalid X-Api-Key header.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     TooManyRequests:
       description: Rate limit exceeded (around 20 requests per 10 seconds per API key). The Retry-After response header specifies the number of seconds to wait before making another request.
       headers:
@@ -252,6 +213,45 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing or invalid X-Api-Key header.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    FilterProjectId:
+      name: projectId
+      in: query
+      description: Filter by project ID.
+      schema:
+        type: string
+    FilterClientId:
+      name: clientId
+      in: query
+      description: Filter by client ID.
+      schema:
+        type: integer
+    DateLte:
+      name: date.lte
+      in: query
+      description: Report end date (YYYY-MM-DD).
+      schema:
+        type: string
+        format: date
+    FilterMemberId:
+      name: memberId
+      in: query
+      description: Filter by user ID.
+      schema:
+        type: integer
+    DateGte:
+      name: date.gte
+      in: query
+      description: Report start date (YYYY-MM-DD).
+      schema:
+        type: string
+        format: date
   securitySchemes:
     apiKey:
       type: apiKey
