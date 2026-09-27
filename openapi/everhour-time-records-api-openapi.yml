@@ -189,25 +189,6 @@ paths:
           $ref: '#/components/responses/TooManyRequests'
 components:
   parameters:
-    TimeLimit:
-      name: limit
-      in: query
-      description: Max results per page (max 50000).
-      schema:
-        type: integer
-    TaskId:
-      name: taskId
-      in: path
-      required: true
-      description: Task ID (for example ev:3000010034).
-      schema:
-        type: string
-    Page:
-      name: page
-      in: query
-      description: Results page.
-      schema:
-        type: integer
     ProjectId:
       name: projectId
       in: path
@@ -215,11 +196,11 @@ components:
       description: Project ID in {platform code}:{platform ID} format (for example ev:1234567789001 or as:1234567789001).
       schema:
         type: string
-    UserId:
-      name: userId
+    TimeId:
+      name: timeId
       in: path
       required: true
-      description: User ID.
+      description: Time record ID.
       schema:
         type: integer
     From:
@@ -229,20 +210,19 @@ components:
       schema:
         type: string
         format: date
-    TimeId:
-      name: timeId
-      in: path
-      required: true
-      description: Time record ID.
+    Page:
+      name: page
+      in: query
+      description: Results page.
       schema:
         type: integer
-    To:
-      name: to
-      in: query
-      description: Date to (YYYY-MM-DD).
+    TaskId:
+      name: taskId
+      in: path
+      required: true
+      description: Task ID (for example ev:3000010034).
       schema:
         type: string
-        format: date
     IncludeBilling:
       name: opts_include_billing
       in: query
@@ -251,39 +231,66 @@ components:
         type: integer
         enum:
         - 1
-  responses:
-    Unauthorized:
-      description: Missing or invalid X-Api-Key header.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    TooManyRequests:
-      description: Rate limit exceeded (around 20 requests per 10 seconds per API key). The Retry-After response header specifies the number of seconds to wait before making another request.
-      headers:
-        Retry-After:
-          description: Seconds to wait before retrying.
-          schema:
-            type: integer
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+    To:
+      name: to
+      in: query
+      description: Date to (YYYY-MM-DD).
+      schema:
+        type: string
+        format: date
+    TimeLimit:
+      name: limit
+      in: query
+      description: Max results per page (max 50000).
+      schema:
+        type: integer
+    UserId:
+      name: userId
+      in: path
+      required: true
+      description: User ID.
+      schema:
+        type: integer
   schemas:
-    TaskEstimate:
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+    TimeRecord:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Time record ID.
+        time:
+          type: integer
+          description: Time recorded in seconds.
+        user:
+          type: integer
+          description: User ID.
+        date:
+          type: string
+          format: date
+        task:
+          $ref: '#/components/schemas/Task'
+        isLocked:
+          type: boolean
+        isInvoiced:
+          type: boolean
+        comment:
+          type: string
+    TaskTime:
       type: object
       properties:
         total:
           type: integer
-          description: Total task estimate in seconds.
-        type:
-          type: string
-          enum:
-          - overall
-          - users
+          description: Total task time in seconds.
         users:
           type: object
-          description: Task estimate in seconds keyed by user ID.
+          description: Task time in seconds keyed by user ID.
           additionalProperties:
             type: integer
     TimeRecordExtended:
@@ -315,6 +322,48 @@ components:
           description: User ID (defaults to the API key owner).
         comment:
           type: string
+    TimeHistory:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Time record history ID.
+        createdBy:
+          type: integer
+          description: User ID.
+        time:
+          type: integer
+          description: Time difference in seconds.
+        previousTime:
+          type: integer
+          description: Previous time in seconds.
+        action:
+          type: string
+          enum:
+          - TIMER
+          - ADD
+          - EDIT
+          - REMOVE
+          - COMMENT
+          - MOVE
+        createdAt:
+          type: string
+    TaskEstimate:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: Total task estimate in seconds.
+        type:
+          type: string
+          enum:
+          - overall
+          - users
+        users:
+          type: object
+          description: Task estimate in seconds keyed by user ID.
+          additionalProperties:
+            type: integer
     Task:
       type: object
       properties:
@@ -352,73 +401,24 @@ components:
           $ref: '#/components/schemas/TaskEstimate'
         unbillable:
           type: boolean
-    TimeHistory:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: Time record history ID.
-        createdBy:
-          type: integer
-          description: User ID.
-        time:
-          type: integer
-          description: Time difference in seconds.
-        previousTime:
-          type: integer
-          description: Previous time in seconds.
-        action:
-          type: string
-          enum:
-          - TIMER
-          - ADD
-          - EDIT
-          - REMOVE
-          - COMMENT
-          - MOVE
-        createdAt:
-          type: string
-    TimeRecord:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: Time record ID.
-        time:
-          type: integer
-          description: Time recorded in seconds.
-        user:
-          type: integer
-          description: User ID.
-        date:
-          type: string
-          format: date
-        task:
-          $ref: '#/components/schemas/Task'
-        isLocked:
-          type: boolean
-        isInvoiced:
-          type: boolean
-        comment:
-          type: string
-    TaskTime:
-      type: object
-      properties:
-        total:
-          type: integer
-          description: Total task time in seconds.
-        users:
-          type: object
-          description: Task time in seconds keyed by user ID.
-          additionalProperties:
+  responses:
+    Unauthorized:
+      description: Missing or invalid X-Api-Key header.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    TooManyRequests:
+      description: Rate limit exceeded (around 20 requests per 10 seconds per API key). The Retry-After response header specifies the number of seconds to wait before making another request.
+      headers:
+        Retry-After:
+          description: Seconds to wait before retrying.
+          schema:
             type: integer
-    Error:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     apiKey:
       type: apiKey

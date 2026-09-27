@@ -97,31 +97,6 @@ paths:
           $ref: '#/components/responses/TooManyRequests'
 components:
   schemas:
-    Timer:
-      type: object
-      properties:
-        status:
-          type: string
-          enum:
-          - active
-          - stopped
-        duration:
-          type: integer
-          description: Timer duration in seconds.
-        today:
-          type: integer
-          description: Time tracked today by the user on the timer task, in seconds.
-        startedAt:
-          type: string
-        userDate:
-          type: string
-          format: date
-        comment:
-          type: string
-        task:
-          $ref: '#/components/schemas/Task'
-        user:
-          $ref: '#/components/schemas/User'
     TaskEstimate:
       type: object
       properties:
@@ -162,6 +137,13 @@ components:
           - invited
           - pending
           - removed
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
     Task:
       type: object
       properties:
@@ -199,24 +181,31 @@ components:
           $ref: '#/components/schemas/TaskEstimate'
         unbillable:
           type: boolean
-    TaskTime:
+    Timer:
       type: object
       properties:
-        total:
-          type: integer
-          description: Total task time in seconds.
-        users:
-          type: object
-          description: Task time in seconds keyed by user ID.
-          additionalProperties:
-            type: integer
-    Error:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
+        status:
           type: string
+          enum:
+          - active
+          - stopped
+        duration:
+          type: integer
+          description: Timer duration in seconds.
+        today:
+          type: integer
+          description: Time tracked today by the user on the timer task, in seconds.
+        startedAt:
+          type: string
+        userDate:
+          type: string
+          format: date
+        comment:
+          type: string
+        task:
+          $ref: '#/components/schemas/Task'
+        user:
+          $ref: '#/components/schemas/User'
     TimerRequest:
       type: object
       required:
@@ -230,7 +219,24 @@ components:
           format: date
         comment:
           type: string
+    TaskTime:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: Total task time in seconds.
+        users:
+          type: object
+          description: Task time in seconds keyed by user ID.
+          additionalProperties:
+            type: integer
   responses:
+    Unauthorized:
+      description: Missing or invalid X-Api-Key header.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
     TooManyRequests:
       description: Rate limit exceeded (around 20 requests per 10 seconds per API key). The Retry-After response header specifies the number of seconds to wait before making another request.
       headers:
@@ -238,12 +244,6 @@ components:
           description: Seconds to wait before retrying.
           schema:
             type: integer
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Missing or invalid X-Api-Key header.
       content:
         application/json:
           schema:

@@ -313,13 +313,73 @@ paths:
         '429':
           $ref: '#/components/responses/TooManyRequests'
 components:
+  parameters:
+    ProjectId:
+      name: projectId
+      in: path
+      required: true
+      description: Project ID in {platform code}:{platform ID} format (for example ev:1234567789001 or as:1234567789001).
+      schema:
+        type: string
+  responses:
+    Unauthorized:
+      description: Missing or invalid X-Api-Key header.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    TooManyRequests:
+      description: Rate limit exceeded (around 20 requests per 10 seconds per API key). The Retry-After response header specifies the number of seconds to wait before making another request.
+      headers:
+        Retry-After:
+          description: Seconds to wait before retrying.
+          schema:
+            type: integer
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
-    SectionRequest:
+    ProjectBillingRate:
       type: object
-      required:
-      - name
       properties:
+        type:
+          type: string
+          enum:
+          - project_rate
+          - user_rate
+        rate:
+          type: integer
+          description: Flat rate in cents per hour (project_rate type only).
+        userRateOverrides:
+          type: object
+          description: Per-user rate overrides in cents per hour, keyed by user ID.
+          additionalProperties:
+            type: integer
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+    ProjectBilling:
+      type: object
+      properties:
+        billing:
+          $ref: '#/components/schemas/ProjectBillingBilling'
+        rate:
+          $ref: '#/components/schemas/ProjectBillingRate'
+        budget:
+          $ref: '#/components/schemas/ProjectBillingBudget'
+    Section:
+      type: object
+      properties:
+        id:
+          type: integer
         name:
+          type: string
+        project:
           type: string
         position:
           type: integer
@@ -372,14 +432,12 @@ components:
         threshold:
           type: integer
           description: Email admins when this percentage (1-100) of the budget is reached.
-    Section:
+    SectionRequest:
       type: object
+      required:
+      - name
       properties:
-        id:
-          type: integer
         name:
-          type: string
-        project:
           type: string
         position:
           type: integer
@@ -388,15 +446,24 @@ components:
           enum:
           - open
           - archived
-    ProjectBilling:
+    ProjectRequest:
       type: object
+      required:
+      - name
+      - type
       properties:
-        billing:
-          $ref: '#/components/schemas/ProjectBillingBilling'
-        rate:
-          $ref: '#/components/schemas/ProjectBillingRate'
-        budget:
-          $ref: '#/components/schemas/ProjectBillingBudget'
+        name:
+          type: string
+        type:
+          type: string
+          enum:
+          - board
+          - list
+        users:
+          type: array
+          description: Assigned user IDs.
+          items:
+            type: integer
     ProjectBillingBilling:
       type: object
       properties:
@@ -409,22 +476,6 @@ components:
         fee:
           type: integer
           description: Fixed fee in cents (fixed_fee type only).
-    ProjectBillingRate:
-      type: object
-      properties:
-        type:
-          type: string
-          enum:
-          - project_rate
-          - user_rate
-        rate:
-          type: integer
-          description: Flat rate in cents per hour (project_rate type only).
-        userRateOverrides:
-          type: object
-          description: Per-user rate overrides in cents per hour, keyed by user ID.
-          additionalProperties:
-            type: integer
     Project:
       type: object
       properties:
@@ -458,57 +509,6 @@ components:
           $ref: '#/components/schemas/ProjectBillingRate'
         budget:
           $ref: '#/components/schemas/ProjectBillingBudget'
-    Error:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-    ProjectRequest:
-      type: object
-      required:
-      - name
-      - type
-      properties:
-        name:
-          type: string
-        type:
-          type: string
-          enum:
-          - board
-          - list
-        users:
-          type: array
-          description: Assigned user IDs.
-          items:
-            type: integer
-  responses:
-    TooManyRequests:
-      description: Rate limit exceeded (around 20 requests per 10 seconds per API key). The Retry-After response header specifies the number of seconds to wait before making another request.
-      headers:
-        Retry-After:
-          description: Seconds to wait before retrying.
-          schema:
-            type: integer
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Missing or invalid X-Api-Key header.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-  parameters:
-    ProjectId:
-      name: projectId
-      in: path
-      required: true
-      description: Project ID in {platform code}:{platform ID} format (for example ev:1234567789001 or as:1234567789001).
-      schema:
-        type: string
   securitySchemes:
     apiKey:
       type: apiKey

@@ -145,34 +145,6 @@ paths:
           $ref: '#/components/responses/TooManyRequests'
 components:
   schemas:
-    Error:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-    TimecardHistory:
-      type: object
-      properties:
-        action:
-          type: string
-          enum:
-          - clock-in
-          - clock-out
-          - break
-        previousTime:
-          type: string
-        time:
-          type: string
-        trigger:
-          type: string
-          enum:
-          - manually
-          - timer
-          - button
-          - day-end
-          - idle-state
     TimesheetApproval:
       type: object
       properties:
@@ -191,6 +163,35 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/TimesheetApprovalHistory'
+    TaskEstimate:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: Total task estimate in seconds.
+        type:
+          type: string
+          enum:
+          - overall
+          - users
+        users:
+          type: object
+          description: Task estimate in seconds keyed by user ID.
+          additionalProperties:
+            type: integer
+    DailyTime:
+      type: object
+      properties:
+        date:
+          type: string
+        time:
+          type: integer
+          description: Total daily time in seconds.
+        timeWithoutTask:
+          type: integer
+          description: Time tracked without a task, in seconds.
+        user:
+          type: integer
     Week:
       type: object
       properties:
@@ -204,24 +205,23 @@ components:
         beginningOfWeek:
           type: integer
           description: 0 if the week starts on Sunday, 1 if Monday.
-    TimesheetApprovalHistory:
+    Error:
       type: object
       properties:
-        action:
-          type: string
-          enum:
-          - submitted
-          - rejected
-          - approved
-          - discarded
-        days:
-          $ref: '#/components/schemas/ApprovalHistoryDays'
-        user:
+        code:
           type: integer
+        message:
+          type: string
+    TimesheetApprovalRequest:
+      type: object
+      properties:
         comment:
           type: string
-        createdAt:
-          type: string
+        reviewer:
+          type: integer
+          description: User ID of the reviewer (must be a team admin).
+        sendNotification:
+          type: boolean
     Task:
       type: object
       properties:
@@ -259,73 +259,67 @@ components:
           $ref: '#/components/schemas/TaskEstimate'
         unbillable:
           type: boolean
-    ApprovalHistoryDays:
+    Timecard:
       type: object
       properties:
-        monday:
-          type: boolean
-        tuesday:
-          type: boolean
-        wednesday:
-          type: boolean
-        thursday:
-          type: boolean
-        friday:
-          type: boolean
-        saturday:
-          type: boolean
-        sunday:
-          type: boolean
-    DailyTime:
-      type: object
-      properties:
-        date:
-          type: string
-        time:
-          type: integer
-          description: Total daily time in seconds.
-        timeWithoutTask:
-          type: integer
-          description: Time tracked without a task, in seconds.
         user:
           type: integer
-    TimesheetApprovalRequest:
-      type: object
-      properties:
-        comment:
+          description: User ID.
+        clockIn:
           type: string
-        reviewer:
+          description: Clock-in time in the user timezone (HH:MM).
+        clockOut:
+          type: string
+          description: Clock-out time in the user timezone (HH:MM).
+        breakTime:
           type: integer
-          description: User ID of the reviewer (must be a team admin).
-        sendNotification:
-          type: boolean
-    TaskTime:
+          description: Breaks duration in seconds.
+        workTime:
+          type: integer
+          description: Working time in seconds (clock-out minus clock-in minus breaks).
+        history:
+          type: array
+          items:
+            $ref: '#/components/schemas/TimecardHistory'
+    TimesheetApprovalHistory:
       type: object
       properties:
-        total:
-          type: integer
-          description: Total task time in seconds.
-        users:
-          type: object
-          description: Task time in seconds keyed by user ID.
-          additionalProperties:
-            type: integer
-    TaskEstimate:
-      type: object
-      properties:
-        total:
-          type: integer
-          description: Total task estimate in seconds.
-        type:
+        action:
           type: string
           enum:
-          - overall
-          - users
-        users:
-          type: object
-          description: Task estimate in seconds keyed by user ID.
-          additionalProperties:
-            type: integer
+          - submitted
+          - rejected
+          - approved
+          - discarded
+        days:
+          $ref: '#/components/schemas/ApprovalHistoryDays'
+        user:
+          type: integer
+        comment:
+          type: string
+        createdAt:
+          type: string
+    TimecardHistory:
+      type: object
+      properties:
+        action:
+          type: string
+          enum:
+          - clock-in
+          - clock-out
+          - break
+        previousTime:
+          type: string
+        time:
+          type: string
+        trigger:
+          type: string
+          enum:
+          - manually
+          - timer
+          - button
+          - day-end
+          - idle-state
     Timesheet:
       type: object
       properties:
@@ -351,28 +345,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Timecard'
-    Timecard:
-      type: object
-      properties:
-        user:
-          type: integer
-          description: User ID.
-        clockIn:
-          type: string
-          description: Clock-in time in the user timezone (HH:MM).
-        clockOut:
-          type: string
-          description: Clock-out time in the user timezone (HH:MM).
-        breakTime:
-          type: integer
-          description: Breaks duration in seconds.
-        workTime:
-          type: integer
-          description: Working time in seconds (clock-out minus clock-in minus breaks).
-        history:
-          type: array
-          items:
-            $ref: '#/components/schemas/TimecardHistory'
     TimesheetApprovalReviewRequest:
       type: object
       required:
@@ -389,14 +361,35 @@ components:
           type: string
         sendNotification:
           type: boolean
+    TaskTime:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: Total task time in seconds.
+        users:
+          type: object
+          description: Task time in seconds keyed by user ID.
+          additionalProperties:
+            type: integer
+    ApprovalHistoryDays:
+      type: object
+      properties:
+        monday:
+          type: boolean
+        tuesday:
+          type: boolean
+        wednesday:
+          type: boolean
+        thursday:
+          type: boolean
+        friday:
+          type: boolean
+        saturday:
+          type: boolean
+        sunday:
+          type: boolean
   parameters:
-    UserId:
-      name: userId
-      in: path
-      required: true
-      description: User ID.
-      schema:
-        type: integer
     TimesheetId:
       name: timesheetId
       in: path
@@ -404,7 +397,20 @@ components:
       description: Timesheet ID (user ID concatenated with week ID).
       schema:
         type: integer
+    UserId:
+      name: userId
+      in: path
+      required: true
+      description: User ID.
+      schema:
+        type: integer
   responses:
+    Unauthorized:
+      description: Missing or invalid X-Api-Key header.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
     TooManyRequests:
       description: Rate limit exceeded (around 20 requests per 10 seconds per API key). The Retry-After response header specifies the number of seconds to wait before making another request.
       headers:
@@ -412,12 +418,6 @@ components:
           description: Seconds to wait before retrying.
           schema:
             type: integer
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Missing or invalid X-Api-Key header.
       content:
         application/json:
           schema:
