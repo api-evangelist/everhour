@@ -95,71 +95,7 @@ paths:
         '429':
           $ref: '#/components/responses/TooManyRequests'
 components:
-  parameters:
-    DateLte:
-      name: date.lte
-      in: query
-      description: Report end date (YYYY-MM-DD).
-      schema:
-        type: string
-        format: date
-    DateGte:
-      name: date.gte
-      in: query
-      description: Report start date (YYYY-MM-DD).
-      schema:
-        type: string
-        format: date
-    FilterProjectId:
-      name: projectId
-      in: query
-      description: Filter by project ID.
-      schema:
-        type: string
-    FilterClientId:
-      name: clientId
-      in: query
-      description: Filter by client ID.
-      schema:
-        type: integer
-    FilterMemberId:
-      name: memberId
-      in: query
-      description: Filter by user ID.
-      schema:
-        type: integer
   schemas:
-    ClientsDashboardItem:
-      type: object
-      description: Per-client report row. Time is in seconds and amounts in cents.
-      properties:
-        clientId:
-          type: integer
-        clientName:
-          type: string
-        time:
-          type: integer
-        billableTime:
-          type: integer
-        nonBillableTime:
-          type: integer
-        billableAmount:
-          type: integer
-        costs:
-          type: integer
-        profit:
-          type: integer
-        uninvoicedAmount:
-          type: integer
-        expenses:
-          type: integer
-    Error:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
     UsersDashboardItem:
       type: object
       description: Per-user report row. Time is in seconds and amounts in cents.
@@ -195,6 +131,13 @@ components:
           type: integer
         expenses:
           type: integer
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
     ProjectsDashboardItem:
       type: object
       description: Per-project report row. Time is in seconds and amounts in cents.
@@ -234,6 +177,63 @@ components:
           type: integer
         expenses:
           type: integer
+    ClientsDashboardItem:
+      type: object
+      description: Per-client report row. Time is in seconds and amounts in cents.
+      properties:
+        clientId:
+          type: integer
+        clientName:
+          type: string
+        time:
+          type: integer
+        billableTime:
+          type: integer
+        nonBillableTime:
+          type: integer
+        billableAmount:
+          type: integer
+        costs:
+          type: integer
+        profit:
+          type: integer
+        uninvoicedAmount:
+          type: integer
+        expenses:
+          type: integer
+  parameters:
+    DateLte:
+      name: date.lte
+      in: query
+      description: Report end date (YYYY-MM-DD).
+      schema:
+        type: string
+        format: date
+    FilterClientId:
+      name: clientId
+      in: query
+      description: Filter by client ID.
+      schema:
+        type: integer
+    FilterProjectId:
+      name: projectId
+      in: query
+      description: Filter by project ID.
+      schema:
+        type: string
+    DateGte:
+      name: date.gte
+      in: query
+      description: Report start date (YYYY-MM-DD).
+      schema:
+        type: string
+        format: date
+    FilterMemberId:
+      name: memberId
+      in: query
+      description: Filter by user ID.
+      schema:
+        type: integer
   responses:
     Unauthorized:
       description: Missing or invalid X-Api-Key header.

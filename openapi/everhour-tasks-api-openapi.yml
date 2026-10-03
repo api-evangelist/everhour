@@ -253,29 +253,6 @@ paths:
         '429':
           $ref: '#/components/responses/TooManyRequests'
 components:
-  parameters:
-    ProjectId:
-      name: projectId
-      in: path
-      required: true
-      description: Project ID in {platform code}:{platform ID} format (for example ev:1234567789001 or as:1234567789001).
-      schema:
-        type: string
-    IncludeBilling:
-      name: opts_include_billing
-      in: query
-      description: Set to 1 to include billing data (admins with billing permissions only).
-      schema:
-        type: integer
-        enum:
-        - 1
-    TaskId:
-      name: taskId
-      in: path
-      required: true
-      description: Task ID (for example ev:3000010034).
-      schema:
-        type: string
   schemas:
     TaskEstimate:
       type: object
@@ -381,6 +358,29 @@ components:
           description: Task time in seconds keyed by user ID.
           additionalProperties:
             type: integer
+  parameters:
+    ProjectId:
+      name: projectId
+      in: path
+      required: true
+      description: Project ID in {platform code}:{platform ID} format (for example ev:1234567789001 or as:1234567789001).
+      schema:
+        type: string
+    IncludeBilling:
+      name: opts_include_billing
+      in: query
+      description: Set to 1 to include billing data (admins with billing permissions only).
+      schema:
+        type: integer
+        enum:
+        - 1
+    TaskId:
+      name: taskId
+      in: path
+      required: true
+      description: Task ID (for example ev:3000010034).
+      schema:
+        type: string
   responses:
     Unauthorized:
       description: Missing or invalid X-Api-Key header.

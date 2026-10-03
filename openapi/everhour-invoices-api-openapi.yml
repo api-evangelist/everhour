@@ -196,6 +196,137 @@ paths:
           $ref: '#/components/responses/TooManyRequests'
 components:
   schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        headline:
+          type: string
+        avatarUrl:
+          type: string
+        role:
+          type: string
+          enum:
+          - admin
+          - supervisor
+          - member
+        status:
+          type: string
+          enum:
+          - active
+          - invited
+          - pending
+          - removed
+    Invoice:
+      type: object
+      properties:
+        id:
+          type: integer
+        client:
+          $ref: '#/components/schemas/Client'
+        createdAt:
+          type: string
+        createdBy:
+          $ref: '#/components/schemas/User'
+        dueDate:
+          type: string
+          format: date
+        issueDate:
+          type: string
+          format: date
+        limitDateFrom:
+          type: string
+          format: date
+        limitDateTill:
+          type: string
+          format: date
+        discount:
+          type: object
+          properties:
+            amount:
+              type: integer
+            rate:
+              type: number
+        tax:
+          type: object
+          properties:
+            amount:
+              type: integer
+            rate:
+              type: number
+        includeExpenses:
+          type: boolean
+        includeTime:
+          type: boolean
+        invoiceItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/InvoiceItem'
+        listAmount:
+          type: integer
+          description: List amount in cents (without discount and taxes).
+        netAmount:
+          type: integer
+          description: Net amount in cents (with discount, without taxes).
+        totalAmount:
+          type: integer
+          description: Total amount in cents (with discount and taxes).
+        totalTime:
+          type: integer
+          description: Total invoice time in seconds.
+        projects:
+          type: array
+          items:
+            type: string
+        publicId:
+          type: string
+        status:
+          type: string
+          enum:
+          - draft
+          - sent
+          - paid
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+    InvoiceCreateRequest:
+      type: object
+      properties:
+        limitDateFrom:
+          type: string
+          format: date
+        limitDateTill:
+          type: string
+          format: date
+        includeExpenses:
+          type: boolean
+        includeTime:
+          type: boolean
+        projects:
+          type: array
+          items:
+            type: string
+        tax:
+          type: object
+          properties:
+            rate:
+              type: number
+            amount:
+              type: integer
+        discount:
+          type: object
+          properties:
+            rate:
+              type: number
+            amount:
+              type: integer
     InvoiceItem:
       type: object
       properties:
@@ -221,6 +352,22 @@ components:
           type: integer
         createdAt:
           type: string
+    Client:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        projects:
+          type: array
+          description: Project IDs linked to the client.
+          items:
+            type: string
+        businessDetails:
+          type: string
+        budget:
+          $ref: '#/components/schemas/ClientBudget'
     InvoiceRefreshRequest:
       type: object
       properties:
@@ -241,37 +388,6 @@ components:
         expenseMask:
           type: string
         timeMask:
-          type: string
-    User:
-      type: object
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        headline:
-          type: string
-        avatarUrl:
-          type: string
-        role:
-          type: string
-          enum:
-          - admin
-          - supervisor
-          - member
-        status:
-          type: string
-          enum:
-          - active
-          - invited
-          - pending
-          - removed
-    Error:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
           type: string
     InvoiceUpdateRequest:
       type: object
@@ -346,122 +462,21 @@ components:
           type: integer
           readOnly: true
           description: Current budget usage in cents or seconds.
-    InvoiceCreateRequest:
-      type: object
-      properties:
-        limitDateFrom:
-          type: string
-          format: date
-        limitDateTill:
-          type: string
-          format: date
-        includeExpenses:
-          type: boolean
-        includeTime:
-          type: boolean
-        projects:
-          type: array
-          items:
-            type: string
-        tax:
-          type: object
-          properties:
-            rate:
-              type: number
-            amount:
-              type: integer
-        discount:
-          type: object
-          properties:
-            rate:
-              type: number
-            amount:
-              type: integer
-    Invoice:
-      type: object
-      properties:
-        id:
-          type: integer
-        client:
-          $ref: '#/components/schemas/Client'
-        createdAt:
-          type: string
-        createdBy:
-          $ref: '#/components/schemas/User'
-        dueDate:
-          type: string
-          format: date
-        issueDate:
-          type: string
-          format: date
-        limitDateFrom:
-          type: string
-          format: date
-        limitDateTill:
-          type: string
-          format: date
-        discount:
-          type: object
-          properties:
-            amount:
-              type: integer
-            rate:
-              type: number
-        tax:
-          type: object
-          properties:
-            amount:
-              type: integer
-            rate:
-              type: number
-        includeExpenses:
-          type: boolean
-        includeTime:
-          type: boolean
-        invoiceItems:
-          type: array
-          items:
-            $ref: '#/components/schemas/InvoiceItem'
-        listAmount:
-          type: integer
-          description: List amount in cents (without discount and taxes).
-        netAmount:
-          type: integer
-          description: Net amount in cents (with discount, without taxes).
-        totalAmount:
-          type: integer
-          description: Total amount in cents (with discount and taxes).
-        totalTime:
-          type: integer
-          description: Total invoice time in seconds.
-        projects:
-          type: array
-          items:
-            type: string
-        publicId:
-          type: string
-        status:
-          type: string
-          enum:
-          - draft
-          - sent
-          - paid
-    Client:
-      type: object
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        projects:
-          type: array
-          description: Project IDs linked to the client.
-          items:
-            type: string
-        businessDetails:
-          type: string
-        budget:
-          $ref: '#/components/schemas/ClientBudget'
+  parameters:
+    ClientId:
+      name: clientId
+      in: path
+      required: true
+      description: Client ID.
+      schema:
+        type: integer
+    InvoiceId:
+      name: invoiceId
+      in: path
+      required: true
+      description: Invoice ID.
+      schema:
+        type: integer
   responses:
     Unauthorized:
       description: Missing or invalid X-Api-Key header.
@@ -480,21 +495,6 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-  parameters:
-    ClientId:
-      name: clientId
-      in: path
-      required: true
-      description: Client ID.
-      schema:
-        type: integer
-    InvoiceId:
-      name: invoiceId
-      in: path
-      required: true
-      description: Invoice ID.
-      schema:
-        type: integer
   securitySchemes:
     apiKey:
       type: apiKey

@@ -103,23 +103,6 @@ paths:
           $ref: '#/components/responses/TooManyRequests'
 components:
   schemas:
-    WebhookRequest:
-      type: object
-      required:
-      - targetUrl
-      - events
-      properties:
-        targetUrl:
-          type: string
-          description: HTTPS endpoint that will receive event payloads.
-        events:
-          type: array
-          description: Events to receive. Supported values include api:project:created, api:project:updated, api:project:removed, api:task:created, api:task:updated, api:task:removed, api:timer:started, api:timer:stopped, api:time:updated, api:section:created, api:section:updated, api:section:removed, api:client:created, api:client:updated, and api:estimate:updated.
-          items:
-            type: string
-        project:
-          type: string
-          description: Receive events only for a specific project.
     Error:
       type: object
       properties:
@@ -148,6 +131,23 @@ components:
           type: string
         lastUsedAt:
           type: string
+    WebhookRequest:
+      type: object
+      required:
+      - targetUrl
+      - events
+      properties:
+        targetUrl:
+          type: string
+          description: HTTPS endpoint that will receive event payloads.
+        events:
+          type: array
+          description: Events to receive. Supported values include api:project:created, api:project:updated, api:project:removed, api:task:created, api:task:updated, api:task:removed, api:timer:started, api:timer:stopped, api:time:updated, api:section:created, api:section:updated, api:section:removed, api:client:created, api:client:updated, and api:estimate:updated.
+          items:
+            type: string
+        project:
+          type: string
+          description: Receive events only for a specific project.
   responses:
     Unauthorized:
       description: Missing or invalid X-Api-Key header.

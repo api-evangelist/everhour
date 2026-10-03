@@ -145,6 +145,43 @@ paths:
           $ref: '#/components/responses/TooManyRequests'
 components:
   schemas:
+    TaskEstimate:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: Total task estimate in seconds.
+        type:
+          type: string
+          enum:
+          - overall
+          - users
+        users:
+          type: object
+          description: Task estimate in seconds keyed by user ID.
+          additionalProperties:
+            type: integer
+    TimecardHistory:
+      type: object
+      properties:
+        action:
+          type: string
+          enum:
+          - clock-in
+          - clock-out
+          - break
+        previousTime:
+          type: string
+        time:
+          type: string
+        trigger:
+          type: string
+          enum:
+          - manually
+          - timer
+          - button
+          - day-end
+          - idle-state
     TimesheetApproval:
       type: object
       properties:
@@ -163,48 +200,23 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/TimesheetApprovalHistory'
-    TaskEstimate:
+    ApprovalHistoryDays:
       type: object
       properties:
-        total:
-          type: integer
-          description: Total task estimate in seconds.
-        type:
-          type: string
-          enum:
-          - overall
-          - users
-        users:
-          type: object
-          description: Task estimate in seconds keyed by user ID.
-          additionalProperties:
-            type: integer
-    DailyTime:
-      type: object
-      properties:
-        date:
-          type: string
-        time:
-          type: integer
-          description: Total daily time in seconds.
-        timeWithoutTask:
-          type: integer
-          description: Time tracked without a task, in seconds.
-        user:
-          type: integer
-    Week:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: Week ID (two-digit year + week number).
-        from:
-          type: string
-        to:
-          type: string
-        beginningOfWeek:
-          type: integer
-          description: 0 if the week starts on Sunday, 1 if Monday.
+        monday:
+          type: boolean
+        tuesday:
+          type: boolean
+        wednesday:
+          type: boolean
+        thursday:
+          type: boolean
+        friday:
+          type: boolean
+        saturday:
+          type: boolean
+        sunday:
+          type: boolean
     Error:
       type: object
       properties:
@@ -212,16 +224,6 @@ components:
           type: integer
         message:
           type: string
-    TimesheetApprovalRequest:
-      type: object
-      properties:
-        comment:
-          type: string
-        reviewer:
-          type: integer
-          description: User ID of the reviewer (must be a team admin).
-        sendNotification:
-          type: boolean
     Task:
       type: object
       properties:
@@ -259,28 +261,6 @@ components:
           $ref: '#/components/schemas/TaskEstimate'
         unbillable:
           type: boolean
-    Timecard:
-      type: object
-      properties:
-        user:
-          type: integer
-          description: User ID.
-        clockIn:
-          type: string
-          description: Clock-in time in the user timezone (HH:MM).
-        clockOut:
-          type: string
-          description: Clock-out time in the user timezone (HH:MM).
-        breakTime:
-          type: integer
-          description: Breaks duration in seconds.
-        workTime:
-          type: integer
-          description: Working time in seconds (clock-out minus clock-in minus breaks).
-        history:
-          type: array
-          items:
-            $ref: '#/components/schemas/TimecardHistory'
     TimesheetApprovalHistory:
       type: object
       properties:
@@ -299,27 +279,6 @@ components:
           type: string
         createdAt:
           type: string
-    TimecardHistory:
-      type: object
-      properties:
-        action:
-          type: string
-          enum:
-          - clock-in
-          - clock-out
-          - break
-        previousTime:
-          type: string
-        time:
-          type: string
-        trigger:
-          type: string
-          enum:
-          - manually
-          - timer
-          - button
-          - day-end
-          - idle-state
     Timesheet:
       type: object
       properties:
@@ -345,6 +304,30 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Timecard'
+    Week:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Week ID (two-digit year + week number).
+        from:
+          type: string
+        to:
+          type: string
+        beginningOfWeek:
+          type: integer
+          description: 0 if the week starts on Sunday, 1 if Monday.
+    TaskTime:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: Total task time in seconds.
+        users:
+          type: object
+          description: Task time in seconds keyed by user ID.
+          additionalProperties:
+            type: integer
     TimesheetApprovalReviewRequest:
       type: object
       required:
@@ -361,47 +344,64 @@ components:
           type: string
         sendNotification:
           type: boolean
-    TaskTime:
+    TimesheetApprovalRequest:
       type: object
       properties:
-        total:
+        comment:
+          type: string
+        reviewer:
           type: integer
-          description: Total task time in seconds.
-        users:
-          type: object
-          description: Task time in seconds keyed by user ID.
-          additionalProperties:
-            type: integer
-    ApprovalHistoryDays:
+          description: User ID of the reviewer (must be a team admin).
+        sendNotification:
+          type: boolean
+    DailyTime:
       type: object
       properties:
-        monday:
-          type: boolean
-        tuesday:
-          type: boolean
-        wednesday:
-          type: boolean
-        thursday:
-          type: boolean
-        friday:
-          type: boolean
-        saturday:
-          type: boolean
-        sunday:
-          type: boolean
+        date:
+          type: string
+        time:
+          type: integer
+          description: Total daily time in seconds.
+        timeWithoutTask:
+          type: integer
+          description: Time tracked without a task, in seconds.
+        user:
+          type: integer
+    Timecard:
+      type: object
+      properties:
+        user:
+          type: integer
+          description: User ID.
+        clockIn:
+          type: string
+          description: Clock-in time in the user timezone (HH:MM).
+        clockOut:
+          type: string
+          description: Clock-out time in the user timezone (HH:MM).
+        breakTime:
+          type: integer
+          description: Breaks duration in seconds.
+        workTime:
+          type: integer
+          description: Working time in seconds (clock-out minus clock-in minus breaks).
+        history:
+          type: array
+          items:
+            $ref: '#/components/schemas/TimecardHistory'
   parameters:
-    TimesheetId:
-      name: timesheetId
-      in: path
-      required: true
-      description: Timesheet ID (user ID concatenated with week ID).
-      schema:
-        type: integer
     UserId:
       name: userId
       in: path
       required: true
       description: User ID.
+      schema:
+        type: integer
+    TimesheetId:
+      name: timesheetId
+      in: path
+      required: true
+      description: Timesheet ID (user ID concatenated with week ID).
       schema:
         type: integer
   responses:

@@ -172,6 +172,34 @@ paths:
           $ref: '#/components/responses/TooManyRequests'
 components:
   schemas:
+    TimecardHistory:
+      type: object
+      properties:
+        action:
+          type: string
+          enum:
+          - clock-in
+          - clock-out
+          - break
+        previousTime:
+          type: string
+        time:
+          type: string
+        trigger:
+          type: string
+          enum:
+          - manually
+          - timer
+          - button
+          - day-end
+          - idle-state
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
     ClockRequest:
       type: object
       properties:
@@ -191,13 +219,6 @@ components:
         breakTime:
           type: integer
           description: Breaks duration in seconds.
-    Error:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
     Timecard:
       type: object
       properties:
@@ -220,28 +241,22 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/TimecardHistory'
-    TimecardHistory:
-      type: object
-      properties:
-        action:
-          type: string
-          enum:
-          - clock-in
-          - clock-out
-          - break
-        previousTime:
-          type: string
-        time:
-          type: string
-        trigger:
-          type: string
-          enum:
-          - manually
-          - timer
-          - button
-          - day-end
-          - idle-state
   parameters:
+    UserId:
+      name: userId
+      in: path
+      required: true
+      description: User ID.
+      schema:
+        type: integer
+    Date:
+      name: date
+      in: path
+      required: true
+      description: Date in YYYY-MM-DD format.
+      schema:
+        type: string
+        format: date
     From:
       name: from
       in: query
@@ -256,21 +271,6 @@ components:
       schema:
         type: string
         format: date
-    Date:
-      name: date
-      in: path
-      required: true
-      description: Date in YYYY-MM-DD format.
-      schema:
-        type: string
-        format: date
-    UserId:
-      name: userId
-      in: path
-      required: true
-      description: User ID.
-      schema:
-        type: integer
   responses:
     Unauthorized:
       description: Missing or invalid X-Api-Key header.

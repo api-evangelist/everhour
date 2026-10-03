@@ -141,6 +141,13 @@ paths:
           $ref: '#/components/responses/TooManyRequests'
 components:
   schemas:
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
     Assignment:
       type: object
       properties:
@@ -167,13 +174,6 @@ components:
           - time-off
         user:
           type: integer
-    Error:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
     AssignmentRequest:
       type: object
       properties:

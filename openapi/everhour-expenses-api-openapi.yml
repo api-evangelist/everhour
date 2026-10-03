@@ -204,34 +204,22 @@ paths:
           $ref: '#/components/responses/TooManyRequests'
 components:
   schemas:
-    Expense:
+    AttachmentDetails:
       type: object
       properties:
         id:
           type: integer
-        amount:
-          type: integer
-          description: Amount in cents.
-        attachments:
-          type: array
-          items:
-            $ref: '#/components/schemas/AttachmentDetails'
-        billable:
-          type: boolean
-        category:
-          type: integer
-          description: Expense category ID.
-        date:
+        name:
           type: string
-          format: date
-        details:
+        token:
           type: string
-        project:
-          type: string
-        quantity:
-          type: number
-        user:
+    Error:
+      type: object
+      properties:
+        code:
           type: integer
+        message:
+          type: string
     ExpenseCategoryRequest:
       type: object
       required:
@@ -247,22 +235,6 @@ components:
           type: string
         unitPrice:
           type: integer
-    Error:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-    AttachmentDetails:
-      type: object
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        token:
-          type: string
     ExpenseRequest:
       type: object
       required:
@@ -306,6 +278,34 @@ components:
         unitName:
           type: string
         unitPrice:
+          type: integer
+    Expense:
+      type: object
+      properties:
+        id:
+          type: integer
+        amount:
+          type: integer
+          description: Amount in cents.
+        attachments:
+          type: array
+          items:
+            $ref: '#/components/schemas/AttachmentDetails'
+        billable:
+          type: boolean
+        category:
+          type: integer
+          description: Expense category ID.
+        date:
+          type: string
+          format: date
+        details:
+          type: string
+        project:
+          type: string
+        quantity:
+          type: number
+        user:
           type: integer
   responses:
     Unauthorized:
