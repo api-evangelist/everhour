@@ -149,6 +149,22 @@ paths:
           $ref: '#/components/responses/TooManyRequests'
 components:
   schemas:
+    Client:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        projects:
+          type: array
+          description: Project IDs linked to the client.
+          items:
+            type: string
+        businessDetails:
+          type: string
+        budget:
+          $ref: '#/components/schemas/ClientBudget'
     Error:
       type: object
       properties:
@@ -169,22 +185,6 @@ components:
             type: string
         businessDetails:
           type: string
-    Client:
-      type: object
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        projects:
-          type: array
-          description: Project IDs linked to the client.
-          items:
-            type: string
-        businessDetails:
-          type: string
-        budget:
-          $ref: '#/components/schemas/ClientBudget'
     ClientBudget:
       type: object
       required:
@@ -225,21 +225,7 @@ components:
           type: integer
           readOnly: true
           description: Current budget usage in cents or seconds.
-  parameters:
-    ClientId:
-      name: clientId
-      in: path
-      required: true
-      description: Client ID.
-      schema:
-        type: integer
   responses:
-    Unauthorized:
-      description: Missing or invalid X-Api-Key header.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     TooManyRequests:
       description: Rate limit exceeded (around 20 requests per 10 seconds per API key). The Retry-After response header specifies the number of seconds to wait before making another request.
       headers:
@@ -251,6 +237,20 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing or invalid X-Api-Key header.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    ClientId:
+      name: clientId
+      in: path
+      required: true
+      description: Client ID.
+      schema:
+        type: integer
   securitySchemes:
     apiKey:
       type: apiKey

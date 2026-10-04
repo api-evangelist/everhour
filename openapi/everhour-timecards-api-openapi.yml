@@ -172,34 +172,6 @@ paths:
           $ref: '#/components/responses/TooManyRequests'
 components:
   schemas:
-    TimecardHistory:
-      type: object
-      properties:
-        action:
-          type: string
-          enum:
-          - clock-in
-          - clock-out
-          - break
-        previousTime:
-          type: string
-        time:
-          type: string
-        trigger:
-          type: string
-          enum:
-          - manually
-          - timer
-          - button
-          - day-end
-          - idle-state
-    Error:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
     ClockRequest:
       type: object
       properties:
@@ -207,18 +179,6 @@ components:
           type: string
           format: date
           description: Current user date; defaults to the user profile timezone.
-    TimecardUpdateRequest:
-      type: object
-      properties:
-        clockIn:
-          type: string
-          description: Clock-in time in the user timezone (HH:MM).
-        clockOut:
-          type: string
-          description: Clock-out time in the user timezone (HH:MM).
-        breakTime:
-          type: integer
-          description: Breaks duration in seconds.
     Timecard:
       type: object
       properties:
@@ -241,14 +201,65 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/TimecardHistory'
+    TimecardUpdateRequest:
+      type: object
+      properties:
+        clockIn:
+          type: string
+          description: Clock-in time in the user timezone (HH:MM).
+        clockOut:
+          type: string
+          description: Clock-out time in the user timezone (HH:MM).
+        breakTime:
+          type: integer
+          description: Breaks duration in seconds.
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+    TimecardHistory:
+      type: object
+      properties:
+        action:
+          type: string
+          enum:
+          - clock-in
+          - clock-out
+          - break
+        previousTime:
+          type: string
+        time:
+          type: string
+        trigger:
+          type: string
+          enum:
+          - manually
+          - timer
+          - button
+          - day-end
+          - idle-state
+  responses:
+    TooManyRequests:
+      description: Rate limit exceeded (around 20 requests per 10 seconds per API key). The Retry-After response header specifies the number of seconds to wait before making another request.
+      headers:
+        Retry-After:
+          description: Seconds to wait before retrying.
+          schema:
+            type: integer
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing or invalid X-Api-Key header.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   parameters:
-    UserId:
-      name: userId
-      in: path
-      required: true
-      description: User ID.
-      schema:
-        type: integer
     Date:
       name: date
       in: path
@@ -271,24 +282,13 @@ components:
       schema:
         type: string
         format: date
-  responses:
-    Unauthorized:
-      description: Missing or invalid X-Api-Key header.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    TooManyRequests:
-      description: Rate limit exceeded (around 20 requests per 10 seconds per API key). The Retry-After response header specifies the number of seconds to wait before making another request.
-      headers:
-        Retry-After:
-          description: Seconds to wait before retrying.
-          schema:
-            type: integer
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+    UserId:
+      name: userId
+      in: path
+      required: true
+      description: User ID.
+      schema:
+        type: integer
   securitySchemes:
     apiKey:
       type: apiKey

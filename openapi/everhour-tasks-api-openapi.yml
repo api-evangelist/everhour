@@ -254,66 +254,6 @@ paths:
           $ref: '#/components/responses/TooManyRequests'
 components:
   schemas:
-    TaskEstimate:
-      type: object
-      properties:
-        total:
-          type: integer
-          description: Total task estimate in seconds.
-        type:
-          type: string
-          enum:
-          - overall
-          - users
-        users:
-          type: object
-          description: Task estimate in seconds keyed by user ID.
-          additionalProperties:
-            type: integer
-    Error:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-    Task:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Task ID (for example ev:9876543210).
-        name:
-          type: string
-        projects:
-          type: array
-          description: Project IDs.
-          items:
-            type: string
-        section:
-          type: integer
-          description: Section ID.
-        labels:
-          type: array
-          items:
-            type: string
-        position:
-          type: integer
-        description:
-          type: string
-        dueAt:
-          type: string
-        status:
-          type: string
-          enum:
-          - open
-          - closed
-        time:
-          $ref: '#/components/schemas/TaskTime'
-        estimate:
-          $ref: '#/components/schemas/TaskEstimate'
-        unbillable:
-          type: boolean
     TaskRequest:
       type: object
       required:
@@ -358,7 +298,74 @@ components:
           description: Task time in seconds keyed by user ID.
           additionalProperties:
             type: integer
+    Task:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Task ID (for example ev:9876543210).
+        name:
+          type: string
+        projects:
+          type: array
+          description: Project IDs.
+          items:
+            type: string
+        section:
+          type: integer
+          description: Section ID.
+        labels:
+          type: array
+          items:
+            type: string
+        position:
+          type: integer
+        description:
+          type: string
+        dueAt:
+          type: string
+        status:
+          type: string
+          enum:
+          - open
+          - closed
+        time:
+          $ref: '#/components/schemas/TaskTime'
+        estimate:
+          $ref: '#/components/schemas/TaskEstimate'
+        unbillable:
+          type: boolean
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+    TaskEstimate:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: Total task estimate in seconds.
+        type:
+          type: string
+          enum:
+          - overall
+          - users
+        users:
+          type: object
+          description: Task estimate in seconds keyed by user ID.
+          additionalProperties:
+            type: integer
   parameters:
+    TaskId:
+      name: taskId
+      in: path
+      required: true
+      description: Task ID (for example ev:3000010034).
+      schema:
+        type: string
     ProjectId:
       name: projectId
       in: path
@@ -374,20 +381,7 @@ components:
         type: integer
         enum:
         - 1
-    TaskId:
-      name: taskId
-      in: path
-      required: true
-      description: Task ID (for example ev:3000010034).
-      schema:
-        type: string
   responses:
-    Unauthorized:
-      description: Missing or invalid X-Api-Key header.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     TooManyRequests:
       description: Rate limit exceeded (around 20 requests per 10 seconds per API key). The Retry-After response header specifies the number of seconds to wait before making another request.
       headers:
@@ -395,6 +389,12 @@ components:
           description: Seconds to wait before retrying.
           schema:
             type: integer
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing or invalid X-Api-Key header.
       content:
         application/json:
           schema:
