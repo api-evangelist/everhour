@@ -36,6 +36,9 @@ accessModel:
   generated: '2026-07-22'
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/everhour.png
+x-docs-platform: apiary
+x-docs-platform-confidence: high
+x-docs-platform-checked: 2026-10-03
 tags:
 - Time Tracking
 - Timesheets
@@ -616,6 +619,9 @@ apis:
   - type: APIReference
     url: https://everhour.docs.apiary.io/#reference/webhooks
 common:
+- type: CapabilityMap
+  url: capabilities/everhour-capability-edges.yml
+  name: Everhour Business Capability Map
 - type: AgenticAccess
   url: agentic-access/everhour-agentic-access.yml
 - type: TrustCenter
