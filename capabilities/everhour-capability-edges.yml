@@ -1,0 +1,89 @@
+slug: everhour
+provider: Everhour
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 7
+edges:
+- tag: Invoices
+  spec_file: everhour-invoices-api-openapi.yml
+  capability_id: BC-200.30
+  capability_id_l1: BC-200
+  capability_name: Accounts Receivable Management
+  confidence: 0.85
+  evidence: POST /clients/{clientId}/invoices createInvoice Create invoice; POST /invoices/{invoiceId}/{status}
+    Mark invoice as draft, sent, or paid; exportInvoice Export invoice to Xero, QuickBooks, or FreshBooks
+  reason: 'Customer-facing invoice lifecycle: create invoices against clients, refresh line items from
+    tracked time, mark sent/paid, export to accounting systems. That is customer invoicing and receivables,
+    i.e. Accounts Receivable Management.'
+- tag: Projects
+  spec_file: everhour-projects-api-openapi.yml
+  capability_id: BC-900.30
+  capability_id_l1: BC-900
+  capability_name: Project Management
+  confidence: 0.85
+  evidence: POST /projects createProject; PATCH /projects/{projectId}/archive archiveProject; PUT /projects/{projectId}/billing
+    updateProjectBilling Update project billing and budget; schemas Project, ProjectBillingBudget, Section
+  reason: 'CRUD over projects with sections, budgets and billing rates — project setup and tracking in
+    a work-management tool, mapping to Project Management. Not software product engineering: these are
+    generic client/billable projects.'
+- tag: Tasks
+  spec_file: everhour-tasks-api-openapi.yml
+  capability_id: BC-900.30
+  capability_id_l1: BC-900
+  capability_name: Project Management
+  confidence: 0.8
+  evidence: POST /projects/{projectId}/tasks createTask Create task; PUT /tasks/{taskId}/estimate updateTaskEstimate
+    Update task estimate; schemas Task, TaskEstimate
+  reason: Task lifecycle within projects including estimates and tracked task time — project execution
+    planning and tracking, i.e. Project Management rather than any software-engineering-specific backlog
+    capability.
+- tag: Timecards
+  spec_file: everhour-timecards-api-openapi.yml
+  capability_id: BC-300.70
+  capability_id_l1: BC-300
+  capability_name: HR Operations Management
+  confidence: 0.75
+  evidence: POST /users/{userId}/timecards/clock-in clockIn; POST /users/{userId}/timecards/clock-out
+    clockOut; schemas Timecard, ClockRequest
+  reason: Per-user clock-in/clock-out timecards by date are classic time-and-attendance records feeding
+    payroll and employee records, which sits in HR Operations Management.
+- tag: Clients
+  spec_file: everhour-clients-api-openapi.yml
+  capability_id: BC-420.10
+  capability_id_l1: BC-420
+  capability_name: Customer Data Management
+  confidence: 0.7
+  evidence: POST /clients createClient 'Create client'; PUT /clients/{clientId} 'Update client'; PUT /clients/{clientId}/budget
+    'Update client budget'
+  reason: Full CRUD over the client (customer) record, plus a per-client budget attribute, is maintenance
+    of the customer master within the time-tracking platform. Budget management leans toward project financials,
+    hence 0.7 rather than higher.
+- tag: Time Off
+  spec_file: everhour-time-off-api-openapi.yml
+  capability_id: BC-300.70
+  capability_id_l1: BC-300
+  capability_name: HR Operations Management
+  confidence: 0.7
+  evidence: GET /resource-planner/time-off-types getTimeOffTypes; POST /allocations createAllocation;
+    schemas TimeOffAllocation, TimeOffType
+  reason: Definition of time-off types and per-person allocations is leave/absence administration, an
+    HR Operations function. Could alternatively be read as a benefits entitlement, hence moderate confidence.
+- tag: Timesheets
+  spec_file: everhour-timesheets-api-openapi.yml
+  capability_id: BC-300.70
+  capability_id_l1: BC-300
+  capability_name: HR Operations Management
+  confidence: 0.7
+  evidence: POST /timesheets/{timesheetId}/approval Approve week / request approval; PUT /timesheets/{timesheetId}/approval
+    Approve or reject approval request; schemas Timesheet, TimesheetApproval, Timecard
+  reason: Weekly timesheet submission, review and approval workflow per user — timesheet administration
+    and approval, an HR Operations service delivery process.
