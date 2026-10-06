@@ -47,7 +47,7 @@ tags:
 - Budgeting
 - Invoicing
 created: '2026-07-11'
-modified: '2026-07-11'
+modified: '2026-10-06'
 specificationVersion: '0.23'
 apis:
 - aid: everhour:everhour-clients-api
@@ -619,6 +619,8 @@ apis:
   - type: APIReference
     url: https://everhour.docs.apiary.io/#reference/webhooks
 common:
+- url: https://everhour.com/blog/feed/
+  type: BlogRSS
 - type: CapabilityMap
   url: capabilities/everhour-capability-edges.yml
   name: Everhour Business Capability Map
