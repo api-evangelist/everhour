@@ -167,17 +167,74 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/TimecardHistory'
-    TaskTime:
+    TimesheetApprovalReviewRequest:
+      type: object
+      required:
+      - status
+      properties:
+        status:
+          type: string
+          enum:
+          - approved
+          - rejected
+        days:
+          $ref: '#/components/schemas/ApprovalHistoryDays'
+        comment:
+          type: string
+        sendNotification:
+          type: boolean
+    TimesheetApprovalHistory:
       type: object
       properties:
-        total:
+        action:
+          type: string
+          enum:
+          - submitted
+          - rejected
+          - approved
+          - discarded
+        days:
+          $ref: '#/components/schemas/ApprovalHistoryDays'
+        user:
           type: integer
-          description: Total task time in seconds.
-        users:
-          type: object
-          description: Task time in seconds keyed by user ID.
-          additionalProperties:
-            type: integer
+        comment:
+          type: string
+        createdAt:
+          type: string
+    TimecardHistory:
+      type: object
+      properties:
+        action:
+          type: string
+          enum:
+          - clock-in
+          - clock-out
+          - break
+        previousTime:
+          type: string
+        time:
+          type: string
+        trigger:
+          type: string
+          enum:
+          - manually
+          - timer
+          - button
+          - day-end
+          - idle-state
+    DailyTime:
+      type: object
+      properties:
+        date:
+          type: string
+        time:
+          type: integer
+          description: Total daily time in seconds.
+        timeWithoutTask:
+          type: integer
+          description: Time tracked without a task, in seconds.
+        user:
+          type: integer
     Week:
       type: object
       properties:
@@ -191,6 +248,100 @@ components:
         beginningOfWeek:
           type: integer
           description: 0 if the week starts on Sunday, 1 if Monday.
+    Timesheet:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Timesheet ID (user ID concatenated with week ID).
+        week:
+          $ref: '#/components/schemas/Week'
+        user:
+          type: integer
+          description: User ID.
+        tasks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Task'
+        dailyTime:
+          type: array
+          items:
+            $ref: '#/components/schemas/DailyTime'
+        approval:
+          $ref: '#/components/schemas/TimesheetApproval'
+        timecards:
+          type: array
+          items:
+            $ref: '#/components/schemas/Timecard'
+    TaskEstimate:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: Total task estimate in seconds.
+        type:
+          type: string
+          enum:
+          - overall
+          - users
+        users:
+          type: object
+          description: Task estimate in seconds keyed by user ID.
+          additionalProperties:
+            type: integer
+    TimesheetApproval:
+      type: object
+      properties:
+        id:
+          type: integer
+        user:
+          type: integer
+        weekId:
+          type: integer
+        timesheetId:
+          type: integer
+        reviewer:
+          type: integer
+          description: Reviewer user ID.
+        history:
+          type: array
+          items:
+            $ref: '#/components/schemas/TimesheetApprovalHistory'
+    ApprovalHistoryDays:
+      type: object
+      properties:
+        monday:
+          type: boolean
+        tuesday:
+          type: boolean
+        wednesday:
+          type: boolean
+        thursday:
+          type: boolean
+        friday:
+          type: boolean
+        saturday:
+          type: boolean
+        sunday:
+          type: boolean
+    TaskTime:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: Total task time in seconds.
+        users:
+          type: object
+          description: Task time in seconds keyed by user ID.
+          additionalProperties:
+            type: integer
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
     Task:
       type: object
       properties:
@@ -228,139 +379,6 @@ components:
           $ref: '#/components/schemas/TaskEstimate'
         unbillable:
           type: boolean
-    TimesheetApprovalReviewRequest:
-      type: object
-      required:
-      - status
-      properties:
-        status:
-          type: string
-          enum:
-          - approved
-          - rejected
-        days:
-          $ref: '#/components/schemas/ApprovalHistoryDays'
-        comment:
-          type: string
-        sendNotification:
-          type: boolean
-    Timesheet:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: Timesheet ID (user ID concatenated with week ID).
-        week:
-          $ref: '#/components/schemas/Week'
-        user:
-          type: integer
-          description: User ID.
-        tasks:
-          type: array
-          items:
-            $ref: '#/components/schemas/Task'
-        dailyTime:
-          type: array
-          items:
-            $ref: '#/components/schemas/DailyTime'
-        approval:
-          $ref: '#/components/schemas/TimesheetApproval'
-        timecards:
-          type: array
-          items:
-            $ref: '#/components/schemas/Timecard'
-    Error:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-    TaskEstimate:
-      type: object
-      properties:
-        total:
-          type: integer
-          description: Total task estimate in seconds.
-        type:
-          type: string
-          enum:
-          - overall
-          - users
-        users:
-          type: object
-          description: Task estimate in seconds keyed by user ID.
-          additionalProperties:
-            type: integer
-    ApprovalHistoryDays:
-      type: object
-      properties:
-        monday:
-          type: boolean
-        tuesday:
-          type: boolean
-        wednesday:
-          type: boolean
-        thursday:
-          type: boolean
-        friday:
-          type: boolean
-        saturday:
-          type: boolean
-        sunday:
-          type: boolean
-    TimesheetApproval:
-      type: object
-      properties:
-        id:
-          type: integer
-        user:
-          type: integer
-        weekId:
-          type: integer
-        timesheetId:
-          type: integer
-        reviewer:
-          type: integer
-          description: Reviewer user ID.
-        history:
-          type: array
-          items:
-            $ref: '#/components/schemas/TimesheetApprovalHistory'
-    DailyTime:
-      type: object
-      properties:
-        date:
-          type: string
-        time:
-          type: integer
-          description: Total daily time in seconds.
-        timeWithoutTask:
-          type: integer
-          description: Time tracked without a task, in seconds.
-        user:
-          type: integer
-    TimecardHistory:
-      type: object
-      properties:
-        action:
-          type: string
-          enum:
-          - clock-in
-          - clock-out
-          - break
-        previousTime:
-          type: string
-        time:
-          type: string
-        trigger:
-          type: string
-          enum:
-          - manually
-          - timer
-          - button
-          - day-end
-          - idle-state
     TimesheetApprovalRequest:
       type: object
       properties:
@@ -371,24 +389,21 @@ components:
           description: User ID of the reviewer (must be a team admin).
         sendNotification:
           type: boolean
-    TimesheetApprovalHistory:
-      type: object
-      properties:
-        action:
-          type: string
-          enum:
-          - submitted
-          - rejected
-          - approved
-          - discarded
-        days:
-          $ref: '#/components/schemas/ApprovalHistoryDays'
-        user:
-          type: integer
-        comment:
-          type: string
-        createdAt:
-          type: string
+  parameters:
+    TimesheetId:
+      name: timesheetId
+      in: path
+      required: true
+      description: Timesheet ID (user ID concatenated with week ID).
+      schema:
+        type: integer
+    UserId:
+      name: userId
+      in: path
+      required: true
+      description: User ID.
+      schema:
+        type: integer
   responses:
     TooManyRequests:
       description: Rate limit exceeded (around 20 requests per 10 seconds per API key). The Retry-After response header specifies the number of seconds to wait before making another request.
@@ -407,21 +422,6 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-  parameters:
-    TimesheetId:
-      name: timesheetId
-      in: path
-      required: true
-      description: Timesheet ID (user ID concatenated with week ID).
-      schema:
-        type: integer
-    UserId:
-      name: userId
-      in: path
-      required: true
-      description: User ID.
-      schema:
-        type: integer
   securitySchemes:
     apiKey:
       type: apiKey

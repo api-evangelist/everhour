@@ -189,39 +189,6 @@ paths:
           $ref: '#/components/responses/TooManyRequests'
 components:
   parameters:
-    TimeId:
-      name: timeId
-      in: path
-      required: true
-      description: Time record ID.
-      schema:
-        type: integer
-    TimeLimit:
-      name: limit
-      in: query
-      description: Max results per page (max 50000).
-      schema:
-        type: integer
-    To:
-      name: to
-      in: query
-      description: Date to (YYYY-MM-DD).
-      schema:
-        type: string
-        format: date
-    From:
-      name: from
-      in: query
-      description: Date from (YYYY-MM-DD).
-      schema:
-        type: string
-        format: date
-    Page:
-      name: page
-      in: query
-      description: Results page.
-      schema:
-        type: integer
     TaskId:
       name: taskId
       in: path
@@ -229,6 +196,39 @@ components:
       description: Task ID (for example ev:3000010034).
       schema:
         type: string
+    From:
+      name: from
+      in: query
+      description: Date from (YYYY-MM-DD).
+      schema:
+        type: string
+        format: date
+    TimeId:
+      name: timeId
+      in: path
+      required: true
+      description: Time record ID.
+      schema:
+        type: integer
+    Page:
+      name: page
+      in: query
+      description: Results page.
+      schema:
+        type: integer
+    ProjectId:
+      name: projectId
+      in: path
+      required: true
+      description: Project ID in {platform code}:{platform ID} format (for example ev:1234567789001 or as:1234567789001).
+      schema:
+        type: string
+    TimeLimit:
+      name: limit
+      in: query
+      description: Max results per page (max 50000).
+      schema:
+        type: integer
     IncludeBilling:
       name: opts_include_billing
       in: query
@@ -237,13 +237,13 @@ components:
         type: integer
         enum:
         - 1
-    ProjectId:
-      name: projectId
-      in: path
-      required: true
-      description: Project ID in {platform code}:{platform ID} format (for example ev:1234567789001 or as:1234567789001).
+    To:
+      name: to
+      in: query
+      description: Date to (YYYY-MM-DD).
       schema:
         type: string
+        format: date
     UserId:
       name: userId
       in: path
@@ -252,6 +252,12 @@ components:
       schema:
         type: integer
   responses:
+    Unauthorized:
+      description: Missing or invalid X-Api-Key header.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
     TooManyRequests:
       description: Rate limit exceeded (around 20 requests per 10 seconds per API key). The Retry-After response header specifies the number of seconds to wait before making another request.
       headers:
@@ -259,12 +265,6 @@ components:
           description: Seconds to wait before retrying.
           schema:
             type: integer
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Missing or invalid X-Api-Key header.
       content:
         application/json:
           schema:
@@ -279,40 +279,26 @@ components:
             type: array
             items:
               $ref: '#/components/schemas/TimeHistory'
-    Error:
+    TimeRecordRequest:
       type: object
+      required:
+      - time
+      - date
       properties:
-        code:
+        time:
           type: integer
-        message:
+          description: Time in seconds.
+        date:
           type: string
-    TaskEstimate:
-      type: object
-      properties:
-        total:
-          type: integer
-          description: Total task estimate in seconds.
-        type:
+          format: date
+        task:
           type: string
-          enum:
-          - overall
-          - users
-        users:
-          type: object
-          description: Task estimate in seconds keyed by user ID.
-          additionalProperties:
-            type: integer
-    TaskTime:
-      type: object
-      properties:
-        total:
+          description: Task ID.
+        user:
           type: integer
-          description: Total task time in seconds.
-        users:
-          type: object
-          description: Task time in seconds keyed by user ID.
-          additionalProperties:
-            type: integer
+          description: User ID (defaults to the API key owner).
+        comment:
+          type: string
     Task:
       type: object
       properties:
@@ -350,49 +336,6 @@ components:
           $ref: '#/components/schemas/TaskEstimate'
         unbillable:
           type: boolean
-    TimeRecordRequest:
-      type: object
-      required:
-      - time
-      - date
-      properties:
-        time:
-          type: integer
-          description: Time in seconds.
-        date:
-          type: string
-          format: date
-        task:
-          type: string
-          description: Task ID.
-        user:
-          type: integer
-          description: User ID (defaults to the API key owner).
-        comment:
-          type: string
-    TimeRecord:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: Time record ID.
-        time:
-          type: integer
-          description: Time recorded in seconds.
-        user:
-          type: integer
-          description: User ID.
-        date:
-          type: string
-          format: date
-        task:
-          $ref: '#/components/schemas/Task'
-        isLocked:
-          type: boolean
-        isInvoiced:
-          type: boolean
-        comment:
-          type: string
     TimeHistory:
       type: object
       properties:
@@ -419,6 +362,63 @@ components:
           - MOVE
         createdAt:
           type: string
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+    TimeRecord:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Time record ID.
+        time:
+          type: integer
+          description: Time recorded in seconds.
+        user:
+          type: integer
+          description: User ID.
+        date:
+          type: string
+          format: date
+        task:
+          $ref: '#/components/schemas/Task'
+        isLocked:
+          type: boolean
+        isInvoiced:
+          type: boolean
+        comment:
+          type: string
+    TaskEstimate:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: Total task estimate in seconds.
+        type:
+          type: string
+          enum:
+          - overall
+          - users
+        users:
+          type: object
+          description: Task estimate in seconds keyed by user ID.
+          additionalProperties:
+            type: integer
+    TaskTime:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: Total task time in seconds.
+        users:
+          type: object
+          description: Task time in seconds keyed by user ID.
+          additionalProperties:
+            type: integer
   securitySchemes:
     apiKey:
       type: apiKey

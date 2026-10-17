@@ -210,19 +210,6 @@ components:
           schema:
             $ref: '#/components/schemas/Error'
   schemas:
-    TimeOffType:
-      type: object
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        color:
-          type: string
-        paid:
-          type: boolean
-        description:
-          type: string
     TimeOffTypeRequest:
       type: object
       required:
@@ -236,12 +223,18 @@ components:
           type: boolean
         description:
           type: string
-    Error:
+    TimeOffType:
       type: object
       properties:
-        code:
+        id:
           type: integer
-        message:
+        name:
+          type: string
+        color:
+          type: string
+        paid:
+          type: boolean
+        description:
           type: string
     TimeOffAllocationRequest:
       type: object
@@ -316,6 +309,13 @@ components:
         createdBy:
           type: integer
         createdAt:
+          type: string
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
           type: string
   securitySchemes:
     apiKey:

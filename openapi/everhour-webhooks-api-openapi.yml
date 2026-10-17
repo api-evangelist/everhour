@@ -102,7 +102,49 @@ paths:
         '429':
           $ref: '#/components/responses/TooManyRequests'
 components:
+  responses:
+    TooManyRequests:
+      description: Rate limit exceeded (around 20 requests per 10 seconds per API key). The Retry-After response header specifies the number of seconds to wait before making another request.
+      headers:
+        Retry-After:
+          description: Seconds to wait before retrying.
+          schema:
+            type: integer
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing or invalid X-Api-Key header.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
+    WebhookRequest:
+      type: object
+      required:
+      - targetUrl
+      - events
+      properties:
+        targetUrl:
+          type: string
+          description: HTTPS endpoint that will receive event payloads.
+        events:
+          type: array
+          description: Events to receive. Supported values include api:project:created, api:project:updated, api:project:removed, api:task:created, api:task:updated, api:task:removed, api:timer:started, api:timer:stopped, api:time:updated, api:section:created, api:section:updated, api:section:removed, api:client:created, api:client:updated, and api:estimate:updated.
+          items:
+            type: string
+        project:
+          type: string
+          description: Receive events only for a specific project.
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
     Webhook:
       type: object
       properties:
@@ -124,48 +166,6 @@ components:
           type: string
         lastUsedAt:
           type: string
-    Error:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-    WebhookRequest:
-      type: object
-      required:
-      - targetUrl
-      - events
-      properties:
-        targetUrl:
-          type: string
-          description: HTTPS endpoint that will receive event payloads.
-        events:
-          type: array
-          description: Events to receive. Supported values include api:project:created, api:project:updated, api:project:removed, api:task:created, api:task:updated, api:task:removed, api:timer:started, api:timer:stopped, api:time:updated, api:section:created, api:section:updated, api:section:removed, api:client:created, api:client:updated, and api:estimate:updated.
-          items:
-            type: string
-        project:
-          type: string
-          description: Receive events only for a specific project.
-  responses:
-    TooManyRequests:
-      description: Rate limit exceeded (around 20 requests per 10 seconds per API key). The Retry-After response header specifies the number of seconds to wait before making another request.
-      headers:
-        Retry-After:
-          description: Seconds to wait before retrying.
-          schema:
-            type: integer
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Missing or invalid X-Api-Key header.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   securitySchemes:
     apiKey:
       type: apiKey

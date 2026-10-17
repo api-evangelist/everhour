@@ -314,6 +314,63 @@ paths:
           $ref: '#/components/responses/TooManyRequests'
 components:
   schemas:
+    SectionRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        position:
+          type: integer
+        status:
+          type: string
+          enum:
+          - open
+          - archived
+    Section:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        project:
+          type: string
+        position:
+          type: integer
+        status:
+          type: string
+          enum:
+          - open
+          - archived
+    ProjectBilling:
+      type: object
+      properties:
+        billing:
+          $ref: '#/components/schemas/ProjectBillingBilling'
+        rate:
+          $ref: '#/components/schemas/ProjectBillingRate'
+        budget:
+          $ref: '#/components/schemas/ProjectBillingBudget'
+    ProjectRequest:
+      type: object
+      required:
+      - name
+      - type
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+          enum:
+          - board
+          - list
+        users:
+          type: array
+          description: Assigned user IDs.
+          items:
+            type: integer
     ProjectBillingBudget:
       type: object
       properties:
@@ -358,20 +415,18 @@ components:
         threshold:
           type: integer
           description: Email admins when this percentage (1-100) of the budget is reached.
-    SectionRequest:
+    ProjectBillingBilling:
       type: object
-      required:
-      - name
       properties:
-        name:
-          type: string
-        position:
-          type: integer
-        status:
+        type:
           type: string
           enum:
-          - open
-          - archived
+          - non_billable
+          - hourly
+          - fixed_fee
+        fee:
+          type: integer
+          description: Fixed fee in cents (fixed_fee type only).
     ProjectBillingRate:
       type: object
       properties:
@@ -388,68 +443,6 @@ components:
           description: Per-user rate overrides in cents per hour, keyed by user ID.
           additionalProperties:
             type: integer
-    ProjectBilling:
-      type: object
-      properties:
-        billing:
-          $ref: '#/components/schemas/ProjectBillingBilling'
-        rate:
-          $ref: '#/components/schemas/ProjectBillingRate'
-        budget:
-          $ref: '#/components/schemas/ProjectBillingBudget'
-    ProjectRequest:
-      type: object
-      required:
-      - name
-      - type
-      properties:
-        name:
-          type: string
-        type:
-          type: string
-          enum:
-          - board
-          - list
-        users:
-          type: array
-          description: Assigned user IDs.
-          items:
-            type: integer
-    Section:
-      type: object
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        project:
-          type: string
-        position:
-          type: integer
-        status:
-          type: string
-          enum:
-          - open
-          - archived
-    Error:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-    ProjectBillingBilling:
-      type: object
-      properties:
-        type:
-          type: string
-          enum:
-          - non_billable
-          - hourly
-          - fixed_fee
-        fee:
-          type: integer
-          description: Fixed fee in cents (fixed_fee type only).
     Project:
       type: object
       properties:
@@ -483,6 +476,13 @@ components:
           $ref: '#/components/schemas/ProjectBillingRate'
         budget:
           $ref: '#/components/schemas/ProjectBillingBudget'
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
   responses:
     TooManyRequests:
       description: Rate limit exceeded (around 20 requests per 10 seconds per API key). The Retry-After response header specifies the number of seconds to wait before making another request.

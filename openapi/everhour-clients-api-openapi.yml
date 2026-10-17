@@ -148,30 +148,33 @@ paths:
         '429':
           $ref: '#/components/responses/TooManyRequests'
 components:
+  responses:
+    TooManyRequests:
+      description: Rate limit exceeded (around 20 requests per 10 seconds per API key). The Retry-After response header specifies the number of seconds to wait before making another request.
+      headers:
+        Retry-After:
+          description: Seconds to wait before retrying.
+          schema:
+            type: integer
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing or invalid X-Api-Key header.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    ClientId:
+      name: clientId
+      in: path
+      required: true
+      description: Client ID.
+      schema:
+        type: integer
   schemas:
-    Client:
-      type: object
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        projects:
-          type: array
-          description: Project IDs linked to the client.
-          items:
-            type: string
-        businessDetails:
-          type: string
-        budget:
-          $ref: '#/components/schemas/ClientBudget'
-    Error:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
     ClientRequest:
       type: object
       required:
@@ -225,32 +228,29 @@ components:
           type: integer
           readOnly: true
           description: Current budget usage in cents or seconds.
-  responses:
-    TooManyRequests:
-      description: Rate limit exceeded (around 20 requests per 10 seconds per API key). The Retry-After response header specifies the number of seconds to wait before making another request.
-      headers:
-        Retry-After:
-          description: Seconds to wait before retrying.
-          schema:
-            type: integer
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Missing or invalid X-Api-Key header.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-  parameters:
-    ClientId:
-      name: clientId
-      in: path
-      required: true
-      description: Client ID.
-      schema:
-        type: integer
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+    Client:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        projects:
+          type: array
+          description: Project IDs linked to the client.
+          items:
+            type: string
+        businessDetails:
+          type: string
+        budget:
+          $ref: '#/components/schemas/ClientBudget'
   securitySchemes:
     apiKey:
       type: apiKey

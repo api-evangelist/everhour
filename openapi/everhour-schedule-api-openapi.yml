@@ -159,32 +159,6 @@ components:
           schema:
             $ref: '#/components/schemas/Error'
   schemas:
-    Assignment:
-      type: object
-      properties:
-        id:
-          type: integer
-        days:
-          type: integer
-          description: Number of workdays.
-        startDate:
-          type: string
-          format: date
-        endDate:
-          type: string
-          format: date
-        project:
-          type: string
-        time:
-          type: integer
-          description: Scheduled time in seconds.
-        type:
-          type: string
-          enum:
-          - project
-          - time-off
-        user:
-          type: integer
     AssignmentRequest:
       type: object
       properties:
@@ -236,6 +210,32 @@ components:
           type: boolean
         forceOverride:
           type: boolean
+    Assignment:
+      type: object
+      properties:
+        id:
+          type: integer
+        days:
+          type: integer
+          description: Number of workdays.
+        startDate:
+          type: string
+          format: date
+        endDate:
+          type: string
+          format: date
+        project:
+          type: string
+        time:
+          type: integer
+          description: Scheduled time in seconds.
+        type:
+          type: string
+          enum:
+          - project
+          - time-off
+        user:
+          type: integer
     Error:
       type: object
       properties:

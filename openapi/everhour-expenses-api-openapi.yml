@@ -203,40 +203,7 @@ paths:
         '429':
           $ref: '#/components/responses/TooManyRequests'
 components:
-  responses:
-    TooManyRequests:
-      description: Rate limit exceeded (around 20 requests per 10 seconds per API key). The Retry-After response header specifies the number of seconds to wait before making another request.
-      headers:
-        Retry-After:
-          description: Seconds to wait before retrying.
-          schema:
-            type: integer
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Missing or invalid X-Api-Key header.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
-    ExpenseCategory:
-      type: object
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        color:
-          type: string
-        unitBased:
-          type: boolean
-        unitName:
-          type: string
-        unitPrice:
-          type: integer
     ExpenseRequest:
       type: object
       required:
@@ -266,6 +233,21 @@ components:
           type: number
         user:
           type: integer
+    ExpenseCategory:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        color:
+          type: string
+        unitBased:
+          type: boolean
+        unitName:
+          type: string
+        unitPrice:
+          type: integer
     Expense:
       type: object
       properties:
@@ -294,6 +276,13 @@ components:
           type: number
         user:
           type: integer
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
     AttachmentDetails:
       type: object
       properties:
@@ -302,13 +291,6 @@ components:
         name:
           type: string
         token:
-          type: string
-    Error:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
           type: string
     ExpenseCategoryRequest:
       type: object
@@ -325,6 +307,24 @@ components:
           type: string
         unitPrice:
           type: integer
+  responses:
+    TooManyRequests:
+      description: Rate limit exceeded (around 20 requests per 10 seconds per API key). The Retry-After response header specifies the number of seconds to wait before making another request.
+      headers:
+        Retry-After:
+          description: Seconds to wait before retrying.
+          schema:
+            type: integer
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing or invalid X-Api-Key header.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     apiKey:
       type: apiKey
