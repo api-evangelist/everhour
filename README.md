@@ -1,4 +1,4 @@
-# Everhour (everhour)
+# Everhour
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,265 +64,145 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Everhour is a time tracking and budgeting platform for teams that embeds timers and timesheets directly inside the project management tools teams already use - Asana, Trello, ClickUp, Jira, GitHub, Basecamp, Notion, Monday, Linear, and more. The Everhour REST API (`https://api.everhour.com`) gives programmatic access to time records, running timers, weekly timesheets and approvals, clock-in/clock-out timecards, projects and tasks, clients, invoices, expenses, resource scheduling, time off, and reporting dashboards, plus webhooks for time, timer, task, and project change events.
+Everhour is a time tracking and budgeting platform for teams that embeds timers and timesheets directly inside the project management tools teams already use - Asana, Trello, ClickUp, Jira, GitHub, Basecamp, Notion, Monday, Linear, and more. The Everhour REST API (api.everhour.com, X-Api-Key auth) gives programmatic access to time records, running timers, weekly timesheets and approvals, clock-in/clock-out timecards, projects and tasks, clients, invoices, expenses, resource scheduling, time off, and reporting dashboards, plus webhooks for time, timer, task, and project change events.
 
-**Access model:** The API is included with every Everhour account, including the Free plan (up to 5 seats) - there is no separate developer signup or API fee. Authentication is a personal API key passed in the `X-Api-Key` header; each user finds their key at the bottom of their profile page in the Everhour app. There is no OAuth flow, so integrations act as the user whose key they hold, and admin-only data (like billing fields via `opts_include_billing=1`) requires an admin's key. An optional `X-Accept-Version` header pins an API version (current 1.2). Everhour labels the API BETA - some calls can be slightly adjusted, with breaking changes pushed in separate versions. Rate limiting is around 20 requests per 10 seconds per API key (429 + `Retry-After` when exceeded), and the docs are hosted on Apiary.
+**Areas:** Time Tracking · Timesheets · Productivity · Project Management · Budgeting · Invoicing
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/everhour/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/everhour/refs/heads/main/apis.yml)
+## Everhour on APIs.io
 
-## Tags
+Everything profiled for Everhour is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/everhour/](https://apis.io/providers/everhour/)** — or go straight to one of the APIs or properties below.
 
-- Time Tracking
-- Timesheets
-- Productivity
-- Project Management
-- Budgeting
-- Invoicing
+### APIs (14)
 
-## Timestamps
+- [Everhour Clients API](https://apis.io/apis/everhour/everhour-clients-api/) — Clients and client budgets.
+- [Everhour Expenses API](https://apis.io/apis/everhour/everhour-expenses-api/) — Expenses, expense categories, and attachments.
+- [Everhour Invoices API](https://apis.io/apis/everhour/everhour-invoices-api/) — Invoices generated from tracked time and expenses.
+- [Everhour Projects API](https://apis.io/apis/everhour/everhour-projects-api/) — Projects, sections, billing, budgets, and integration sync.
+- [Everhour Reports API](https://apis.io/apis/everhour/everhour-reports-api/) — Dashboard reports for projects, clients, and users.
+- [Everhour Schedule API](https://apis.io/apis/everhour/everhour-schedule-api/) — Resource planner assignments.
+- [Everhour Tasks API](https://apis.io/apis/everhour/everhour-tasks-api/) — Tasks, task search, and task estimates.
+- [Everhour Time Off API](https://apis.io/apis/everhour/everhour-time-off-api/) — Time off types and allocations.
+- [Everhour Time Records API](https://apis.io/apis/everhour/everhour-time-records-api/) — Reported time records for the team, users, tasks, and projects.
+- [Everhour Timecards API](https://apis.io/apis/everhour/everhour-timecards-api/) — Clock-in/clock-out attendance timecards.
+- [Everhour Timers API](https://apis.io/apis/everhour/everhour-timers-api/) — Start, inspect, and stop running timers.
+- [Everhour Timesheets API](https://apis.io/apis/everhour/everhour-timesheets-api/) — Weekly timesheets and the timesheet approval workflow.
+- [Everhour Users API](https://apis.io/apis/everhour/everhour-users-api/) — Current user and team members.
+- [Everhour Webhooks API](https://apis.io/apis/everhour/everhour-webhooks-api/) — Webhook subscriptions for resource change events.
 
-- **Created:** 2026-07-11
-- **Modified:** 2026-07-11
+### Published properties
 
-## APIs
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-### Everhour Time Records API
+#### Agentic access (1)
 
-Read and write reported time - list time records across the whole team, per user, per task, or per project with date-range filters and pagination, add time to a task, and update or delete existing time records. Time is expressed in seconds; billing data can be included with the `opts_include_billing` flag.
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- **Human URL:** [https://everhour.docs.apiary.io/#reference/time-records](https://everhour.docs.apiary.io/#reference/time-records)
-- **Base URL:** `https://api.everhour.com`
+- [Everhour Agentic Access](https://apis.io/agentic-access/everhour/everhour-agentic-access/)
 
-#### Tags
+#### Collections (15)
 
-- Time Tracking
-- Time Records
-- Timesheets
+Postman and Open Collection request collections.
 
-#### Properties
+- [Everhour API](https://apis.io/collections/everhour/open-everhour/)
+- [Everhour Clients API](https://apis.io/collections/everhour/open-everhour-clients-api/)
+- [Everhour Clients Expenses API](https://apis.io/collections/everhour/open-everhour-expenses-api/)
+- [Everhour Clients Invoices API](https://apis.io/collections/everhour/open-everhour-invoices-api/)
+- [Everhour Clients Projects API](https://apis.io/collections/everhour/open-everhour-projects-api/)
+- [Everhour Clients Reports API](https://apis.io/collections/everhour/open-everhour-reports-api/)
+- [Everhour Clients Schedule API](https://apis.io/collections/everhour/open-everhour-schedule-api/)
+- [Everhour Clients Tasks API](https://apis.io/collections/everhour/open-everhour-tasks-api/)
+- [Everhour Clients Time Off API](https://apis.io/collections/everhour/open-everhour-time-off-api/)
+- [Everhour Clients Time Records API](https://apis.io/collections/everhour/open-everhour-time-records-api/)
+- [Everhour Clients Timecards API](https://apis.io/collections/everhour/open-everhour-timecards-api/)
+- [Everhour Clients Timers API](https://apis.io/collections/everhour/open-everhour-timers-api/)
+- [Everhour Clients Timesheets API](https://apis.io/collections/everhour/open-everhour-timesheets-api/)
+- [Everhour Clients Users API](https://apis.io/collections/everhour/open-everhour-users-api/)
+- [Everhour Clients Webhooks API](https://apis.io/collections/everhour/open-everhour-webhooks-api/)
 
-- [Documentation](https://everhour.docs.apiary.io/)
-- [API Reference](https://everhour.docs.apiary.io/#reference/time-records)
-- [OpenAPI](openapi/everhour-openapi.yml)
-- [Postman Collection](collections/everhour.postman_collection.json)
-- [Open Collection](collections/everhour.opencollection.json)
+#### Security (3)
 
-### Everhour Timers API
+Authentication, trust centre, and vulnerability disclosure.
 
-Control live time tracking - start a timer on a task with an optional comment, fetch the current user's running timer, list every running timer across the team, and stop the current timer to record the tracked time.
+- [Everhour Authentication](https://apis.io/security/everhour/everhour-authentication/)
+- [Everhour Domain Security](https://apis.io/security/everhour/everhour-domain-security/)
+- [Everhour Trust Center](https://apis.io/security/everhour/everhour-trust-center/)
 
-- **Human URL:** [https://everhour.docs.apiary.io/#reference/timers](https://everhour.docs.apiary.io/#reference/timers)
-- **Base URL:** `https://api.everhour.com`
+#### Plans and pricing (1)
 
-#### Tags
+Published plans, tiers and prices.
 
-- Timers
-- Time Tracking
-- Real Time
+- [Everhour Plans Pricing](https://apis.io/plans/everhour/everhour-plans-pricing/)
 
-#### Properties
+#### Rate limits (1)
 
-- [API Reference](https://everhour.docs.apiary.io/#reference/timers)
-- [OpenAPI](openapi/everhour-openapi.yml)
-- [Postman Collection](collections/everhour.postman_collection.json)
-- [Open Collection](collections/everhour.opencollection.json)
+Published request limits.
 
-### Everhour Timesheets and Timecards API
+- [Everhour Rate Limits](https://apis.io/rate-limits/everhour/everhour-rate-limits/)
 
-Weekly timesheets and attendance timecards - fetch user or team timesheets by week ID, submit a week for approval, approve or reject approval requests (optionally per day), discard requests, and manage clock-in/clock-out timecards with breaks and full change history.
+#### FinOps (1)
 
-- **Human URL:** [https://everhour.docs.apiary.io/#reference/timesheets](https://everhour.docs.apiary.io/#reference/timesheets)
-- **Base URL:** `https://api.everhour.com`
+What the API costs to run, by operation.
 
-#### Tags
+- [Everhour Finops](https://apis.io/finops/everhour/everhour-finops/)
 
-- Timesheets
-- Timecards
-- Approvals
-- Attendance
+## Where to find this API
 
-#### Properties
-
-- [API Reference](https://everhour.docs.apiary.io/#reference/timesheets)
-- [Documentation](https://everhour.docs.apiary.io/#reference/timecards)
-- [OpenAPI](openapi/everhour-openapi.yml)
-- [Postman Collection](collections/everhour.postman_collection.json)
-- [Open Collection](collections/everhour.opencollection.json)
-
-### Everhour Projects API
-
-Manage projects and their sections - create, list, search, update, archive, and delete projects, configure billing (hourly, fixed fee, non-billable) with project or per-user rates, set money/time/cost budgets with periods and thresholds, and instantly sync projects from connected integrations like Asana, Trello, ClickUp, and GitHub.
-
-- **Human URL:** [https://everhour.docs.apiary.io/#reference/projects](https://everhour.docs.apiary.io/#reference/projects)
-- **Base URL:** `https://api.everhour.com`
-
-#### Tags
-
-- Projects
-- Sections
-- Budgets
-- Billing
-
-#### Properties
-
-- [API Reference](https://everhour.docs.apiary.io/#reference/projects)
-- [OpenAPI](openapi/everhour-openapi.yml)
-- [Postman Collection](collections/everhour.postman_collection.json)
-- [Open Collection](collections/everhour.opencollection.json)
-
-### Everhour Tasks API
-
-Work with tasks - list and search tasks globally or within a project, create tasks in sections with assignees and due dates, update task details and custom field values, and set or remove time estimates (overall or per user).
-
-- **Human URL:** [https://everhour.docs.apiary.io/#reference/tasks](https://everhour.docs.apiary.io/#reference/tasks)
-- **Base URL:** `https://api.everhour.com`
-
-#### Tags
-
-- Tasks
-- Estimates
-- Custom Fields
-
-#### Properties
-
-- [API Reference](https://everhour.docs.apiary.io/#reference/tasks)
-- [OpenAPI](openapi/everhour-openapi.yml)
-- [Postman Collection](collections/everhour.postman_collection.json)
-- [Open Collection](collections/everhour.opencollection.json)
-
-### Everhour Schedule and Time Off API
-
-Resource planner and time off management - list, create, update, and delete schedule assignments, create time off requests with approval workflow, and manage time off types and accrual allocations with carried days and over-allocation restrictions.
-
-- **Human URL:** [https://everhour.docs.apiary.io/#reference/schedule](https://everhour.docs.apiary.io/#reference/schedule)
-- **Base URL:** `https://api.everhour.com`
-
-#### Tags
-
-- Resource Planning
-- Scheduling
-- Time Off
-
-#### Properties
-
-- [API Reference](https://everhour.docs.apiary.io/#reference/schedule)
-- [Documentation](https://everhour.docs.apiary.io/#reference/time-off)
-- [OpenAPI](openapi/everhour-openapi.yml)
-- [Postman Collection](collections/everhour.postman_collection.json)
-- [Open Collection](collections/everhour.opencollection.json)
-
-### Everhour Clients and Invoices API
-
-Manage clients with money, time, or cost budgets, then bill them - create invoices from uninvoiced time and expenses in a date range, refresh line items, apply tax and discounts, move invoices through draft/sent/paid statuses, and export them to Xero, QuickBooks, or FreshBooks.
-
-- **Human URL:** [https://everhour.docs.apiary.io/#reference/clients](https://everhour.docs.apiary.io/#reference/clients)
-- **Base URL:** `https://api.everhour.com`
-
-#### Tags
-
-- Clients
-- Invoices
-- Budgets
-
-#### Properties
-
-- [API Reference](https://everhour.docs.apiary.io/#reference/clients)
-- [Documentation](https://everhour.docs.apiary.io/#reference/invoices)
-- [OpenAPI](openapi/everhour-openapi.yml)
-- [Postman Collection](collections/everhour.postman_collection.json)
-- [Open Collection](collections/everhour.opencollection.json)
-
-### Everhour Expenses API
-
-Track billable and non-billable expenses against projects and users - create, update, and delete expenses, manage expense categories (including unit-based categories like mileage), and attach jpg, png, or pdf receipts.
-
-- **Human URL:** [https://everhour.docs.apiary.io/#reference/expenses](https://everhour.docs.apiary.io/#reference/expenses)
-- **Base URL:** `https://api.everhour.com`
-
-#### Tags
-
-- Expenses
-- Attachments
-- Budgeting
-
-#### Properties
-
-- [API Reference](https://everhour.docs.apiary.io/#reference/expenses)
-- [OpenAPI](openapi/everhour-openapi.yml)
-- [Postman Collection](collections/everhour.postman_collection.json)
-- [Open Collection](collections/everhour.opencollection.json)
-
-### Everhour Reports API
-
-Dashboard reports aggregated by project, client, or team member - time, billable and non-billable time, time off, billable amounts, labor and expense costs, profit, and uninvoiced amounts, filterable by date range, project, client, and user. Time is in seconds and amounts in cents.
-
-- **Human URL:** [https://everhour.docs.apiary.io/#reference/reports](https://everhour.docs.apiary.io/#reference/reports)
-- **Base URL:** `https://api.everhour.com`
-
-#### Tags
-
-- Reports
-- Dashboards
-- Analytics
-
-#### Properties
-
-- [API Reference](https://everhour.docs.apiary.io/#reference/reports)
-- [OpenAPI](openapi/everhour-openapi.yml)
-- [Postman Collection](collections/everhour.postman_collection.json)
-- [Open Collection](collections/everhour.opencollection.json)
-
-### Everhour Users API
-
-Identity and team roster - fetch the profile that owns the API key (`GET /users/me`) and list all team members with their roles (admin, supervisor, member) and statuses.
-
-- **Human URL:** [https://everhour.docs.apiary.io/#reference/users](https://everhour.docs.apiary.io/#reference/users)
-- **Base URL:** `https://api.everhour.com`
-
-#### Tags
-
-- Users
-- Team
-
-#### Properties
-
-- [API Reference](https://everhour.docs.apiary.io/#reference/users)
-- [OpenAPI](openapi/everhour-openapi.yml)
-- [Postman Collection](collections/everhour.postman_collection.json)
-- [Open Collection](collections/everhour.opencollection.json)
-
-### Everhour Webhooks API
-
-Subscribe to change notifications - create, get, update, and delete webhook subscriptions for project, task, section, client, estimate, timer started/stopped, and time updated events, optionally scoped to a single project, with `X-Hook-Secret` target URL verification.
-
-- **Human URL:** [https://everhour.docs.apiary.io/#reference/webhooks](https://everhour.docs.apiary.io/#reference/webhooks)
-- **Base URL:** `https://api.everhour.com`
-
-#### Tags
-
-- Webhooks
-- Events
-- Automation
-
-#### Properties
-
-- [API Reference](https://everhour.docs.apiary.io/#reference/webhooks)
-- [OpenAPI](openapi/everhour-openapi.yml)
-- [Postman Collection](collections/everhour.postman_collection.json)
-- [Open Collection](collections/everhour.opencollection.json)
-
-## Common Properties
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://everhour.com)
 - [Documentation](https://everhour.docs.apiary.io/)
-- [LinkedIn](https://www.linkedin.com/company/everhour)
 - [Pricing](https://everhour.com/pricing)
 - [Blog](https://everhour.com/blog/)
-- [Plans](plans/everhour-plans-pricing.yml)
-- [Rate Limits](rate-limits/everhour-rate-limits.yml)
-- [Fin Ops](finops/everhour-finops.yml)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 30.7** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 54.8 |
+| Contract governance | 0.0 |
+| Operational transparency | 7.9 |
+| Developer ergonomics | 22.6 |
+| Access clarity | 26.3 |
+
+**Agent readiness 22.3** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | verified |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 16.7** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/everhour/](https://apis.io/providers/everhour/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Everhour: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/everhour/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
